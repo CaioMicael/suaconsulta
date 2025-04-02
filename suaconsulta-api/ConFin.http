@@ -1,0 +1,6 @@
+@ConFin_HostAddress = http://localhost:5063
+
+GET {{ConFin_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
