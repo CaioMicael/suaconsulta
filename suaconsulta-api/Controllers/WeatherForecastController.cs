@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ConFin.Controllers
+namespace suaconsulta_api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

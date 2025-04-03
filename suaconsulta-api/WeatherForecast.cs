@@ -1,4 +1,4 @@
-namespace ConFin
+namespace suaconsulta_api
 {
     public class WeatherForecast
     {
