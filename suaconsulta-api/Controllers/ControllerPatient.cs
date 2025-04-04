@@ -57,23 +57,44 @@ namespace suaconsulta_api.Controllers
         [HttpPut("{id}")]
         public IActionResult PutPatient(int id, [FromBody] UpdatePatientDto dto)
         {
+            if (dto == null)
+            {
+                return BadRequest("Dados do paciente são nulos.");
+            }
+
             var patient = _context.Patient.FirstOrDefault(p => p.Id == id);
             if (patient == null)
             {
                 return NotFound("Registro não encontrado.");
             }
 
-            foreach (var prop in typeof(UpdatePatientDto).GetProperties())
+            if (!string.IsNullOrEmpty(dto.Name))
             {
-                var DtoValue = prop.GetValue(dto);
-                if (DtoValue != null)
-                {
-                    var PatientProperty = typeof(ModelPatient).GetProperty(prop.Name);
-                    if (PatientProperty != null && PatientProperty.CanWrite)
-                    {
-                        PatientProperty.SetValue(patient, DtoValue);
-                    }
-                }
+                patient.Name = dto.Name;
+            }
+            if (!string.IsNullOrEmpty(dto.Email))
+            {
+                patient.Email = dto.Email;
+            }
+            if (!string.IsNullOrEmpty(dto.Birthday))
+            {
+                patient.Birthday = dto.Birthday;
+            }
+            if (!string.IsNullOrEmpty(dto.Phone))
+            {
+                patient.Phone = dto.Phone;
+            }
+            if (!string.IsNullOrEmpty(dto.City))
+            {
+                patient.City = dto.City;
+            }
+            if (!string.IsNullOrEmpty(dto.State))
+            {
+                patient.State = dto.State;
+            }
+            if (!string.IsNullOrEmpty(dto.Country))
+            {
+                patient.Country = dto.Country;
             }
 
             try
@@ -84,6 +105,29 @@ namespace suaconsulta_api.Controllers
             catch (Exception e)
             {
                 return BadRequest("Erro ao atualizar Paciente " + e.Message);
+            }
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePatient(int id)
+        {
+            var patient = _context.Patient.FirstOrDefault(p => p.Id == id);
+            if (patient == null)
+            {
+                return NotFound("Registro não encontrado.");
+            }
+
+            try
+            {
+                _context.Patient.Remove(patient);
+                _context.SaveChanges();
+                return Ok("Excluído com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao excluir Paciente " + e.Message);
             }
         }
     }

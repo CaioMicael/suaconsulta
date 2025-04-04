@@ -2,7 +2,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "GetListDoctor",
-    "RelativePath": "api/ControllerDoctor",
+    "RelativePath": "api/Doctor",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -22,7 +22,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "PostDoctor",
-    "RelativePath": "api/ControllerDoctor",
+    "RelativePath": "api/Doctor",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -38,7 +38,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "PutDoctor",
-    "RelativePath": "api/ControllerDoctor",
+    "RelativePath": "api/Doctor",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -54,7 +54,80 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "DeleteDoctor",
-    "RelativePath": "api/ControllerDoctor/{id}",
+    "RelativePath": "api/Doctor/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "GetListPatient",
+    "RelativePath": "api/Patient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[suaconsulta_api.Model.ModelPatient, suaconsulta-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "PostPatient",
+    "RelativePath": "api/Patient",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.CreatePatientDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "PutPatient",
+    "RelativePath": "api/Patient/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.UpdatePatientDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "DeletePatient",
+    "RelativePath": "api/Patient/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

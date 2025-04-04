@@ -2,10 +2,12 @@
 
 namespace suaconsulta_api.DTO
 {
-    public class UpdatePatientDto
+    public class DeletePatientDto
     {
+        [Required(ErrorMessage = "O id é obrigatório.")]
+        public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Nome { get; set; }
 
         [EmailAddress(ErrorMessage = "O email fornecido é inválido.")]
         public string Email { get; set; }
