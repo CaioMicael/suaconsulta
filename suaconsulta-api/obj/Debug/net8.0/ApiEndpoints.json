@@ -1,5 +1,73 @@
 [
   {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "GetListDoctor",
+    "RelativePath": "api/ControllerDoctor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[suaconsulta_api.Model.ModelDoctor, suaconsulta-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "PostDoctor",
+    "RelativePath": "api/ControllerDoctor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctor",
+        "Type": "suaconsulta_api.Model.ModelDoctor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "PutDoctor",
+    "RelativePath": "api/ControllerDoctor",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctor",
+        "Type": "suaconsulta_api.Model.ModelDoctor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "DeleteDoctor",
+    "RelativePath": "api/ControllerDoctor/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "suaconsulta_api.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

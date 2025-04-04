@@ -8,6 +8,7 @@ namespace suaconsulta_api.Model
         [Key]
         [DatabaseGenerated(databaseGeneratedOption: DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Nome é obrigatório")]
         public string Name { get; set; }
 

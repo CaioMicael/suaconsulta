@@ -4,7 +4,7 @@ using suaconsulta_api.Model;
 
 namespace suaconsulta_api.Controllers
 {
-    [Route("api/ControllerDoctor")]
+    [Route("api/Doctor")]
     [ApiController]
     public class ControllerDoctor : ControllerBase
     {
