@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
+using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 
 namespace suaconsulta_api.Controllers
@@ -10,32 +12,51 @@ namespace suaconsulta_api.Controllers
     {
         private static ModelDoctor ModelDoctor = new ModelDoctor();
         private static List<ModelDoctor> ListDoctor = new List<ModelDoctor>();
-        private readonly AppDbContext _context;
 
-        /**
-         * ControllerDoctor
-         * Método construtor da classe
-         * @param context
-         */
-        public ControllerDoctor(AppDbContext context)
+        [HttpGet]
+        public async Task<IActionResult> GetAsyncListDoctor([FromServices] AppDbContext context)
         {
-            _context = context;
+            var doctors = await context.Doctor.OrderBy(L => L.Id).ToListAsync();
+            return Ok(doctors);
         }
 
         [HttpGet]
-        public List<ModelDoctor> GetListDoctor()
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetAsyncListDoctorById(
+            [FromServices] AppDbContext context,
+            [FromRoute] int id)
         {
-            return _context.Doctor.OrderBy(L => L.Id).ToList();
+            var doctor = await context.Doctor.FirstOrDefaultAsync(i => i.Id == id);
+            return doctor == null ? NotFound() : Ok(doctor);
         }
 
         [HttpPost]
-        public IActionResult PostDoctor([FromBody] ModelDoctor doctor)
+        public async Task<IActionResult> PostAsyncDoctor(
+            [FromServices] AppDbContext context,
+            [FromBody] CreateDoctorDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var doctor = new ModelDoctor
+            {
+                Name = dto.Name,
+                Specialty = dto.Specialty,
+                CRM = dto.CRM,
+                Phone = dto.Phone,
+                Email = dto.Email,
+                City = dto.City,
+                State = dto.State,
+                Country = dto.Country
+            };
+
             try
             {
-            _context.Doctor.Add(doctor);
-            _context.SaveChanges();
-            return Ok("Inserido com sucesso!");
+                context.Doctor.Add(doctor);
+                await context.SaveChangesAsync();
+                return Ok("Inserido com sucesso!");
             }
             catch (Exception e)
             {
@@ -44,12 +65,31 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPut]
-        public IActionResult PutDoctor([FromBody] ModelDoctor doctor)
+        public async Task<IActionResult> PutAsyncDoctor(
+            [FromServices] AppDbContext context,
+            [FromBody] UpdateDoctorDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var doctor = new ModelDoctor
+            {
+                Name = dto.Name,
+                Specialty = dto.Specialty,
+                CRM = dto.CRM,
+                Phone = dto.Phone,
+                Email = dto.Email,
+                City = dto.City,
+                State = dto.State,
+                Country = dto.Country
+            };
+
             try
             {
-                _context.Doctor.Update(doctor);
-                _context.SaveChanges();
+                context.Doctor.Update(doctor);
+                await context.SaveChangesAsync();
                 return Ok("Atualizado com sucesso!");
             }
             catch (Exception e)
@@ -59,13 +99,27 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteDoctor(int id)
+        public async Task<IActionResult> DeleteAsyncDoctor(
+            [FromServices] AppDbContext context,
+            [FromRoute] int id,
+            [FromBody] DeleteDoctorDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var doctor = await context.Doctor.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (doctor == null)
+            {
+                return NotFound("Registro não encontrado.");
+            }
+
             try
             {
-                ModelDoctor doctor = _context.Doctor.Find(id);
-                _context.Doctor.Remove(doctor);
-                _context.SaveChanges();
+                context.Doctor.Remove(doctor);
+                await context.SaveChangesAsync();
                 return Ok("Excluído com sucesso!");
             }
             catch (Exception e)

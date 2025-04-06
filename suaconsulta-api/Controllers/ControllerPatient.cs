@@ -11,7 +11,6 @@ namespace suaconsulta_api.Controllers
     [ApiController]
     public class ControllerPatient : ControllerBase
     {
-        private readonly AppDbContext _context;
         private static ModelPatient ModelPatient = new ModelPatient();
         private static List<ModelPatient> ListPatient = new List<ModelPatient>();
 
