@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
+using System.Threading.Tasks;
 
 namespace suaconsulta_api.Controllers
 {
@@ -13,25 +15,33 @@ namespace suaconsulta_api.Controllers
         private static ModelPatient ModelPatient = new ModelPatient();
         private static List<ModelPatient> ListPatient = new List<ModelPatient>();
 
-        /**
-         * ControllerPatient
-         * Método construtor da classe
-         * @param context
-         */
-        public ControllerPatient(AppDbContext context)
+        [HttpGet]
+        public async Task<IActionResult> GetAsyncListPatient([FromServices] AppDbContext context)
         {
-            _context = context;
+            var patients = await context.Patient.OrderBy(L => L.Id).ToListAsync();
+            return Ok(patients);
         }
 
         [HttpGet]
-        public List<ModelPatient> GetListPatient()
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetAsyncListPatientById(
+            [FromServices] AppDbContext context, 
+            [FromRoute] int id)
         {
-            return _context.Patient.OrderBy(L => L.Id).ToList();
+            var patient = await context.Patient.FirstOrDefaultAsync(i => i.Id == id);
+            return patient == null ? NotFound() : Ok(patient);
         }
 
         [HttpPost]
-        public IActionResult PostPatient([FromBody] CreatePatientDto dto)
+        public async Task<IActionResult> PostAsyncPatient(
+            [FromServices] AppDbContext context,
+            [FromBody] CreatePatientDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var patient = new ModelPatient
             {
                 Name = dto.Name,
@@ -44,8 +54,8 @@ namespace suaconsulta_api.Controllers
             };
             try
             {
-                _context.Patient.Add(patient);
-                _context.SaveChanges();
+                await context.Patient.AddAsync(patient);
+                await context.SaveChangesAsync();
                 return Ok("Inserido com sucesso!");
             }
             catch (Exception e)
@@ -54,15 +64,19 @@ namespace suaconsulta_api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult PutPatient(int id, [FromBody] UpdatePatientDto dto)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchPatient(
+            [FromServices] AppDbContext context,
+            [FromRoute] int id, 
+            [FromBody] UpdatePatientDto dto)
         {
             if (dto == null)
             {
                 return BadRequest("Dados do paciente são nulos.");
             }
 
-            var patient = _context.Patient.FirstOrDefault(p => p.Id == id);
+            var patient = await context.Patient.FirstOrDefaultAsync(p => p.Id == id);
+
             if (patient == null)
             {
                 return NotFound("Registro não encontrado.");
@@ -99,7 +113,8 @@ namespace suaconsulta_api.Controllers
 
             try
             {
-                _context.SaveChanges();
+                context.Patient.Update(patient);
+                await context.SaveChangesAsync();
                 return Ok("Atualizado com sucesso!");
             }
             catch (Exception e)
@@ -111,18 +126,27 @@ namespace suaconsulta_api.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePatient(int id)
+        public async Task<IActionResult> DeletePatient(
+            [FromServices] AppDbContext context,
+            int id,
+            [FromBody] DeletePatientDto dto)
         {
-            var patient = _context.Patient.FirstOrDefault(p => p.Id == id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var patient = await context.Patient.FirstOrDefaultAsync(p => p.Id == id);
+
             if (patient == null)
             {
                 return NotFound("Registro não encontrado.");
             }
-
+            
             try
             {
-                _context.Patient.Remove(patient);
-                _context.SaveChanges();
+                context.Patient.Remove(patient);
+                await context.SaveChangesAsync();
                 return Ok("Excluído com sucesso!");
             }
             catch (Exception e)
