@@ -1,6 +1,43 @@
 [
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
+    "Method": "GetConsultationByDoctorPatient",
+    "RelativePath": "{DoctorId}/{PatientId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DoctorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "PatientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
+    "Method": "PostAsyncConsultation",
+    "RelativePath": "api/Consultation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.CreateConsultation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "GetMedicalConsultation",
     "RelativePath": "api/Consultation/{DoctorId}",
     "HttpMethod": "GET",
@@ -11,6 +48,43 @@
         "Name": "DoctorId",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
+    "Method": "GetPatientConsultation",
+    "RelativePath": "api/Consultation/{PatientId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PatientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
+    "Method": "GetConsultationByDoctorPatient",
+    "RelativePath": "api/Consultation/ConsultationByDoctorPatient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DoctorId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

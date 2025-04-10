@@ -13,7 +13,7 @@ namespace suaconsulta_api.Model
         public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Status é obrigatório")]
-        public string Status { get; set; }
+        public int Status { get; set; }
 
         [Required(ErrorMessage = "Paciente é obrigatório")]
         public int PatientId { get; set; }
