@@ -12,8 +12,8 @@ using suaconsulta_api.Data;
 namespace suaconsulta_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250410001817_ModelConsultation")]
-    partial class ModelConsultation
+    [Migration("20250410214635_Consultation")]
+    partial class Consultation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -11,43 +11,65 @@ namespace suaconsulta_api.Controllers
     {
         private static ModelConsultation ModelConsultation { get; set; }
 
-        private static EnumStatusConsultation EnumStatusConsultation { get; set; }
-
         [HttpGet]
-        [Route("api/Consultation/{DoctorId:int}")]
-        public async Task<IActionResult> GetMedicalConsultation(
+        [Route("api/Consultation/DoctorConsultations/")]
+        public async Task<IActionResult> GetDoctorConsultation(
             [FromServices] AppDbContext context,
             [FromRoute] int DoctorId)
         {
-            var DoctorConsultations = await context.Consultation.OrderBy(C => C.DoctorId).ToListAsync();
+            var DoctorConsultations = await context.Consultation
+                .Include(C => C.Doctor)
+                .OrderBy(C => C.DoctorId)
+                .ToListAsync();
             return Ok(DoctorConsultations);
         }
 
         [HttpGet]
-        [Route("api/Consultation/{PatientId:int}")]
+        [Route("api/Consultation/PatientConsultations/")]
         public async Task<IActionResult> GetPatientConsultation(
             [FromServices] AppDbContext context,
             [FromRoute] int PatientId)
         {
-            var PatientConsultations = await context.Consultation.OrderBy(C => C.PatientId).ToListAsync();
+            var PatientConsultations = await context.Consultation
+                .Include(C => C.Patient)
+                .OrderBy(C => C.PatientId)
+                .ToListAsync();
             return Ok(PatientConsultations);
         }
 
         [HttpGet]
-        [Route("api/Consultation/ConsultationByDoctorPatient")]
-        [Route("{DoctorId:int}/{PatientId:int}")]
+        [Route("api/Consultation/ConsultationByDoctorPatient/")]
         public async Task<IActionResult> GetConsultationByDoctorPatient(
             [FromServices] AppDbContext context,
-            [FromRoute] int DoctorId,
-            [FromRoute] int PatientId)
+            int DoctorId,
+            int PatientId)
         {
             var Consultation = await context.Consultation
+                .Include(C => C.Doctor)
+                .Include(C => C.Patient)
                 .FirstOrDefaultAsync(C => C.DoctorId == DoctorId && C.PatientId == PatientId);
             return Consultation == null ? NotFound() : Ok(Consultation);
         }
 
+        [HttpGet]
+        [Route("api/Consultation/ConsultationStatus/")]
+        public async Task<IActionResult> GetConsultationStatusById(
+            [FromServices] AppDbContext context,
+            int id)
+        {
+            var Consultation = await context.Consultation.FirstOrDefaultAsync(C => C.Id == id);
+
+            if (Consultation == null)
+            {
+                return NotFound();
+            }
+
+            var Response = EnumStatusConsultation.GetName(typeof (EnumStatusConsultation), Consultation.Status);
+            return Ok(Response);
+        }
+
         [HttpPost]
-        [Route("api/Consultation")]
+        [Route("api/Consultation/CreateConsultation")]
         public async Task<IActionResult> PostAsyncConsultation(
             [FromServices] AppDbContext context,
             [FromBody] CreateConsultation dto)
@@ -62,8 +84,16 @@ namespace suaconsulta_api.Controllers
                 Date = dto.Date,
                 Status = (int)EnumStatusConsultation.Agendada,
                 DoctorId = dto.DoctorId,
-                PatientId = dto.PatientId
+                PatientId = dto.PatientId,
+                Description = dto.Description
             };
+
+            var Validation = this.ValidaDataConsultaMaiorAtual(Consultation.Date);
+            if (Validation != null)
+            {
+                return Validation;
+            }
+
             try
             {
                 await context.Consultation.AddAsync(Consultation);
@@ -74,6 +104,16 @@ namespace suaconsulta_api.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        private ActionResult? ValidaDataConsultaMaiorAtual(DateTime ConsultationDate)
+        {
+            if (DateTime.Now.CompareTo(ConsultationDate) > 0)
+            {
+                return ValidationProblem("A data da consulta não pode ser menor que a data atual.");
+            }
+            
+            return null;
         }
     }
 }
