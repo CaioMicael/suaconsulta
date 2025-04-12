@@ -14,6 +14,7 @@ namespace suaconsulta_api.Controllers
         private static List<ModelDoctor> ListDoctor = new List<ModelDoctor>();
 
         [HttpGet]
+        [Route("ListDoctor/")]
         public async Task<IActionResult> GetAsyncListDoctor([FromServices] AppDbContext context)
         {
             var doctors = await context.Doctor.OrderBy(L => L.Id).ToListAsync();
@@ -21,16 +22,17 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
-        public async Task<IActionResult> GetAsyncListDoctorById(
+        [Route("GetDoctor/")]
+        public async Task<IActionResult> GetAsyncDoctorById(
             [FromServices] AppDbContext context,
-            [FromRoute] int id)
+            [FromQuery] int id)
         {
             var doctor = await context.Doctor.FirstOrDefaultAsync(i => i.Id == id);
             return doctor == null ? NotFound() : Ok(doctor);
         }
 
         [HttpPost]
+        [Route("CreateDoctor/")]
         public async Task<IActionResult> PostAsyncDoctor(
             [FromServices] AppDbContext context,
             [FromBody] CreateDoctorDto dto)
@@ -65,6 +67,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPut]
+        [Route("UpdateDoctor/")]
         public async Task<IActionResult> PutAsyncDoctor(
             [FromServices] AppDbContext context,
             [FromBody] UpdateDoctorDto dto)
@@ -98,11 +101,11 @@ namespace suaconsulta_api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteDoctor/")]
         public async Task<IActionResult> DeleteAsyncDoctor(
             [FromServices] AppDbContext context,
-            [FromRoute] int id,
-            [FromBody] DeleteDoctorDto dto)
+            [FromQuery] int id)
         {
             if (!ModelState.IsValid)
             {

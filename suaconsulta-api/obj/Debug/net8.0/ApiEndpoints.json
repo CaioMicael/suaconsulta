@@ -2,7 +2,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "GetConsultationByDoctorPatient",
-    "RelativePath": "api/Consultation/ConsultationByDoctorPatient/{DoctorId}/{PatientId}",
+    "RelativePath": "api/Consultation/ConsultationByDoctorPatient",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -10,12 +10,12 @@
       {
         "Name": "DoctorId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "PatientId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -23,7 +23,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "GetConsultationStatusById",
-    "RelativePath": "api/Consultation/ConsultationStatus/{id}",
+    "RelativePath": "api/Consultation/ConsultationStatus",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -31,7 +31,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -55,7 +55,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "GetDoctorConsultation",
-    "RelativePath": "api/Consultation/DoctorConsultation/{DoctorId}",
+    "RelativePath": "api/Consultation/DoctorConsultations",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -63,7 +63,7 @@
       {
         "Name": "DoctorId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -71,7 +71,7 @@
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "GetPatientConsultation",
-    "RelativePath": "api/Consultation/PatientConsultation/{PatientId}",
+    "RelativePath": "api/Consultation/PatientConsultations",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -79,25 +79,15 @@
       {
         "Name": "PatientId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
-    "Method": "GetAsyncListDoctor",
-    "RelativePath": "api/Doctor",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "PostAsyncDoctor",
-    "RelativePath": "api/Doctor",
+    "RelativePath": "api/Doctor/CreateDoctor",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -112,40 +102,8 @@
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
-    "Method": "PutAsyncDoctor",
-    "RelativePath": "api/Doctor",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "suaconsulta_api.DTO.UpdateDoctorDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
-    "Method": "GetAsyncListDoctorById",
-    "RelativePath": "api/Doctor/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "DeleteAsyncDoctor",
-    "RelativePath": "api/Doctor/{id}",
+    "RelativePath": "api/Doctor/DeleteDoctor",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -153,11 +111,48 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      },
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "GetAsyncDoctorById",
+    "RelativePath": "api/Doctor/GetDoctor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "GetAsyncListDoctor",
+    "RelativePath": "api/Doctor/ListDoctor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
+    "Method": "PutAsyncDoctor",
+    "RelativePath": "api/Doctor/UpdateDoctor",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
         "Name": "dto",
-        "Type": "suaconsulta_api.DTO.DeleteDoctorDto",
+        "Type": "suaconsulta_api.DTO.UpdateDoctorDto",
         "IsRequired": true
       }
     ],

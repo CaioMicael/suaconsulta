@@ -88,12 +88,6 @@ namespace suaconsulta_api.Controllers
                 Description = dto.Description
             };
 
-            var Validation = this.ValidaDataConsultaMaiorAtual(Consultation.Date);
-            if (Validation != null)
-            {
-                return Validation;
-            }
-
             try
             {
                 await context.Consultation.AddAsync(Consultation);
@@ -104,16 +98,6 @@ namespace suaconsulta_api.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
-
-        private ActionResult? ValidaDataConsultaMaiorAtual(DateTime ConsultationDate)
-        {
-            if (DateTime.Now.CompareTo(ConsultationDate) > 0)
-            {
-                return ValidationProblem("A data da consulta não pode ser menor que a data atual.");
-            }
-            
-            return null;
         }
     }
 }
