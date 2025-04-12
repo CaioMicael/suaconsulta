@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import ButtonAgendar from "./ButtonAgendar";
 
 const DoctorsList = () => {
 
     type Doctor = {
+        id: number;
         nome: string;
         especialidade: string;
         crm: string;
@@ -15,18 +17,19 @@ const DoctorsList = () => {
     useEffect(() => {
         setTimeout(() => {
             setDoctors([
-                {nome: "Dr. João Silva", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"}
+                {id: 1, nome: "Dr. João Silva", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
+                {id: 2, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"}
             ]);
         },1000)
-    });
+    }); 
 
     return (
         <div className="medico-disponivel-container">
-            <h2>Dados do Médico</h2>
+            <h2>Médicos</h2>
             <button onClick={() => setDoctors}>Buscar Dados</button>
             {doctors.length === 0 ? (
                 <div className="medico-disponivel-info">
+                    <p>Carregando...</p>
                     <p>Nome:</p>
                     <p>Especialidade:</p>
                     <p>CRM:</p>
@@ -35,12 +38,14 @@ const DoctorsList = () => {
                 </div>
             ) : (
                 doctors.map((doctor) => (
-                    <div className="medico-disponivel-info" key={doctor.crm}>
+                    <div className="medico-disponivel-info" key={doctor.id}>
+                        <p>Id: {doctor.id}</p>
                         <p>Nome: {doctor.nome}</p>
                         <p>Especialidade: {doctor.especialidade}</p>
                         <p>CRM: {doctor.crm}</p>
                         <p>Telefone: {doctor.telefone}</p>
                         <p>Email: {doctor.email}</p>
+                        <ButtonAgendar labelDescription="Agendar" name="button-agendar" type="button" DoctorId={doctor.id} />
                     </div>
                 ))
             )}
