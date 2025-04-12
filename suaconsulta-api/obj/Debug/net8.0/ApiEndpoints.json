@@ -160,18 +160,8 @@
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
-    "Method": "GetAsyncListPatient",
-    "RelativePath": "api/Patient",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
     "Method": "PostAsyncPatient",
-    "RelativePath": "api/Patient",
+    "RelativePath": "api/Patient/CreatePatient",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -186,45 +176,8 @@
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
-    "Method": "GetAsyncListPatientById",
-    "RelativePath": "api/Patient/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
-    "Method": "PatchPatient",
-    "RelativePath": "api/Patient/{id}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "dto",
-        "Type": "suaconsulta_api.DTO.UpdatePatientDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
     "Method": "DeletePatient",
-    "RelativePath": "api/Patient/{id}",
+    "RelativePath": "api/Patient/DeletePatient",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -232,11 +185,53 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "GetAsyncPatientById",
+    "RelativePath": "api/Patient/GetPatientById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "GetAsyncListPatient",
+    "RelativePath": "api/Patient/ListPatient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
+    "Method": "PatchPatient",
+    "RelativePath": "api/Patient/PatchPatient",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
       },
       {
         "Name": "dto",
-        "Type": "suaconsulta_api.DTO.DeletePatientDto",
+        "Type": "suaconsulta_api.DTO.UpdatePatientDto",
         "IsRequired": true
       }
     ],

@@ -15,6 +15,7 @@ namespace suaconsulta_api.Controllers
         private static List<ModelPatient> ListPatient = new List<ModelPatient>();
 
         [HttpGet]
+        [Route("ListPatient/")]
         public async Task<IActionResult> GetAsyncListPatient([FromServices] AppDbContext context)
         {
             var patients = await context.Patient.OrderBy(L => L.Id).ToListAsync();
@@ -22,16 +23,17 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
-        public async Task<IActionResult> GetAsyncListPatientById(
+        [Route("GetPatientById/")]
+        public async Task<IActionResult> GetAsyncPatientById(
             [FromServices] AppDbContext context, 
-            [FromRoute] int id)
+            [FromQuery] int id)
         {
             var patient = await context.Patient.FirstOrDefaultAsync(i => i.Id == id);
             return patient == null ? NotFound() : Ok(patient);
         }
 
         [HttpPost]
+        [Route("CreatePatient/")]
         public async Task<IActionResult> PostAsyncPatient(
             [FromServices] AppDbContext context,
             [FromBody] CreatePatientDto dto)
@@ -63,10 +65,11 @@ namespace suaconsulta_api.Controllers
             }
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch]
+        [Route("PatchPatient/")]
         public async Task<IActionResult> PatchPatient(
             [FromServices] AppDbContext context,
-            [FromRoute] int id, 
+            [FromQuery] int id, 
             [FromBody] UpdatePatientDto dto)
         {
             if (dto == null)
@@ -124,11 +127,11 @@ namespace suaconsulta_api.Controllers
 
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeletePatient/")]
         public async Task<IActionResult> DeletePatient(
             [FromServices] AppDbContext context,
-            int id,
-            [FromBody] DeletePatientDto dto)
+            [FromQuery] int id)
         {
             if (!ModelState.IsValid)
             {
