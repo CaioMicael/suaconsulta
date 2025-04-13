@@ -265,3 +265,12 @@ C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\refint\s
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\suaconsulta-api.pdb
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\suaconsulta-api.genruntimeconfig.cache
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\ref\suaconsulta-api.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\FluentValidation.ValidatorAttribute.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\FluentValidation.WebApi.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\System.Web.Http.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

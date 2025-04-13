@@ -7,12 +7,13 @@ using suaconsulta_api.Model.Enum;
 
 namespace suaconsulta_api.Controllers
 {
+    [Route("api/Consultation/")]
     public class ControllerConsultation : ControllerBase
     {
         private static ModelConsultation ModelConsultation { get; set; }
 
         [HttpGet]
-        [Route("api/Consultation/DoctorConsultations/")]
+        [Route("DoctorConsultations/")]
         public async Task<IActionResult> GetDoctorConsultation(
             [FromServices] AppDbContext context,
             [FromRoute] int DoctorId)
@@ -25,7 +26,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpGet]
-        [Route("api/Consultation/PatientConsultations/")]
+        [Route("PatientConsultations/")]
         public async Task<IActionResult> GetPatientConsultation(
             [FromServices] AppDbContext context,
             [FromRoute] int PatientId)
@@ -38,7 +39,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpGet]
-        [Route("api/Consultation/ConsultationByDoctorPatient/")]
+        [Route("ConsultationByDoctorPatient/")]
         public async Task<IActionResult> GetConsultationByDoctorPatient(
             [FromServices] AppDbContext context,
             int DoctorId,
@@ -52,7 +53,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpGet]
-        [Route("api/Consultation/ConsultationStatus/")]
+        [Route("ConsultationStatus/")]
         public async Task<IActionResult> GetConsultationStatusById(
             [FromServices] AppDbContext context,
             int id)
@@ -69,7 +70,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPost]
-        [Route("api/Consultation/CreateConsultation")]
+        [Route("CreateConsultation")]
         public async Task<IActionResult> PostAsyncConsultation(
             [FromServices] AppDbContext context,
             [FromBody] CreateConsultation dto)

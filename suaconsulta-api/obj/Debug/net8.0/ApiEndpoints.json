@@ -22,22 +22,6 @@
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
-    "Method": "GetConsultationStatusById",
-    "RelativePath": "api/Consultation/ConsultationStatus",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "PostAsyncConsultation",
     "RelativePath": "api/Consultation/CreateConsultation",
     "HttpMethod": "POST",
@@ -233,6 +217,22 @@
         "Name": "dto",
         "Type": "suaconsulta_api.DTO.UpdatePatientDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
+    "Method": "GetConsultationStatusById",
+    "RelativePath": "ConsultationStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
