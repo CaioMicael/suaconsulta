@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using suaconsulta_api.Model.Enum;
 
 namespace suaconsulta_api.Model
 {
@@ -13,7 +14,7 @@ namespace suaconsulta_api.Model
         public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Status é obrigatório")]
-        public int Status { get; set; }
+        public EnumStatusConsultation Status { get; set; }
 
         [Required(ErrorMessage = "Paciente é obrigatório")]
         public int PatientId { get; set; }

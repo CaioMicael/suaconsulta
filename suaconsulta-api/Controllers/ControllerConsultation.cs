@@ -107,7 +107,7 @@ namespace suaconsulta_api.Controllers
             var Consultation = new ModelConsultation
             {
                 Date = dto.Date,
-                Status = (int)EnumStatusConsultation.Agendada,
+                Status = EnumStatusConsultation.Agendada,
                 DoctorId = dto.DoctorId,
                 PatientId = dto.PatientId,
                 Description = dto.Description

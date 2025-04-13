@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using suaconsulta_api.Model.Enum;
 
 namespace suaconsulta_api.Validator
 {
@@ -14,7 +15,9 @@ namespace suaconsulta_api.Validator
                     .WithMessage("Data inválida");
             RuleFor(x => x.Status)
                 .NotEmpty()
-                    .WithMessage("Status é obrigatório");
+                    .WithMessage("Status é obrigatório")
+                .IsInEnum()
+                    .WithMessage("Status inválido");
         }
     }
 }
