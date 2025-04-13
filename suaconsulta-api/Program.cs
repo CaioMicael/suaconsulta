@@ -2,6 +2,7 @@ using suaconsulta_api.Data;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using suaconsulta_api.Validator;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 

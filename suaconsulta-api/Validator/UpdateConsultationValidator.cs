@@ -9,12 +9,12 @@ namespace suaconsulta_api.Validator
         {
             RuleFor(x => x.Date)
                 .NotEmpty()
-                .WithMessage("Data é obrigatória")
+                    .WithMessage("Data é obrigatória")
                 .Must(date => date > DateTime.Now)
-                .WithMessage("Data inválida");
+                    .WithMessage("Data inválida");
             RuleFor(x => x.Status)
                 .NotEmpty()
-                .WithMessage("Status é obrigatório");
+                    .WithMessage("Status é obrigatório");
         }
     }
 }

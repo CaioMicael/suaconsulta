@@ -85,9 +85,24 @@ namespace suaconsulta_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            CreateConsultationValidator validator = new CreateConsultationValidator();
+            if (! await this.ExistsPatientAsync(dto.PatientId, context))
+            {
+                return BadRequest("Paciente não cadastrado!");
+            }
 
-            validator.ValidateAndThrowAsync(dto);
+            if (!await this.ExistsDoctorAsync(dto.DoctorId, context))
+            {
+                return BadRequest("Médico não cadastrado!");
+            }
+
+            CreateConsultationValidator validator = new();
+            var result = validator.Validate(dto);
+
+            if (! result.IsValid)
+            {
+                var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
 
             var Consultation = new ModelConsultation
             {
@@ -97,7 +112,6 @@ namespace suaconsulta_api.Controllers
                 PatientId = dto.PatientId,
                 Description = dto.Description
             };
-
 
             try
             {
@@ -109,6 +123,24 @@ namespace suaconsulta_api.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        private async Task<bool> ExistsPatientAsync(int PatientId, AppDbContext context)
+        {
+            if (await context.Patient.FirstOrDefaultAsync(P => P.Id == PatientId) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> ExistsDoctorAsync(int DoctorId, AppDbContext context)
+        {
+            if (await context.Doctor.FirstOrDefaultAsync(D => D.Id == DoctorId) == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

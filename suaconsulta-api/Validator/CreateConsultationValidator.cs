@@ -8,20 +8,20 @@ namespace suaconsulta_api.Validator
     {
         public CreateConsultationValidator()
         {
-            RuleFor(Consultation => Consultation.Date)
+            RuleFor(x => x.Date)
                 .NotEmpty()
-                .WithMessage("Data é obrigatória")
-                .Must(Date => Date > DateTime.Now)
-                .WithMessage("Data inválida");
+                    .WithMessage("Data é obrigatória")
+                .GreaterThanOrEqualTo(DateTime.Now)
+                    .WithMessage("Data informada é menor que a data atual!");
             RuleFor(x => x.PatientId)
                 .NotEmpty()
-                .WithMessage("Paciente é obrigatório");
+                    .WithMessage("Paciente é obrigatório");
             RuleFor(x => x.DoctorId)
                 .NotEmpty()
-                .WithMessage("Médico é obrigatório");
+                    .WithMessage("Médico é obrigatório");
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .WithMessage("Descrição é obrigatória");
+                    .WithMessage("Descrição é obrigatória");
         }
     }
 }
