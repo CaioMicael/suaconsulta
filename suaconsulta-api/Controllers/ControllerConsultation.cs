@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Model.Enum;
+using suaconsulta_api.Validator;
 
 namespace suaconsulta_api.Controllers
 {
@@ -11,6 +14,8 @@ namespace suaconsulta_api.Controllers
     public class ControllerConsultation : ControllerBase
     {
         private static ModelConsultation ModelConsultation { get; set; }
+
+        private static CreateConsultationValidator Validator { get; set; }
 
         [HttpGet]
         [Route("DoctorConsultations/")]
@@ -80,6 +85,10 @@ namespace suaconsulta_api.Controllers
                 return BadRequest(ModelState);
             }
 
+            CreateConsultationValidator validator = new CreateConsultationValidator();
+
+            validator.ValidateAndThrowAsync(dto);
+
             var Consultation = new ModelConsultation
             {
                 Date = dto.Date,
@@ -88,6 +97,7 @@ namespace suaconsulta_api.Controllers
                 PatientId = dto.PatientId,
                 Description = dto.Description
             };
+
 
             try
             {

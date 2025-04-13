@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using suaconsulta_api.DTO;
 
 namespace suaconsulta_api.Validator
 {
@@ -7,10 +8,10 @@ namespace suaconsulta_api.Validator
     {
         public CreateConsultationValidator()
         {
-            RuleFor(x => x.Date)
+            RuleFor(Consultation => Consultation.Date)
                 .NotEmpty()
                 .WithMessage("Data é obrigatória")
-                .Must(date => date > DateTime.Now)
+                .Must(Date => Date > DateTime.Now)
                 .WithMessage("Data inválida");
             RuleFor(x => x.PatientId)
                 .NotEmpty()
