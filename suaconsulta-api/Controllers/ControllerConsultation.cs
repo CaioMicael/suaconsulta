@@ -13,9 +13,19 @@ namespace suaconsulta_api.Controllers
     [Route("api/Consultation/")]
     public class ControllerConsultation : ControllerBase
     {
-        private static ModelConsultation ModelConsultation { get; set; }
+        private static CreateConsultationValidator _validator { get; set; }
 
-        private static CreateConsultationValidator Validator { get; set; }
+        public static CreateConsultationValidator InstanceValidator
+        {
+            get
+            {
+                if (_validator == null)
+                {
+                    _validator = new CreateConsultationValidator();
+                }
+                return _validator;
+            }
+        }
 
         [HttpGet]
         [Route("DoctorConsultations/")]
@@ -95,14 +105,7 @@ namespace suaconsulta_api.Controllers
                 return BadRequest("Médico não cadastrado!");
             }
 
-            CreateConsultationValidator validator = new();
-            var result = validator.Validate(dto);
-
-            if (! result.IsValid)
-            {
-                var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-                return BadRequest(errors);
-            }
+            InstanceValidator.ValidateAndThrow(dto);
 
             var Consultation = new ModelConsultation
             {
