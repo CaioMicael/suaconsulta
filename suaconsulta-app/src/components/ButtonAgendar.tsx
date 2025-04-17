@@ -21,9 +21,11 @@ const ButtonAgendar = ({ labelDescription, name, type, DoctorId }: ButtonAgendar
     };
 
     return (
-        <button type={type} name={name} onClick={handleClick} disabled={isLoading}>
-            {isLoading ? "Carregando..." : labelDescription}
-        </button>
+        <div className="flex justify-center border-2 border-solid border-gray-700 focus:border-pink-600 rounded-md">
+            <button type={type} name={name} onClick={handleClick} disabled={isLoading}>
+                {isLoading ? "Carregando..." : labelDescription}
+            </button>
+        </div>
     );
 }
 
