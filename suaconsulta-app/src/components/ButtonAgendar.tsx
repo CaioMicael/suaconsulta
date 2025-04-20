@@ -21,7 +21,7 @@ const ButtonAgendar = ({ labelDescription, name, type, DoctorId }: ButtonAgendar
     };
 
     return (
-        <div className="flex justify-center border-2 border-solid border-gray-700 focus:border-pink-600 rounded-md">
+        <div className="flex justify-center bg-blue-500 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500">
             <button type={type} name={name} onClick={handleClick} disabled={isLoading}>
                 {isLoading ? "Carregando..." : labelDescription}
             </button>

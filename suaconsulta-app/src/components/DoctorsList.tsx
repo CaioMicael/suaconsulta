@@ -24,33 +24,38 @@ const DoctorsList = () => {
     }); 
 
     return (
-        <div className="medico-disponivel-container">
-            <h2>Médicos</h2>
-            <button onClick={() => setDoctors}>Buscar Dados</button>
-            {doctors.length === 0 ? (
-                <div className="inline grid grid-cols-3 gap-4">
-                    <p>Carregando...</p>
-                    <p>Nome:</p>
-                    <p>Especialidade:</p>
-                    <p>CRM:</p>
-                    <p>Telefone:</p>
-                    <p>Email:</p>
-                </div>
-            ) : (
-                doctors.map((doctor) => (
-                    <div className="inline-grid grid-cols-2 gap-2" key={doctor.id}>
-                        <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md" key={doctor.id}>
-                            <p>Id: {doctor.id}</p>
-                            <p>Nome: {doctor.nome}</p>
-                            <p>Especialidade: {doctor.especialidade}</p>
-                            <p>CRM: {doctor.crm}</p>
-                            <p>Telefone: {doctor.telefone}</p>
-                            <p>Email: {doctor.email}</p>
-                            <ButtonAgendar labelDescription="Agendar" name="button-agendar" type="button" DoctorId={doctor.id} />
-                        </div>
+        <div className="">
+            <div>
+                <h2>Médicos</h2>
+                <button onClick={() => setDoctors}>Buscar Dados</button>
+            </div>
+            <div className="flex justify-center">
+                {doctors.length === 0 ? (
+                    <div className="inline grid grid-cols-3 gap-4">
+                        <p>Carregando...</p>
+                        <p>Nome:</p>
+                        <p>Especialidade:</p>
+                        <p>CRM:</p>
+                        <p>Telefone:</p>
+                        <p>Email:</p>
                     </div>
-                ))
-            )}
+                ) : (
+                    doctors.map((doctor) => (
+                        <div className="inline-grid grid-cols-2 gap-2" key={doctor.id}>
+                            <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg" key={doctor.id}>
+                                <p>Id: {doctor.id}</p>
+                                <p>Nome: {doctor.nome}</p>
+                                <p>Especialidade: {doctor.especialidade}</p>
+                                <p>CRM: {doctor.crm}</p>
+                                <p>Telefone: {doctor.telefone}</p>
+                                <p>Email: {doctor.email}</p>
+                                <ButtonAgendar labelDescription="Agendar" name="button-agendar" type="button" DoctorId={doctor.id} />
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+
         </div>
     );
 }
