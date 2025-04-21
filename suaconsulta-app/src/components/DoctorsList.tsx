@@ -49,7 +49,7 @@ const DoctorsList = () => {
                                 <p>CRM: {doctor.crm}</p>
                                 <p>Telefone: {doctor.telefone}</p>
                                 <p>Email: {doctor.email}</p>
-                                <ButtonAgendar labelDescription="Agendar" name="button-agendar" type="button" DoctorId={doctor.id} />
+                                <ButtonAgendar labelDescription="Ver Horários" name="button-agendar" type="button" DoctorId={doctor.id} />
                             </div>
                         </div>
                     ))

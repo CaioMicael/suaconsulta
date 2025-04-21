@@ -1,15 +1,19 @@
 FROM node:16
 
-WORKDIR /app
+WORKDIR /suaconsulta-app
 
-# Copy package.json only
+# Copy package.json
 COPY package.json ./
 
-# Run npm install without requiring package-lock.json
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the application
-COPY . .
+# Copy the entire project directory
+# This ensures all files including public/index.html are copied
+COPY . ./
+
+# Debug to verify files were copied correctly
+RUN ls -la public/
 
 # Build the application
 RUN npm run build
