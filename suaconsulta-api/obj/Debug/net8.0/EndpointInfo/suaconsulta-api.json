@@ -275,6 +275,37 @@
         }
       }
     },
+    "/api/DoctorSchedule/CreateDoctorSchedule": {
+      "post": {
+        "tags": [
+          "ControllerDoctorSchedule"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDoctorScheduleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDoctorScheduleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDoctorScheduleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Patient/ListPatient": {
       "get": {
         "tags": [
@@ -478,6 +509,33 @@
           "country": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateDoctorScheduleDto": {
+        "required": [
+          "doctorId",
+          "endTime",
+          "everyWeek",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "doctorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "everyWeek": {
+            "type": "boolean"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

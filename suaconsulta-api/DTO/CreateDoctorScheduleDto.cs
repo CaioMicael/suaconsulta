@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace suaconsulta_api.DTO
 {
-    public class CreateDoctorSchedule
+    public class CreateDoctorScheduleDto
     {
         [Required]
         public int DoctorId { get; set; }
 
         [Required]
-        private bool EveryWeek { get; set; }
+        public bool EveryWeek { get; set; }
 
         [Required]
-        private DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [Required]
-        private DateTime EndTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

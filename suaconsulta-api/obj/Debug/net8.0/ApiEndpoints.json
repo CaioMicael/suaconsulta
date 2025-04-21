@@ -160,7 +160,23 @@
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctorSchedule",
-    "Method": "GetListScheduleDoctor",
+    "Method": "PostAsyncDoctorSchedule",
+    "RelativePath": "api/DoctorSchedule/CreateDoctorSchedule",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.CreateDoctorScheduleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctorSchedule",
+    "Method": "GetListAsyncDoctorSchedule",
     "RelativePath": "api/DoctorSchedule/ListDoctorSchedule",
     "HttpMethod": "GET",
     "IsController": true,
