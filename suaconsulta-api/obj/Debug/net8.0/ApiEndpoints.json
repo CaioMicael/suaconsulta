@@ -159,6 +159,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctorSchedule",
+    "Method": "GetListScheduleDoctor",
+    "RelativePath": "api/DoctorSchedule/ListDoctorSchedule",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DoctorId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
     "Method": "PostAsyncPatient",
     "RelativePath": "api/Patient/CreatePatient",
