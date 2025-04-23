@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Migrations;
 using suaconsulta_api.Model;
+using suaconsulta_api.Validator;
 
 namespace suaconsulta_api.Controllers
 {
@@ -11,6 +13,19 @@ namespace suaconsulta_api.Controllers
     [ApiController]
     public class ControllerDoctorSchedule : ControllerBase
     {
+        private static CreateDoctorScheduleValidator _validator;
+        public static CreateDoctorScheduleValidator InstanceValidator
+        {
+            get
+            {
+                if (_validator == null)
+                {
+                    _validator = new CreateDoctorScheduleValidator();
+                }
+                return _validator;
+            }
+        }
+
         [HttpGet]
         [Route("ListDoctorSchedule/")]
         public async Task<IActionResult> GetListAsyncDoctorSchedule([FromServices] AppDbContext _context, int DoctorId)
@@ -41,6 +56,8 @@ namespace suaconsulta_api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            InstanceValidator.ValidateAndThrow(dto);
 
             var DoctorSchedule = new ModelDoctorSchedule
             {
