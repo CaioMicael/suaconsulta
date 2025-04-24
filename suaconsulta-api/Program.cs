@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using suaconsulta_api.Validator;
 using FluentValidation;
+using suaconsulta_api.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 var conexao = builder.Configuration.GetConnectionString("Postgres");
 builder.Services.AddDbContext<AppDbContext>(b => b.UseNpgsql(conexao));
 
+builder.Services.AddScoped<IValidator<CreateConsultation>, CreateConsultationValidator>();
+
 builder.Services.AddControllers()
     .AddFluentValidation(fv =>
     {
         fv.RegisterValidatorsFromAssemblyContaining<CreateConsultationValidator>();
         fv.RegisterValidatorsFromAssemblyContaining<UpdateConsultationValidator>();
+        fv.RegisterValidatorsFromAssemblyContaining<CreateDoctorScheduleValidator>();
     });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

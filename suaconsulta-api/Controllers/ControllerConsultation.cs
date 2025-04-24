@@ -7,26 +7,13 @@ using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Model.Enum;
 using suaconsulta_api.Validator;
+using System.ComponentModel.DataAnnotations;
 
 namespace suaconsulta_api.Controllers
 {
     [Route("api/Consultation/")]
     public class ControllerConsultation : ControllerBase
     {
-        private static CreateConsultationValidator _validator { get; set; }
-
-        public static CreateConsultationValidator InstanceValidator
-        {
-            get
-            {
-                if (_validator == null)
-                {
-                    _validator = new CreateConsultationValidator();
-                }
-                return _validator;
-            }
-        }
-
         [HttpGet]
         [Route("DoctorConsultations/")]
         public async Task<IActionResult> GetDoctorConsultation(
@@ -88,6 +75,7 @@ namespace suaconsulta_api.Controllers
         [Route("CreateConsultation")]
         public async Task<IActionResult> PostAsyncConsultation(
             [FromServices] AppDbContext context,
+            [FromServices] IValidator<CreateConsultation> validator,
             [FromBody] CreateConsultation dto)
         {
             if (!ModelState.IsValid)
@@ -105,7 +93,11 @@ namespace suaconsulta_api.Controllers
                 return BadRequest("Médico não cadastrado!");
             }
 
-            InstanceValidator.ValidateAndThrow(dto);
+            var result = await validator.ValidateAsync(dto);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
+            }
 
             var Consultation = new ModelConsultation
             {
