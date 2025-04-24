@@ -32,7 +32,12 @@ namespace suaconsulta_api.Validator
         private async Task<bool> DataConsultaDisponivel(CreateConsultation dto, DateTime data, CancellationToken cancellationToken)
         {
             return await context.DoctorSchedule
-                .AnyAsync(x => x.StartTime.Date == data && x.DoctorId == dto.DoctorId, cancellationToken); 
+                .AnyAsync(x => x.StartTime.Date.Year == data.Year && 
+                          x.StartTime.Date.Month == data.Month && 
+                          x.StartTime.Date.Day == data.Day && 
+                          x.StartTime.Date.Minute == data.Minute && 
+                          x.DoctorId == dto.DoctorId, cancellationToken); 
         }
     }
 }
+
