@@ -12,8 +12,8 @@ using suaconsulta_api.Data;
 namespace suaconsulta_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250410214635_Consultation")]
-    partial class Consultation
+    [Migration("20250424003234_DoctorSchedule")]
+    partial class DoctorSchedule
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,25 +29,31 @@ namespace suaconsulta_api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<int>("DoctorId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("doctorid");
 
                     b.Property<int>("PatientId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("patientid");
 
                     b.Property<int>("Status")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
 
                     b.HasKey("Id");
 
@@ -55,93 +61,146 @@ namespace suaconsulta_api.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Consultation");
+                    b.ToTable("consultation");
                 });
 
             modelBuilder.Entity("suaconsulta_api.Model.ModelDoctor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CRM")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("crm");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("city");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("country");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("email");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("phone");
 
                     b.Property<string>("Specialty")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("specialty");
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("state");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doctor");
+                    b.ToTable("doctor");
+                });
+
+            modelBuilder.Entity("suaconsulta_api.Model.ModelDoctorSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean")
+                        .HasColumnName("active");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("integer")
+                        .HasColumnName("doctorid");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("endtime");
+
+                    b.Property<bool>("EveryWeek")
+                        .HasColumnType("boolean")
+                        .HasColumnName("everyweek");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("starttime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("doctorschedule");
                 });
 
             modelBuilder.Entity("suaconsulta_api.Model.ModelPatient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Birthday")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("birthday");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("city");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("country");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("email");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("phone");
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("state");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patient");
+                    b.ToTable("patient");
                 });
 
             modelBuilder.Entity("suaconsulta_api.Model.ModelConsultation", b =>
@@ -161,6 +220,17 @@ namespace suaconsulta_api.Migrations
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("suaconsulta_api.Model.ModelDoctorSchedule", b =>
+                {
+                    b.HasOne("suaconsulta_api.Model.ModelDoctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
                 });
 #pragma warning restore 612, 618
         }
