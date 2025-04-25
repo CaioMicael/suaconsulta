@@ -78,5 +78,33 @@ namespace suaconsulta_api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete]
+        [Route("DeleteDoctorSchedule/")]
+        public async Task<IActionResult> DeleteAsyncDoctorSchedule([FromServices] AppDbContext _context, [FromQuery] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var DoctorSchedule = await _context.DoctorSchedule.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (DoctorSchedule == null)
+            {
+                return NotFound("Registro não encontrado.");
+            }
+
+            try
+            {
+                _context.DoctorSchedule.Remove(DoctorSchedule);
+                await _context.SaveChangesAsync();
+                return Ok("Excluído com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao excluir Horário da agenda: " + e.Message);
+            }
+        }
     }
 }
