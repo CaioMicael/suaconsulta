@@ -12,6 +12,7 @@ var conexao = builder.Configuration.GetConnectionString("Postgres");
 builder.Services.AddDbContext<AppDbContext>(b => b.UseNpgsql(conexao));
 
 builder.Services.AddScoped<IValidator<CreateConsultation>, CreateConsultationValidator>();
+builder.Services.AddScoped<IValidator<CreateDoctorScheduleDto>, CreateDoctorScheduleValidator>();
 
 builder.Services.AddControllers()
     .AddFluentValidation(fv =>

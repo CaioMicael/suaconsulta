@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
-using suaconsulta_api.Migrations;
 using suaconsulta_api.Model;
 using suaconsulta_api.Validator;
 
@@ -13,19 +12,6 @@ namespace suaconsulta_api.Controllers
     [ApiController]
     public class ControllerDoctorSchedule : ControllerBase
     {
-        private static CreateDoctorScheduleValidator _validator;
-        public static CreateDoctorScheduleValidator InstanceValidator
-        {
-            get
-            {
-                if (_validator == null)
-                {
-                    _validator = new CreateDoctorScheduleValidator();
-                }
-                return _validator;
-            }
-        }
-
         [HttpGet]
         [Route("ListDoctorSchedule/")]
         public async Task<IActionResult> GetListAsyncDoctorSchedule([FromServices] AppDbContext _context, int DoctorId)
@@ -50,14 +36,21 @@ namespace suaconsulta_api.Controllers
 
         [HttpPost]
         [Route("CreateDoctorSchedule/")]
-        public async Task<IActionResult> PostAsyncDoctorSchedule([FromServices] AppDbContext _context, [FromBody] CreateDoctorScheduleDto dto)
+        public async Task<IActionResult> PostAsyncDoctorSchedule(
+            [FromServices] AppDbContext _context, 
+            [FromServices] IValidator<CreateDoctorScheduleDto> validator,
+            [FromBody] CreateDoctorScheduleDto dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            InstanceValidator.ValidateAndThrow(dto);
+            var result = await validator.ValidateAsync(dto);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
+            }
 
             var DoctorSchedule = new ModelDoctorSchedule
             {
