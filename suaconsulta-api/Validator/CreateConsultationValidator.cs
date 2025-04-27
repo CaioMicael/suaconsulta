@@ -5,7 +5,7 @@ using suaconsulta_api.DTO;
 
 namespace suaconsulta_api.Validator
 {
-    public class CreateConsultationValidator : AbstractValidator<DTO.CreateConsultation>
+    public class CreateConsultationValidator : AbstractValidator<CreateConsultation>
     {
         private readonly AppDbContext context;
         public CreateConsultationValidator(AppDbContext _context)
