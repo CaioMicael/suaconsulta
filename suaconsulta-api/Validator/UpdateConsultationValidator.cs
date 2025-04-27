@@ -1,10 +1,9 @@
 ﻿using FluentValidation;
-using FluentValidation.AspNetCore;
-using suaconsulta_api.Model.Enum;
+using suaconsulta_api.DTO;
 
 namespace suaconsulta_api.Validator
 {
-    public class UpdateConsultationValidator : AbstractValidator<DTO.UpdateConsultation>
+    public class UpdateConsultationValidator : AbstractValidator<UpdateConsultation>
     {
         public UpdateConsultationValidator()
         {
