@@ -20,10 +20,14 @@ namespace suaconsulta_api.Validator
                     .WithMessage("Data informada não está disponível na agenda do médico!");
             RuleFor(x => x.PatientId)
                 .NotEmpty()
-                    .WithMessage("Paciente é obrigatório");
+                    .WithMessage("Paciente é obrigatório")
+                .MustAsync((patientId, CancellationToken) => ExistsPatientAsync(patientId, CancellationToken))
+                    .WithMessage("Paciente não cadastrado!");
             RuleFor(x => x.DoctorId)
                 .NotEmpty()
-                    .WithMessage("Médico é obrigatório");
+                    .WithMessage("Médico é obrigatório")
+                .MustAsync((doctorId, CancellationToken) => ExistsDoctorAsync(doctorId, CancellationToken))
+                    .WithMessage("Médico não cadastrado!");
             RuleFor(x => x.Description)
                 .NotEmpty()
                     .WithMessage("Descrição é obrigatória");
@@ -37,6 +41,24 @@ namespace suaconsulta_api.Validator
                           x.StartTime.Date.Day == data.Day && 
                           x.StartTime.Date.Minute == data.Minute && 
                           x.DoctorId == dto.DoctorId, cancellationToken); 
+        }
+
+        private async Task<bool> ExistsPatientAsync(int PatientId, CancellationToken cancellationToken)
+        {
+            if (await context.Patient.FirstOrDefaultAsync(P => P.Id == PatientId) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> ExistsDoctorAsync(int DoctorId, CancellationToken cancellationToken)
+        {
+            if (await context.Doctor.FirstOrDefaultAsync(D => D.Id == DoctorId) == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

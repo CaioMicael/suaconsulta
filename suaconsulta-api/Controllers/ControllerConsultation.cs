@@ -83,16 +83,6 @@ namespace suaconsulta_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (! await this.ExistsPatientAsync(dto.PatientId, context))
-            {
-                return BadRequest("Paciente não cadastrado!");
-            }
-
-            if (!await this.ExistsDoctorAsync(dto.DoctorId, context))
-            {
-                return BadRequest("Médico não cadastrado!");
-            }
-
             var result = await validator.ValidateAsync(dto);
             if (!result.IsValid)
             {
@@ -118,24 +108,6 @@ namespace suaconsulta_api.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
-
-        private async Task<bool> ExistsPatientAsync(int PatientId, AppDbContext context)
-        {
-            if (await context.Patient.FirstOrDefaultAsync(P => P.Id == PatientId) == null)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private async Task<bool> ExistsDoctorAsync(int DoctorId, AppDbContext context)
-        {
-            if (await context.Doctor.FirstOrDefaultAsync(D => D.Id == DoctorId) == null)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }
