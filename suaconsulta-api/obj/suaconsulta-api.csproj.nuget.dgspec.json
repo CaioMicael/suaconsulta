@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\caiom\\Documents\\suaconsulta-1\\suaconsulta-api\\suaconsulta-api.csproj": {}
+    "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\caiom\\Documents\\suaconsulta-1\\suaconsulta-api\\suaconsulta-api.csproj": {
+    "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\caiom\\Documents\\suaconsulta-1\\suaconsulta-api\\suaconsulta-api.csproj",
+        "projectUniqueName": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj",
         "projectName": "suaconsulta-api",
-        "projectPath": "C:\\Users\\caiom\\Documents\\suaconsulta-1\\suaconsulta-api\\suaconsulta-api.csproj",
+        "projectPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj",
         "packagesPath": "C:\\Users\\caiom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\caiom\\Documents\\suaconsulta-1\\suaconsulta-api\\obj\\",
+        "outputPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\caiom\\AppData\\Roaming\\NuGet\\NuGet.Config",

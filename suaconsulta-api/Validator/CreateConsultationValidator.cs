@@ -39,6 +39,7 @@ namespace suaconsulta_api.Validator
                 .AnyAsync(x => x.StartTime.Date.Year == data.Year && 
                           x.StartTime.Date.Month == data.Month && 
                           x.StartTime.Date.Day == data.Day && 
+                          x.StartTime.Hour == data.Hour &&
                           x.StartTime.Date.Minute == data.Minute && 
                           x.DoctorId == dto.DoctorId, cancellationToken); 
         }
