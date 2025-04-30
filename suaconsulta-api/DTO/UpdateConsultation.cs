@@ -1,5 +1,4 @@
-﻿using suaconsulta_api.Model;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace suaconsulta_api.DTO
 {

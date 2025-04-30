@@ -1,13 +1,10 @@
 ﻿using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Model.Enum;
-using suaconsulta_api.Validator;
-using System.ComponentModel.DataAnnotations;
 
 namespace suaconsulta_api.Controllers
 {
