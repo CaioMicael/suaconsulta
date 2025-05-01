@@ -124,8 +124,6 @@ namespace suaconsulta_api.Controllers
             }
         }
 
-
-
         [HttpDelete]
         [Route("DeletePatient/")]
         public async Task<IActionResult> DeletePatient(
