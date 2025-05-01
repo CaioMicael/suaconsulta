@@ -1,17 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\",
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\validator\\createconsultationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\validator\\createdoctorschedulevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:validator\\createdoctorschedulevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\validator\\createconsultationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:validator\\createconsultationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,16 +30,17 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T22:46:46.098Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -48,25 +53,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CreateDoctorScheduleValidator.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Validator\\CreateDoctorScheduleValidator.cs",
+              "RelativeDocumentMoniker": "Validator\\CreateDoctorScheduleValidator.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Validator\\CreateDoctorScheduleValidator.cs",
+              "RelativeToolTip": "Validator\\CreateDoctorScheduleValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T03:34:23.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CreateConsultationValidator.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Validator\\CreateConsultationValidator.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Validator\\CreateConsultationValidator.cs",
               "RelativeDocumentMoniker": "Validator\\CreateConsultationValidator.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Validator\\CreateConsultationValidator.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Validator\\CreateConsultationValidator.cs",
               "RelativeToolTip": "Validator\\CreateConsultationValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAswAsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T23:23:17.698Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ControllerConsultation.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
               "RelativeDocumentMoniker": "Controllers\\ControllerConsultation.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
               "RelativeToolTip": "Controllers\\ControllerConsultation.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAUwF8AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAIwF8AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-26T00:34:33.637Z",
               "EditorCaption": ""
