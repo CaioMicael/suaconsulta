@@ -33,17 +33,39 @@ namespace suaconsulta_api.Validator
                     .WithMessage("Descrição é obrigatória");
         }
 
+        /// <summary>
+        /// Verifica se a data informada está disponível na agenda do médico e se não tem uma consulta já marcada.
+        /// </summary>
+        /// <param name="dto">DTO do create consultation</param>
+        /// <param name="data">data informada na requisição</param>
+        /// <param name="cancellationToken">cancellation Token</param>
+        /// <returns>bool</returns>
         private async Task<bool> DataConsultaDisponivel(CreateConsultation dto, DateTime data, CancellationToken cancellationToken)
         {
-            return await context.DoctorSchedule
+            bool result = await context.DoctorSchedule
                 .AnyAsync(x => x.StartTime.Date.Year == data.Year && 
                           x.StartTime.Date.Month == data.Month && 
                           x.StartTime.Date.Day == data.Day && 
                           x.StartTime.Hour == data.Hour &&
                           x.StartTime.Date.Minute == data.Minute && 
                           x.DoctorId == dto.DoctorId, cancellationToken); 
+
+            result = await context.Consultation
+                .AnyAsync(x => x.Date.Date.Year == data.Year && 
+                          x.Date.Date.Month == data.Month && 
+                          x.Date.Date.Day == data.Day && 
+                          x.Date.Hour == data.Hour &&
+                          x.Date.Minute == data.Minute && 
+                          x.DoctorId == dto.DoctorId, cancellationToken);
+            return !result;
         }
 
+        /// <summary>
+        /// Verifica se o paciente existe no banco de dados.
+        /// </summary>
+        /// <param name="PatientId">Id do paciente</param>
+        /// <param name="cancellationToken">cancellation Token</param>
+        /// <returns>bool</returns>
         private async Task<bool> ExistsPatientAsync(int PatientId, CancellationToken cancellationToken)
         {
             if (await context.Patient.FirstOrDefaultAsync(P => P.Id == PatientId) == null)
@@ -53,6 +75,12 @@ namespace suaconsulta_api.Validator
             return true;
         }
 
+        /// <summary>
+        /// Verifica se o médico existe no banco de dados.
+        /// </summary>
+        /// <param name="PatientId">Id do médico</param>
+        /// <param name="cancellationToken">cancellation Token</param>
+        /// <returns>bool</returns>
         private async Task<bool> ExistsDoctorAsync(int DoctorId, CancellationToken cancellationToken)
         {
             if (await context.Doctor.FirstOrDefaultAsync(D => D.Id == DoctorId) == null)
