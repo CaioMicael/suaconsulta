@@ -35,7 +35,7 @@ const ButtonAgendar = ({ labelDescription, name, type, DoctorId }: ButtonAgendar
         {showOverlay && (
             <div className="overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                 <div className="bg-white p-4 rounded shadow-lg">
-                    <DoctorSchedule DoctorId={DoctorId} />
+                    <DoctorSchedule DoctorId={DoctorId} nome={name} />
                     <button onClick={toggleOverlay} className="mt-4 text-red-500">Fechar</button>
                 </div>
             </div>

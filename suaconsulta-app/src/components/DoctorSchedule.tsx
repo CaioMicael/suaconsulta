@@ -5,6 +5,7 @@ import Input from './Input';
 
 interface DoctorScheduleProps {
     DoctorId: number;
+    nome: string;
 }
 
 
