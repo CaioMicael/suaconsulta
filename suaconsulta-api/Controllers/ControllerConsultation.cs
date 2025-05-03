@@ -11,6 +11,12 @@ namespace suaconsulta_api.Controllers
     [Route("api/Consultation/")]
     public class ControllerConsultation : ControllerBase
     {
+        /// <summary>
+        /// Endpoint GET assíncrono para busca de todas as consultas.
+        /// </summary>
+        /// <param name="context">contexto do banco de dados</param>
+        /// <param name="DoctorId">Id do médico</param>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         [Route("DoctorConsultations/")]
         public async Task<IActionResult> GetDoctorConsultation(
@@ -24,6 +30,12 @@ namespace suaconsulta_api.Controllers
             return Ok(DoctorConsultations);
         }
 
+        /// <summary>
+        /// Endpoint GET assíncrono para busca de consulta por paciente.
+        /// </summary>
+        /// <param name="context">contexto do banco de dados</param>
+        /// <param name="PatientId">Id do paciente</param>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         [Route("PatientConsultations/")]
         public async Task<IActionResult> GetPatientConsultation(
@@ -37,6 +49,13 @@ namespace suaconsulta_api.Controllers
             return Ok(PatientConsultations);
         }
 
+        /// <summary>
+        /// Endpoint GET assíncrono para busca de consulta por médico e paciente.
+        /// </summary>
+        /// <param name="context">contexto do banco de dados</param>
+        /// <param name="DoctorId">Id do médico</param>
+        /// <param name="PatientId">Id do paciente</param>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         [Route("ConsultationByDoctorPatient/")]
         public async Task<IActionResult> GetConsultationByDoctorPatient(
@@ -51,6 +70,12 @@ namespace suaconsulta_api.Controllers
             return Consultation == null ? NotFound() : Ok(Consultation);
         }
 
+        /// <summary>
+        /// Endpoint GET assíncrono que retonra o status da consulta por id.
+        /// </summary>
+        /// <param name="context">contexto do banco de dados</param>
+        /// <param name="id">ID da consulta</param>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         [Route("ConsultationStatus/")]
         public async Task<IActionResult> GetConsultationStatusById(
@@ -68,6 +93,13 @@ namespace suaconsulta_api.Controllers
             return Ok(Response);
         }
 
+        /// <summary>
+        /// Endpoint POST assíncrono para criação de consultas.
+        /// </summary>
+        /// <param name="context">contexto do banco de dados</param>
+        /// <param name="validator">validações da criação de consulta</param>
+        /// <param name="dto">DTO do create consultation</param>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("CreateConsultation")]
         public async Task<IActionResult> PostAsyncConsultation(
