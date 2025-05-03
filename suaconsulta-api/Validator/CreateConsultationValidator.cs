@@ -16,7 +16,9 @@ namespace suaconsulta_api.Validator
                     .WithMessage("Data é obrigatória")
                 .GreaterThanOrEqualTo(DateTime.Now)
                     .WithMessage("Data informada é menor que a data atual!")
-                .MustAsync((dto, data, cancellationToken) => DataConsultaDisponivel(dto, data, cancellationToken))
+                .MustAsync((dto, data, cancellationToken) => DataConsultaDisponivelAgendaMedico(dto, data, cancellationToken))
+                    .WithMessage("Data informada não está disponível na agenda do médico!")
+                .MustAsync((dto, data, cancellationToken) => IsDataOcupada(dto, data, cancellationToken))
                     .WithMessage("Data informada não está disponível na agenda do médico!");
             RuleFor(x => x.PatientId)
                 .NotEmpty()
@@ -34,13 +36,13 @@ namespace suaconsulta_api.Validator
         }
 
         /// <summary>
-        /// Verifica se a data informada está disponível na agenda do médico e se não tem uma consulta já marcada.
+        /// Verifica se a data informada está disponível na agenda do médico.
         /// </summary>
-        /// <param name="dto">DTO do create consultation</param>
+        /// <param name="dto">DTO do update consultation</param>
         /// <param name="data">data informada na requisição</param>
         /// <param name="cancellationToken">cancellation Token</param>
         /// <returns>bool</returns>
-        private async Task<bool> DataConsultaDisponivel(CreateConsultation dto, DateTime data, CancellationToken cancellationToken)
+        private async Task<bool> DataConsultaDisponivelAgendaMedico(CreateConsultation dto, DateTime data, CancellationToken cancellationToken)
         {
             bool result = await context.DoctorSchedule
                 .AnyAsync(x => x.StartTime.Date.Year == data.Year && 
@@ -50,13 +52,26 @@ namespace suaconsulta_api.Validator
                           x.StartTime.Date.Minute == data.Minute && 
                           x.DoctorId == dto.DoctorId, cancellationToken); 
 
-            result = await context.Consultation
-                .AnyAsync(x => x.Date.Date.Year == data.Year && 
-                          x.Date.Date.Month == data.Month && 
-                          x.Date.Date.Day == data.Day && 
-                          x.Date.Hour == data.Hour &&
-                          x.Date.Minute == data.Minute && 
-                          x.DoctorId == dto.DoctorId, cancellationToken);
+            return result;
+        }
+
+        /// <summary>
+        /// Verifica se a data informada tem uma consulta já marcada.
+        /// </summary>
+        /// <param name="dto">DTO do update consultation</param>
+        /// <param name="data">data informada na requisição</param>
+        /// <param name="cancellationToken">cancellation Token</param>
+        /// <returns>bool</returns>
+        private async Task<bool> IsDataOcupada(CreateConsultation dto, DateTime data, CancellationToken cancellationToken)
+        {
+            bool result = await context.Consultation
+                .AnyAsync(x => x.Date.Date.Year == data.Year &&
+                  x.Date.Date.Month == data.Month &&
+                  x.Date.Date.Day == data.Day &&
+                  x.Date.Hour == data.Hour &&
+                  x.Date.Minute == data.Minute &&
+                  x.DoctorId == dto.DoctorId, cancellationToken);
+
             return !result;
         }
 
