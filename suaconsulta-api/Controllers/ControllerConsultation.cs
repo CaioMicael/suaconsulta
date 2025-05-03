@@ -138,5 +138,57 @@ namespace suaconsulta_api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        /// <summary>
+        /// Endpoint PATCH assíncrono para alteração de consultas.
+        /// </summary>
+        /// <param name="context">contexto do banco de dados</param>
+        /// <param name="validator">validações da alteração de consulta</param>
+        /// <param name="dto">DTO do update consultation</param>
+        /// <param name="id">ID da consulta</param>
+        /// <param name="status">Status da consulta</param>
+        /// <param name="date">Data da consulta</param>
+        /// <returns>IActionResult</returns>
+        [HttpPatch]
+        [Route("UpdateConsultation")]
+        public async Task<IActionResult> UpdateConsultation(
+            [FromServices] AppDbContext context,
+            [FromServices] IValidator<UpdateConsultation> validator,
+            [FromBody] UpdateConsultation dto,
+            int id,
+            int status,
+            DateTime date)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await validator.ValidateAsync(dto);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
+            }
+
+            var Consultation = await context.Consultation.FirstOrDefaultAsync(C => C.Id == id);
+
+            if (Consultation == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                Consultation.Status = (EnumStatusConsultation)status;
+                Consultation.Date = date;
+                context.Consultation.Update(Consultation);
+                await context.SaveChangesAsync();
+                return Ok("Atualizado com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
