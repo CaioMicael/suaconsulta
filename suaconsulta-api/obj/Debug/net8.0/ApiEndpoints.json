@@ -85,6 +85,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
+    "Method": "UpdateConsultation",
+    "RelativePath": "api/Consultation/UpdateConsultation",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.UpdateConsultation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctor",
     "Method": "PostAsyncDoctor",
     "RelativePath": "api/Doctor/CreateDoctor",

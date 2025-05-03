@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("suaconsulta-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b45cb4913d1988fa50cec7c916bb9c1e40e6e9c6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf23c7bc88b3e42ba618cff72d42d27f5d906482")]
 [assembly: System.Reflection.AssemblyProductAttribute("suaconsulta-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("suaconsulta-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

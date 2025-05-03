@@ -145,19 +145,13 @@ namespace suaconsulta_api.Controllers
         /// <param name="context">contexto do banco de dados</param>
         /// <param name="validator">validações da alteração de consulta</param>
         /// <param name="dto">DTO do update consultation</param>
-        /// <param name="id">ID da consulta</param>
-        /// <param name="status">Status da consulta</param>
-        /// <param name="date">Data da consulta</param>
         /// <returns>IActionResult</returns>
         [HttpPatch]
         [Route("UpdateConsultation")]
         public async Task<IActionResult> UpdateConsultation(
             [FromServices] AppDbContext context,
             [FromServices] IValidator<UpdateConsultation> validator,
-            [FromBody] UpdateConsultation dto,
-            int id,
-            int status,
-            DateTime date)
+            [FromBody] UpdateConsultation dto)
         {
             if (!ModelState.IsValid)
             {
@@ -170,7 +164,7 @@ namespace suaconsulta_api.Controllers
                 return BadRequest(result.Errors.Select(e => e.ErrorMessage));
             }
 
-            var Consultation = await context.Consultation.FirstOrDefaultAsync(C => C.Id == id);
+            var Consultation = await context.Consultation.FirstOrDefaultAsync(C => C.Id == dto.Id);
 
             if (Consultation == null)
             {
@@ -179,8 +173,8 @@ namespace suaconsulta_api.Controllers
 
             try
             {
-                Consultation.Status = (EnumStatusConsultation)status;
-                Consultation.Date = date;
+                Consultation.Status = (EnumStatusConsultation)dto.Status;
+                Consultation.Date = dto.Date;
                 context.Consultation.Update(Consultation);
                 await context.SaveChangesAsync();
                 return Ok("Atualizado com sucesso!");
