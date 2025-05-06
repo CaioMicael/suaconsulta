@@ -32,7 +32,7 @@ namespace suaconsulta_api.Validator
         /// <returns>bool</returns>
         private async Task<bool> ExistsDoctorAsync(int DoctorId, CancellationToken cancellationToken)
         {
-            if (await context.Doctor.FirstOrDefaultAsync(D => D.Id == DoctorId) == null)
+            if (await context.Doctor.FirstOrDefaultAsync(D => D.Id == DoctorId, cancellationToken) == null)
             {
                 return false;
             }
