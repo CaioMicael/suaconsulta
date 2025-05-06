@@ -21,10 +21,12 @@ namespace suaconsulta_api.Model
         public EnumStatusConsultation Status { get; set; }
 
         [Required(ErrorMessage = "Paciente é obrigatório")]
+        [ForeignKey("Patient")]
         [Column("patientid")]
         public int PatientId { get; set; }
 
         [Required(ErrorMessage = "Médico é obrigatório")]
+        [ForeignKey("Doctor")]
         [Column("doctorid")]
         public int DoctorId { get; set; }
 
