@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonAgendar from "./ButtonAgendar"; 
 
 const DoctorsList = () => {
@@ -42,7 +42,7 @@ const DoctorsList = () => {
                 ) : (
                     doctors.map((doctor) => (
                         <div className="inline-grid grid-cols-2 gap-2" key={doctor.id}>
-                            <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg" key={doctor.id}>
+                            <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg">
                                 <p>Id: {doctor.id}</p>
                                 <p>Nome: {doctor.nome}</p>
                                 <p>Especialidade: {doctor.especialidade}</p>
