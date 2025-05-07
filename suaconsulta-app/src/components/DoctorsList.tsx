@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ButtonAgendar from "./ButtonAgendar"; 
+import ButtonSeeDoctorSchedule from "./ButtonSeeDoctorSchedule";
 
 const DoctorsList = () => {
 
@@ -49,7 +49,7 @@ const DoctorsList = () => {
                                 <p>CRM: {doctor.crm}</p>
                                 <p>Telefone: {doctor.telefone}</p>
                                 <p>Email: {doctor.email}</p>
-                                <ButtonAgendar labelDescription="Ver Horários" name="button-agendar" type="button" DoctorId={doctor.id} />
+                                <ButtonSeeDoctorSchedule labelDescription="Ver Horários" name="button-agendar" type="button" DoctorId={doctor.id} />
                             </div>
                         </div>
                     ))

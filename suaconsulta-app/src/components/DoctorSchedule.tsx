@@ -38,8 +38,7 @@ const DoctorSchedule = ({DoctorId}: DoctorScheduleProps) => {
                     <button className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg">13:00</button>
                 </div>
                 ) : null}
-            </div>
-            <ButtonAgendar labelDescription="Agendar" name="button-agendar" type="button" DoctorId={DoctorId} />
+            </div>      
         </div>
     )
 }
