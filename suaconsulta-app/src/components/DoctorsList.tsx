@@ -51,7 +51,7 @@ const DoctorsList = () => {
                                 <p>CRM: {doctor.crm}</p>
                                 <p>Telefone: {doctor.telefone}</p>
                                 <p>Email: {doctor.email}</p>
-                                <div className="flex flex-row justify-center border-gray-700 rounded-md shadow-lg">
+                                <div className="flex flex-row justify-center">
                                     <ButtonSeeDoctorSchedule labelDescription="Horários" name="button-agendar" type="button" DoctorId={doctor.id} />
                                     <ButtonSeeDoctorProfile doctorId={doctor.id} description="Perfil" name="button-see-doctor-profile" />
                                 </div>
