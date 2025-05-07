@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DoctorSchedule from "./DoctorSchedule";
 import ButtonDefault from "./ButtonDefault";
+import ButtonClose from "./ButtonClose";
 import ButtonAgendar from "./ButtonAgendar";
 
 interface ButtonSeeDoctorScheduleProps {
@@ -47,11 +48,8 @@ const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId }: But
                             <ButtonAgendar 
                                 DoctorId={DoctorId} 
                             />
-                            <ButtonDefault 
-                                Description="Fechar" 
-                                Name="button-agendar" 
-                                Type="button" 
-                                onClick={toggleOverlay} 
+                            <ButtonClose
+                                onClick={toggleOverlay}
                             />
                         </div>
                     </div>
