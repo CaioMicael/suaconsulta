@@ -28,7 +28,7 @@ const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId }: But
     };
 
     return (
-        <div className="justify-center border-gray-700 rounded-md shadow-lg">
+        <div>
             <ButtonDefault 
                 Description={isLoading ? "Carregando..." : labelDescription} 
                 Name="button-agendar" 
