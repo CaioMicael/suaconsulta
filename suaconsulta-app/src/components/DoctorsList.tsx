@@ -44,7 +44,7 @@ const DoctorsList = () => {
                     doctors.map((doctor) => (
                         <div className="inline-grid grid-cols-1 gap-2" key={doctor.id}>
                             <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg m-2 py-2 px-1 w-60">
-                                <img className="w-10 h-10 rounded-full" src="../../public/logo192.png" alt="Rounded avatar"></img>
+                                <img className="w-10 h-10 rounded-full" src="/download.jpg" alt="Rounded avatar"></img>
                                 <p>Id: {doctor.id}</p>
                                 <p>Nome: {doctor.nome}</p>
                                 <p>Especialidade: {doctor.especialidade}</p>
@@ -52,8 +52,22 @@ const DoctorsList = () => {
                                 <p>Telefone: {doctor.telefone}</p>
                                 <p>Email: {doctor.email}</p>
                                 <div className="flex flex-row justify-center">
-                                    <ButtonSeeDoctorSchedule labelDescription="Horários" name="button-agendar" type="button" DoctorId={doctor.id} />
-                                    <ButtonSeeDoctorProfile doctorId={doctor.id} description="Perfil" name="button-see-doctor-profile" />
+                                    <ButtonSeeDoctorSchedule 
+                                        labelDescription="Horários" 
+                                        name="button-agendar" 
+                                        type="button" 
+                                        DoctorId={doctor.id} 
+                                        nome={doctor.nome}
+                                        especialidade={doctor.especialidade}
+                                        crm={doctor.crm} 
+                                        telefone={doctor.telefone}
+                                        email={doctor.email}
+                                    />
+                                    <ButtonSeeDoctorProfile 
+                                        doctorId={doctor.id} 
+                                        description="Perfil" 
+                                        name="button-see-doctor-profile" 
+                                    />
                                 </div>
                             </div>
                         </div>

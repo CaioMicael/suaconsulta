@@ -9,9 +9,14 @@ interface ButtonSeeDoctorScheduleProps {
     name: string;
     type: "button" | "submit" | "reset";
     DoctorId: number;
+    nome: string;
+    especialidade: string;
+    crm: string;
+    telefone: string;
+    email: string;
 }
 
-const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId }: ButtonSeeDoctorScheduleProps) => {
+const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId, nome, especialidade, crm, telefone, email }: ButtonSeeDoctorScheduleProps) => {
     const [showOverlay, setShowOverlay] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +47,11 @@ const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId }: But
                     <div className="bg-white p-4 rounded shadow-lg">
                         <DoctorSchedule 
                             DoctorId={DoctorId} 
-                            nome={name} 
+                            nome={nome} 
+                            crm={crm}
+                            email={email}
+                            especialidade={especialidade}
+                            telefone={telefone}
                         />
                         <div className="flex flex-row items-center justify-center">
                             <ButtonAgendar 
