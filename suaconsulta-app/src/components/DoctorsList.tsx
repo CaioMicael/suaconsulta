@@ -29,7 +29,7 @@ const DoctorsList = () => {
                 <h2>Médicos</h2>
                 <button onClick={() => setDoctors}>Buscar Dados</button>
             </div>
-            <div className="flex justify-center">
+            <div className="flex flex-wrap justify-center">
                 {doctors.length === 0 ? (
                     <div className="inline grid grid-cols-3 gap-4">
                         <p>Carregando...</p>
@@ -41,8 +41,9 @@ const DoctorsList = () => {
                     </div>
                 ) : (
                     doctors.map((doctor) => (
-                        <div className="inline-grid grid-cols-2 gap-2" key={doctor.id}>
-                            <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg">
+                        <div className="inline-grid grid-cols-1 gap-2" key={doctor.id}>
+                            <div className="border-2 border-gray-700 focus:border-pink-600 rounded-md shadow-lg m-2 py-2 px-1 w-60">
+                                <img className="w-10 h-10 rounded-full" src="../../public/logo192.png" alt="Rounded avatar"></img>
                                 <p>Id: {doctor.id}</p>
                                 <p>Nome: {doctor.nome}</p>
                                 <p>Especialidade: {doctor.especialidade}</p>
