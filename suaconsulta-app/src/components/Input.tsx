@@ -11,10 +11,19 @@ interface InputProps {
     className?: string;
 }
 
-const Input = ({ labelDescription, type, name, placeholder = "", value, disabled, onChange, className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }: InputProps) => {
+
+const Input = ({ labelDescription, type, name, placeholder = "", value, disabled = false, onChange, className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }: InputProps) => {
+    function styleDisabled(disabled:boolean):string {
+        if(disabled) {
+            return "w-full px-4 py-2 rounded-lg border border-gray-400 bg-gray-200 text-gray-600 placeholder-gray-500 shadow-sm cursor-not-allowed opacity-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
+        } else {
+            return "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        }
+    }
+
     return (
         <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor={name}>{labelDescription}</label>
+            <label className={styleDisabled(disabled)} htmlFor={name}>{labelDescription}</label>
             <input 
                 type={type} 
                 id={name} 
@@ -27,4 +36,5 @@ const Input = ({ labelDescription, type, name, placeholder = "", value, disabled
         </div>
     );
 };
+
 export default Input;
