@@ -5,6 +5,7 @@ import './App.css';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import MainNavbar from './components/MainNavbar';
+import PatientProfile from './pages/PatientProfile';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/PatientProfile" element={<PatientProfile />} />
       </Routes>
     </>
   );
