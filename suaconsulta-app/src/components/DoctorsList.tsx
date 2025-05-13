@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ButtonSeeDoctorSchedule from "./ButtonSeeDoctorSchedule";
 import ButtonSeeDoctorProfile from "./ButtonSeeDoctorProfile";
+import ButtonDefault from "./ButtonDefault";
 
 const DoctorsList = () => {
 
@@ -19,7 +20,12 @@ const DoctorsList = () => {
         setTimeout(() => {
             setDoctors([
                 {id: 1, nome: "Dr. João Silva", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 2, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"}
+                {id: 2, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
+                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
+                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
+                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
+                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
+                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"}
             ]);
         },1000)
     }); 
@@ -28,7 +34,12 @@ const DoctorsList = () => {
         <div className="">
             <div>
                 <h2>Médicos</h2>
-                <button onClick={() => setDoctors}>Buscar Dados</button>
+                <ButtonDefault
+                    Description="Buscar Dados" 
+                    Name="buscar-dados" 
+                    Type="button"
+                    onClick={() => setDoctors([])}
+                />
             </div>
             <div className="flex flex-wrap justify-center">
                 {doctors.length === 0 ? (
