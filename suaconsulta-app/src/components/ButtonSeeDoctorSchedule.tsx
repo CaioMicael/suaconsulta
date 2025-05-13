@@ -43,8 +43,8 @@ const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId, nome,
             />
     
             {showOverlay && (
-                <div className="overlay fixed inset-0 flex flex-row items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-4 rounded shadow-lg">
+                <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+                    <div className="bg-white px-8 py-6 rounded-2xl shadow-2xl w-full max-w-md space-y-6">
                         <DoctorSchedule 
                             DoctorId={DoctorId} 
                             nome={nome} 
@@ -53,7 +53,7 @@ const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, DoctorId, nome,
                             especialidade={especialidade}
                             telefone={telefone}
                         />
-                        <div className="flex flex-row items-center justify-center">
+                        <div className="flex items-center justify-between gap-4">
                             <ButtonAgendar 
                                 DoctorId={DoctorId} 
                             />
