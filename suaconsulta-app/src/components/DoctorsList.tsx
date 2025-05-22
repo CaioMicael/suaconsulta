@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ButtonSeeDoctorSchedule from "./ButtonSeeDoctorSchedule";
 import ButtonSeeDoctorProfile from "./ButtonSeeDoctorProfile";
 import ButtonDefault from "./ButtonDefault";
+import api from "../services/api";
+import SucessAlert from "./alerts/SucessAlert";
 
 const DoctorsList = () => {
 
@@ -15,20 +17,30 @@ const DoctorsList = () => {
     };
 
     const [doctors, setDoctors] = useState<Doctor[]>([]);
+
+    const loadDoctors = async () => {
+        try {
+            api.get('Doctor/ListDoctor')
+                .then(response => {
+                    const formattedDoctors = response.data.map((doctorData: any) => ({
+                        id: doctorData.id,
+                        nome: doctorData.name,
+                        especialidade: doctorData.specialty,
+                        crm: doctorData.crm,
+                        telefone: doctorData.phone,
+                        email: doctorData.email
+                    }));
+                    setDoctors(formattedDoctors);
+                    <SucessAlert message="Dados carregados com sucesso!" />
+                })
+        } catch (error) {
+            console.error("Erro ao buscar médicos:", error);
+        }
+    }
     
     useEffect(() => {
-        setTimeout(() => {
-            setDoctors([
-                {id: 1, nome: "Dr. João Silva", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 2, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"},
-                {id: 3, nome: "Dr. Maria Pereira", especialidade: "Cardiologia", crm: "123456", telefone: "(11) 98765-4321", email: "teste@gmail.com"}
-            ]);
-        },1000)
-    }); 
+        loadDoctors();
+    }, []);
 
     return (
         <div className="">
@@ -38,7 +50,7 @@ const DoctorsList = () => {
                     Description="Buscar Dados" 
                     Name="buscar-dados" 
                     Type="button"
-                    onClick={() => setDoctors([])}
+                    onClick={() => loadDoctors()}
                 />
             </div>
             <div className="flex flex-wrap justify-center">

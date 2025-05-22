@@ -1,6 +1,6 @@
 interface SucessAlertProps {
     message?: string;
-    onClose: () => void;
+    onClose?: () => void;
 }
 
 const SucessAlert = ({ message ="Inserido com sucesso!", onClose }: SucessAlertProps) => {
@@ -10,3 +10,5 @@ const SucessAlert = ({ message ="Inserido com sucesso!", onClose }: SucessAlertP
         </div>
     )
 }
+
+export default SucessAlert;
