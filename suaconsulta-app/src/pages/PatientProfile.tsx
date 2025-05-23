@@ -31,6 +31,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.name}
                             required={true}
+                            size={100}
                         />
                     </div>
 
