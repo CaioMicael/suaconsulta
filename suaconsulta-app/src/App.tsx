@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import PatientProfile from './pages/PatientProfile';
 import PatientConsultation from './pages/PatientConsultation';
+import DoctorProfile from './pages/DoctorProfile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/PatientProfile" element={<PatientProfile />} />
         <Route path="/PatientConsultation" element={<PatientConsultation />} />
+        <Route path="/DoctorProfile" element={<DoctorProfile />} />
       </Routes>
     </>
   );
