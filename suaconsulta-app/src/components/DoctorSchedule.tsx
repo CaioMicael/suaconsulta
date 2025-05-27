@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ButtonAgendar from "./ButtonAgendar";
 import Input from './Input';
 
 interface DoctorScheduleProps {
