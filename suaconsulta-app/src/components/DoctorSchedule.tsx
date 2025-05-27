@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Input from './Input';
+import api from "../services/api";
 
 interface DoctorScheduleProps {
     DoctorId: number;
@@ -22,6 +23,17 @@ const DoctorSchedule = ({DoctorId, nome, especialidade, crm, telefone, email}: D
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
         toggleShowTime();
+    }
+
+    const loadTimeScheduleDoctor = () => {
+        try {
+            api.get('DoctorSchedule/ListDoctorSchedule?DoctorId=' + DoctorId)
+                .then(response => {
+
+                })
+        } catch (error) {
+            console.error("Erro ao carregar horários:", error);
+        }
     }
 
     return (
