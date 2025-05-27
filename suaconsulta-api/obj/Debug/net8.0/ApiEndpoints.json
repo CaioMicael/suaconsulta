@@ -208,6 +208,27 @@
   },
   {
     "ContainingType": "suaconsulta_api.Controllers.ControllerDoctorSchedule",
+    "Method": "GetListAsyncAvailableTimes",
+    "RelativePath": "api/DoctorSchedule/ListAvailableTimes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DoctorId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "date",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctorSchedule",
     "Method": "GetListAsyncDoctorSchedule",
     "RelativePath": "api/DoctorSchedule/ListDoctorSchedule",
     "HttpMethod": "GET",

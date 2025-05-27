@@ -33,6 +33,41 @@ namespace suaconsulta_api.Controllers
             return Ok(Response);
         }
 
+        /// <summary>
+        /// Retorna uma lista com os horários disponíveis para o médico selecionado em uma data específica.
+        /// </summary>
+        /// <param name="date">Data para verificar os horários disponíveis.</param>
+        /// <param name="DoctorId">Id do médico para o qual se deseja verificar os horários disponíveis.</param>
+        /// <returns>Lista de horários disponíveis para o médico na data especificada.</returns>
+        [HttpGet]
+        [Route("ListAvailableTimes/")]
+        public async Task<IActionResult> GetListAsyncAvailableTimes([FromServices] AppDbContext _context, int DoctorId, DateOnly date)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var Response = await _context.DoctorSchedule
+                .Include(D => D.Doctor)
+                .Where(D => D.DoctorId == DoctorId &&
+                            D.StartTime.Date.Year == date.Year &&
+                            D.StartTime.Date.Month == date.Month &&
+                            D.StartTime.Date.Day == date.Day)
+                .Select(D => new {
+                       D.StartTime ,
+                       D.StartTime.Hour ,
+                       D.StartTime.Minute
+                })
+                .ToListAsync();
+
+            if (Response == null)
+            {
+                return NotFound("Nenhum horário disponível para o médico selecionado nesta data.");
+            }
+            return Ok(Response);
+        }
+
         [HttpPost]
         [Route("CreateDoctorSchedule/")]
         public async Task<IActionResult> PostAsyncDoctorSchedule(
