@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Input from './Input';
-import api from "../services/api";
 import DoctorScheduleTime from "./DoctorScheduleTime";
 import Select from "./Select";
 
