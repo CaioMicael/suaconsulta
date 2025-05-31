@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Input from './Input';
 import api from "../services/api";
 import DoctorScheduleTime from "./DoctorScheduleTime";
+import Select from "./Select";
 
 interface DoctorScheduleProps {
     DoctorId: number;
@@ -21,7 +22,7 @@ const DoctorSchedule = ({DoctorId, nome, especialidade, crm, telefone, email}: D
         setShowTime(!showTime);
     }
     
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setInputValue(event.target.value);
         toggleShowTime();
     }
@@ -48,7 +49,12 @@ const DoctorSchedule = ({DoctorId, nome, especialidade, crm, telefone, email}: D
                 <Input labelDescription="Telefone" name="doctor-phone" type="phone" disabled={true} value={telefone}/>
                 <Input labelDescription="Email" name="doctor-email" type="text" disabled={true} value={email}/>
                 <div>
-                    <Input labelDescription='Escolher Horário' name='Data' type='date' onChange={handleInputChange} />
+                    {/* <Input labelDescription='Escolher Horário' name='Data' type='date' onSelect={handleInputChange} /> */}
+                    <Select 
+                        labelDescription="Escolher Data" 
+                        name="data" 
+                        options={[]}
+                        onSelect={handleInputChange}  />
                     {showTime ? (
                     <div className="grid grid-cols-3 gap-4"> 
                         <DoctorScheduleTime DoctorId={DoctorId} date={inputValue} />

@@ -305,6 +305,36 @@
         }
       }
     },
+    "/api/DoctorSchedule/ListAvailableTimes": {
+      "get": {
+        "tags": [
+          "ControllerDoctorSchedule"
+        ],
+        "parameters": [
+          {
+            "name": "DoctorId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/DoctorSchedule/CreateDoctorSchedule": {
       "post": {
         "tags": [
