@@ -27,17 +27,6 @@ const DoctorSchedule = ({DoctorId, nome, especialidade, crm, telefone, email}: D
         toggleShowTime();
     }
 
-    const loadTimeScheduleDoctor = () => {
-        try {
-            api.get('DoctorSchedule/ListDoctorSchedule?DoctorId=' + DoctorId)
-                .then(response => {
-
-                })
-        } catch (error) {
-            console.error("Erro ao carregar horários:", error);
-        }
-    }
-
     return (
         <div>
             <h2>Agendar Consulta</h2>
