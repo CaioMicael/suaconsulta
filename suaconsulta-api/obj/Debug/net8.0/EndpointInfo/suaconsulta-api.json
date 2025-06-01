@@ -320,11 +320,19 @@
             }
           },
           {
-            "name": "date",
+            "name": "year",
             "in": "query",
             "schema": {
-              "type": "string",
-              "format": "date"
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],

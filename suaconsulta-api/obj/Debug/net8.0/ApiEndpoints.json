@@ -220,8 +220,13 @@
         "IsRequired": false
       },
       {
-        "Name": "date",
-        "Type": "System.DateOnly",
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "month",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],

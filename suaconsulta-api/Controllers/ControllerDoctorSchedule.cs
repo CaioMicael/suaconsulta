@@ -36,12 +36,13 @@ namespace suaconsulta_api.Controllers
         /// <summary>
         /// Retorna uma lista com os horários disponíveis para o médico selecionado em uma data específica.
         /// </summary>
-        /// <param name="date">Data para verificar os horários disponíveis.</param>
         /// <param name="DoctorId">Id do médico para o qual se deseja verificar os horários disponíveis.</param>
+        /// <param name="year">Ano selecionado para verificar as datas disponíveis.</param>
+        /// <param name="month">Mês selecionado para verificar as datas disponíveis.</param>
         /// <returns>Lista de horários disponíveis para o médico na data especificada.</returns>
         [HttpGet]
         [Route("ListAvailableTimes/")]
-        public async Task<IActionResult> GetListAsyncAvailableTimes([FromServices] AppDbContext _context, int DoctorId, DateOnly date)
+        public async Task<IActionResult> GetListAsyncAvailableTimes([FromServices] AppDbContext _context, int DoctorId, int year, int month)
         {
             if (!ModelState.IsValid)
             {
@@ -51,14 +52,13 @@ namespace suaconsulta_api.Controllers
             var Response = await _context.DoctorSchedule
                 .Include(D => D.Doctor)
                 .Where(D => D.DoctorId == DoctorId &&
-                            D.StartTime.Date.Year == date.Year &&
-                            D.StartTime.Date.Month == date.Month &&
-                            D.StartTime.Date.Day == date.Day)
+                            D.StartTime.Date.Year == year &&
+                            D.StartTime.Date.Month == month)
                 .Select(D => new {
                        D.StartTime ,
+                       shortDate = D.StartTime.ToShortDateString() ,
                        D.StartTime.Hour ,
-                       D.StartTime.Minute
-                })
+                       D.StartTime.Minute})
                 .ToListAsync();
 
             if (Response == null)
