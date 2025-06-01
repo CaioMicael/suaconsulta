@@ -27,16 +27,10 @@ const DoctorSchedule = ({DoctorId, nome, especialidade, crm, telefone, email}: D
     const [availableTimes, setAvailableTimes] = useState<{ value: string|number; label: string }[]>([]);
 
     useEffect(() => {
-        console.log("monthValue", monthValue);
-        console.log("yearValue", yearValue);
         if (yearValue !== '' && monthValue !== '') {
             loadDates();
         }
     }, [monthValue, yearValue]);
-
-    useEffect(() => {
-        console.log("Novo availableTimes:", availableTimes);
-    }, [availableTimes]);
     
     const HandleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setMonthValue(event.target.value);
