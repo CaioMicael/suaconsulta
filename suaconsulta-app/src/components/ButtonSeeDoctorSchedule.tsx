@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DoctorSchedule from "./DoctorSchedule";
+import DoctorSchedule from "../pages/DoctorSchedule";
 import ButtonDefault from "./ButtonDefault";
 import ButtonClose from "./ButtonClose";
 import ButtonAgendar from "./ButtonAgendar";
