@@ -1,6 +1,5 @@
 import { use, useEffect, useState } from "react";
 import Input from '../components/Input';
-import DoctorScheduleTime from "../components/DoctorScheduleTime";
 import Select from "../components/Select";
 import SelectMonth from "../components/SelectMonth";
 import api from "../services/api";
