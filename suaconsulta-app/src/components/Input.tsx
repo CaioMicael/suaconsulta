@@ -6,6 +6,7 @@ interface InputProps {
     name: string;
     placeholder?: string;
     value?: any;
+    defaultValue?: any;
     disabled?: boolean;
     required?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,6 +22,7 @@ const Input = ({
                     name, 
                     placeholder = "", 
                     value, 
+                    defaultValue,
                     disabled = false, 
                     onChange, 
                     onSelect,
@@ -37,6 +39,7 @@ const Input = ({
                 name={name} 
                 placeholder={placeholder}
                 value={value}
+                defaultValue={defaultValue}
                 onChange={onChange}
                 onSelect={onSelect}
                 disabled={disabled}
