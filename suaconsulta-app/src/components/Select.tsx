@@ -21,8 +21,8 @@ const Select = ({
     options,
     onChange,
     onSelect,
-    disabled = false}
-:SelectProps) => {
+    disabled = false
+  }:SelectProps) => {
     return (
         <div className="w-64">
           <label className={labelClass}>{labelDescription}</label>

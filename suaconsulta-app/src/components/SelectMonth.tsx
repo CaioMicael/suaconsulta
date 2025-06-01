@@ -4,6 +4,8 @@ import Select from "./Select";
 interface SelectMonthProps {
     excludeMonths?: number[];
     months?: { value: number; label: string }[];
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onSelect?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SelectMonth = ({
@@ -21,13 +23,17 @@ const SelectMonth = ({
         { value: 10, label: "Outubro" },
         { value: 11, label: "Novembro" },
         { value: 12, label: "Dezembro" }
-    ]
-}) => {
+    ],
+    onChange,
+    onSelect
+}:SelectMonthProps) => {
     return (
         <Select
             labelDescription="Mês"
             name="mes"
             id="mes"
+            onChange={onChange}
+            onSelect={onSelect}
             options={[months.filter((month) => !excludeMonths.includes(month.value))].flat()}
         />
     )
