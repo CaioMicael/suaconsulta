@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
+using suaconsulta_api.Model.Enum;
 
 namespace suaconsulta_api.Controllers
 {
@@ -53,7 +54,16 @@ namespace suaconsulta_api.Controllers
                 .Include(D => D.Doctor)
                 .Where(D => D.DoctorId == DoctorId &&
                             D.StartTime.Date.Year == year &&
-                            D.StartTime.Date.Month == month)
+                            D.StartTime.Date.Month == month &&
+                            D.Active == true &&
+                            !_context.Consultation.Any(C => C.DoctorId == D.DoctorId &&
+                                                      C.Date.Year == D.StartTime.Year &&
+                                                      C.Date.Month == D.StartTime.Month &&
+                                                      C.Date.Day == D.StartTime.Day &&
+                                                      C.Date.Hour == D.StartTime.Hour &&
+                                                      C.Date.Minute == D.StartTime.Minute &&
+                                                      C.Status != EnumStatusConsultation.Concluida)
+                            )
                 .Select(D => new {
                        D.StartTime ,
                        shortDate = D.StartTime.ToShortDateString() ,
