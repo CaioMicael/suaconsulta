@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import PatientProfile from './pages/PatientProfile';
 import PatientConsultation from './pages/PatientConsultation';
 import DoctorProfile from './pages/DoctorProfile';
+import DoctorScheduleForDoctor from './pages/DoctorScheduleForDoctor';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/PatientProfile" element={<PatientProfile />} />
         <Route path="/PatientConsultation" element={<PatientConsultation />} />
         <Route path="/DoctorProfile" element={<DoctorProfile />} />
+        <Route path="/DoctorScheduleForDoctor" element={<DoctorScheduleForDoctor />} />
       </Routes>
     </>
   );
