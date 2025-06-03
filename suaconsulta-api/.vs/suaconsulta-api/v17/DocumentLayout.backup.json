@@ -63,8 +63,7 @@
               "RelativeToolTip": "Model\\ModelConsultation.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAQwBAAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T23:38:48.394Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T23:38:48.394Z"
             },
             {
               "$type": "Document",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "Validator\\CreateConsultationValidator.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAQwCwAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T23:34:02.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T23:34:02.056Z"
             },
             {
               "$type": "Document",
@@ -89,8 +87,7 @@
               "RelativeToolTip": "Controllers\\ControllerConsultation.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T23:33:18.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T23:33:18.037Z"
             },
             {
               "$type": "Document",
@@ -100,7 +97,7 @@
               "RelativeDocumentMoniker": "Controllers\\ControllerDoctorSchedule.cs",
               "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctorSchedule.cs",
               "RelativeToolTip": "Controllers\\ControllerDoctorSchedule.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAAAEIAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAgwIcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T22:53:46.934Z",
               "EditorCaption": ""

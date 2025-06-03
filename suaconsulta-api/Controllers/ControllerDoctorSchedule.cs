@@ -116,6 +116,38 @@ namespace suaconsulta_api.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("UpdateDoctorSchedule/")]
+        public async Task<IActionResult> PutAsyncDoctorSchedule(
+            [FromServices] AppDbContext _context, 
+            [FromBody] UpdateDoctorScheduleDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var DoctorSchedule = await _context.DoctorSchedule.FirstOrDefaultAsync(p => p.Id == dto.Id);
+
+            if (DoctorSchedule == null)
+            {
+                return NotFound("Registro não encontrado.");
+            }
+
+            DoctorSchedule.Active = dto.Active;
+
+            try
+            {
+                _context.DoctorSchedule.Update(DoctorSchedule);
+                await _context.SaveChangesAsync();
+                return Ok("Atualizado com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao atualizar Horário da agenda: " + e.Message);
+            }
+        }
+
         [HttpDelete]
         [Route("DeleteDoctorSchedule/")]
         public async Task<IActionResult> DeleteAsyncDoctorSchedule([FromServices] AppDbContext _context, [FromQuery] int id)

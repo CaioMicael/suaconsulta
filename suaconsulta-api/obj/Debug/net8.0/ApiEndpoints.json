@@ -249,6 +249,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerDoctorSchedule",
+    "Method": "PutAsyncDoctorSchedule",
+    "RelativePath": "api/DoctorSchedule/UpdateDoctorSchedule",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.UpdateDoctorScheduleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "suaconsulta_api.Controllers.ControllerPatient",
     "Method": "PostAsyncPatient",
     "RelativePath": "api/Patient/CreatePatient",
