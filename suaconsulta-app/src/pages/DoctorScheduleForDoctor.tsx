@@ -34,6 +34,26 @@ const DoctorScheduleForDoctor = ({}) => {
         }
     }
 
+    const updateDoctorSchedule = async (scheduleId: number, isActive: boolean) => {
+        setIsLoading(true);
+        try {
+            const response = await api.put("DoctorSchedule/UpdateDoctorSchedule/", {
+                id: scheduleId,
+                active: isActive
+            });
+            if (response.status === 200) {
+                // Reload the schedule after updating
+                loadDoctorSchedule();
+            } else {
+                console.error("Erro ao atualizar agendamento:", response.data);
+            }
+        } catch (error) {
+            console.error("Erro ao atualizar agendamento:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     useEffect(() => {
         loadDoctorSchedule();
     }, []);
@@ -96,10 +116,10 @@ const DoctorScheduleForDoctor = ({}) => {
                         />
                         <div className="flex flex-row justify-center pt-2">
                             <ButtonDefault
-                                Description="Alterar"
+                                Description={schedule.active === "Ativo" ? "Desativar" : "Ativar"}
                                 Name="save-schedule"
                                 Type="button"
-                                onClick={() => console.log("Salvar agendamento")}
+                                onClick={() => updateDoctorSchedule(schedule.id, schedule.active === "Ativo" ? false : true)}
                             />
                         </div>
                     </div>
