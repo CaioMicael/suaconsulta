@@ -2,7 +2,7 @@ import { use, useEffect, useState } from "react";
 import Input from "../components/Input";
 import ButtonDefault from "../components/ButtonDefault";
 import api from "../services/api";
-import SucessAlert from "../components/alerts/SucessAlert";
+import { useAlert } from "../providers/AlertProvider";
 
 interface DoctorScheduleForDoctorProps {
     id: number;
@@ -15,7 +15,7 @@ interface DoctorScheduleForDoctorProps {
 const DoctorScheduleForDoctor = ({}) => {
     const [doctorSchedule, setDoctorSchedule] = useState<DoctorScheduleForDoctorProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+    const { showAlert } = useAlert();
 
     const loadDoctorSchedule = async () => {
         setIsLoading(true);
@@ -44,15 +44,7 @@ const DoctorScheduleForDoctor = ({}) => {
                 active: isActive
             });
             if (response.status === 200) {
-                // Mostrar alerta de sucesso
-                setShowSuccessAlert(true);
-                
-                // Esconder o alerta após 3 segundos
-                setTimeout(() => {
-                    setShowSuccessAlert(false);
-                }, 3000);
-                
-                // Reload the schedule after updating
+                showAlert("Agendamento atualizado com sucesso!", "success");
                 loadDoctorSchedule();
             } else {
                 console.error("Erro ao atualizar agendamento:", response.data);
@@ -70,10 +62,6 @@ const DoctorScheduleForDoctor = ({}) => {
 
     return (
         <div>
-            {showSuccessAlert && (
-                <SucessAlert message="Agendamento atualizado com sucesso!" />
-            )}
-            
             {isLoading ? (
                         <ButtonDefault
                             Description="Carregando..."
