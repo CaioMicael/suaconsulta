@@ -9,12 +9,14 @@ import PatientProfile from './pages/PatientProfile';
 import PatientConsultation from './pages/PatientConsultation';
 import DoctorProfile from './pages/DoctorProfile';
 import DoctorScheduleForDoctor from './pages/DoctorScheduleForDoctor';
+import LoginForm from './pages/LoginForm';
 
 function App() {
   return (
     <>
       <MainNavbar />
       <Routes>
+        <Route path="/LoginPage" element={<LoginForm />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/PatientProfile" element={<PatientProfile />} />
