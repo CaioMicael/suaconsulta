@@ -5,23 +5,42 @@ import SignUpMedico from '../components/SignUpMedico';
 import SignUpPaciente from '../components/SignUpPaciente';
 import { motion, AnimatePresence } from 'framer-motion';
 import ButtonDefault from '../components/ButtonDefault';
+import SignInPaciente from '../components/SignInPaciente';
+import SignInMedico from '../components/SignInMedico';
 
 const LoginForm = () => {
-  const [showSignUpMedico, setShowSignUpMedico] = useState(false);
-  const [showSignUpPaciente, setShowSignUpPaciente] = useState(true);
+  const [showSignMedico, setShowSignMedico] = useState(false);
+  const [showSignPaciente, setShowSignPaciente] = useState(true);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
 
   return (
     <div className="flex h-screen">
       {/* Lado esquerdo: formulário */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
         <div className="w-full max-w-md p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Cadastrar-se</h2>
+          <ButtonDefault
+            Description="Cadastrar-se"
+            Name="button-cadastrar"
+            Type="button"
+            onClick={() => (setShowSignUp(true), setShowSignIn(false))}
+            disabled={false}
+            className="text-3xl font-bold text-gray-800 mb-6"
+          />
+          <ButtonDefault
+            Description="Entrar"
+            Name="button-entrar"
+            Type="button"
+            onClick={() => (setShowSignUp(false), setShowSignIn(true))}
+            disabled={false}
+            className="pl-5 text-3xl font-bold text-gray-800 mb-6"
+          />
 
           <div className="flex gap-4 mb-6">
             <ButtonDefault
                 onClick={() => (
-                    setShowSignUpMedico(true),
-                    setShowSignUpPaciente(false)
+                    setShowSignMedico(true),
+                    setShowSignPaciente(false)
                 )}
                 Description="Médico"
                 Name="Médico"
@@ -30,8 +49,8 @@ const LoginForm = () => {
             />
             <ButtonDefault
                 onClick={() => (
-                    setShowSignUpPaciente(true),
-                    setShowSignUpMedico(false)
+                    setShowSignPaciente(true),
+                    setShowSignMedico(false)
                 )}
                 Description="Paciente"
                 Name="Paciente"
@@ -42,7 +61,7 @@ const LoginForm = () => {
 
           <div className="mt-4">
             <AnimatePresence mode="wait">
-              {showSignUpMedico && !showSignUpPaciente && (
+              {showSignUp && showSignMedico && !showSignPaciente && (
                 <motion.div
                   key="medico"
                   initial={{ opacity: 0, y: 10 }}
@@ -53,7 +72,7 @@ const LoginForm = () => {
                   <SignUpMedico />
                 </motion.div>
               )}
-              {showSignUpPaciente && !showSignUpMedico && (
+              {showSignUp && showSignPaciente && !showSignMedico && (
                 <motion.div
                   key="paciente"
                   initial={{ opacity: 0, y: 10 }}
@@ -62,6 +81,28 @@ const LoginForm = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <SignUpPaciente />
+                </motion.div>
+              )}
+              {showSignIn && showSignMedico && !showSignPaciente && (
+                <motion.div
+                  key="signInMedico"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <SignInMedico />
+                </motion.div>
+              )}
+              {showSignIn && showSignPaciente && !showSignMedico && (
+                <motion.div
+                  key="signInPaciente"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <SignInPaciente />
                 </motion.div>
               )}
             </AnimatePresence>

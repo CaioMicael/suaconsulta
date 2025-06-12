@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import './Global.css';
 import './App.css';
 import MainNavbar from './components/MainNavbar';
@@ -12,9 +12,12 @@ import DoctorScheduleForDoctor from './pages/DoctorScheduleForDoctor';
 import LoginForm from './pages/LoginForm';
 
 function App() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/LoginPage";
+
   return (
     <>
-      <MainNavbar />
+      {!isLoginPage && <MainNavbar />}
       <Routes>
         <Route path="/LoginPage" element={<LoginForm />} />
         <Route path="/" element={<Home />} />
