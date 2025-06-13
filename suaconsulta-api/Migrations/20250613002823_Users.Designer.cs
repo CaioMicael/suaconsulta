@@ -12,7 +12,7 @@ using suaconsulta_api.Data;
 namespace suaconsulta_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250612234437_Users")]
+    [Migration("20250613002823_Users")]
     partial class Users
     {
         /// <inheritdoc />
@@ -201,6 +201,38 @@ namespace suaconsulta_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("patient");
+                });
+
+            modelBuilder.Entity("suaconsulta_api.Model.ModelUsers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ExternalId")
+                        .HasColumnType("integer")
+                        .HasColumnName("externalid");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("mail");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("password");
+
+                    b.Property<int>("TypeUser")
+                        .HasColumnType("integer")
+                        .HasColumnName("typeuser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("suaconsulta_api.Model.ModelConsultation", b =>

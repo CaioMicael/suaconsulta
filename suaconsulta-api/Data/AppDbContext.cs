@@ -17,5 +17,7 @@ namespace suaconsulta_api.Data
         public DbSet<ModelConsultation> Consultation { get; set; }
 
         public DbSet<ModelDoctorSchedule> DoctorSchedule { get; set; }
+
+        public DbSet<ModelUsers> Users { get; set; }
     }
 }

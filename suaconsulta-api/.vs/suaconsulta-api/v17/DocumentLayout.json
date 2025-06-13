@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\migrations\\20250613002823_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:migrations\\20250613002823_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\modelusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\modelusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\modeldoctorschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\modeldoctorschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\modelpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\modelpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\modelconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\modelconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,72 +38,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAqwEQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T22:46:46.098Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EnumTypeUsers.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
-              "RelativeDocumentMoniker": "Model\\Enum\\EnumTypeUsers.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
-              "RelativeToolTip": "Model\\Enum\\EnumTypeUsers.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:39:06.815Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModelDoctorSchedule.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelDoctorSchedule.cs",
-              "RelativeDocumentMoniker": "Model\\ModelDoctorSchedule.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelDoctorSchedule.cs",
-              "RelativeToolTip": "Model\\ModelDoctorSchedule.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:27:37.972Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ModelPatient.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelPatient.cs",
-              "RelativeDocumentMoniker": "Model\\ModelPatient.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelPatient.cs",
-              "RelativeToolTip": "Model\\ModelPatient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:27:28.468Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ModelUsers.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelUsers.cs",
-              "RelativeDocumentMoniker": "Model\\ModelUsers.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelUsers.cs",
-              "RelativeToolTip": "Model\\ModelUsers.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:26:15.622Z",
               "EditorCaption": ""
             },
             {
@@ -112,15 +64,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ModelConsultation.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelConsultation.cs",
-              "RelativeDocumentMoniker": "Model\\ModelConsultation.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelConsultation.cs",
-              "RelativeToolTip": "Model\\ModelConsultation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "20250613002823_Users.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Migrations\\20250613002823_Users.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250613002823_Users.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Migrations\\20250613002823_Users.cs",
+              "RelativeToolTip": "Migrations\\20250613002823_Users.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T23:38:48.394Z",
+              "WhenOpened": "2025-06-13T00:28:24.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T00:20:11.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Services\\JwtService.cs",
+              "RelativeToolTip": "Services\\JwtService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T00:10:53.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ControllerAuth.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
+              "RelativeDocumentMoniker": "Controllers\\ControllerAuth.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
+              "RelativeToolTip": "Controllers\\ControllerAuth.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T23:50:45.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EnumTypeUsers.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
+              "RelativeDocumentMoniker": "Model\\Enum\\EnumTypeUsers.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
+              "RelativeToolTip": "Model\\Enum\\EnumTypeUsers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T23:39:06.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ModelUsers.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelUsers.cs",
+              "RelativeDocumentMoniker": "Model\\ModelUsers.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\ModelUsers.cs",
+              "RelativeToolTip": "Model\\ModelUsers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T23:26:15.622Z",
               "EditorCaption": ""
             }
           ]

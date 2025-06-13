@@ -4,6 +4,10 @@ using FluentValidation.AspNetCore;
 using suaconsulta_api.Validator;
 using FluentValidation;
 using suaconsulta_api.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using suaconsulta_api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,9 +38,35 @@ builder.Services.AddControllers()
         fv.RegisterValidatorsFromAssemblyContaining<CreateDoctorScheduleValidator>();
     });
 
+var configuration = builder.Configuration;
+var jwtKey = configuration["Jwt:Key"];
+var jwtIssuer = configuration["Jwt:Issuer"];
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = true;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtIssuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+    };
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAuthorization();
+builder.Services.AddScoped<JwtService>();
 
 var app = builder.Build();
 
@@ -50,6 +80,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
