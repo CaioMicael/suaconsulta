@@ -27,7 +27,7 @@ namespace suaconsulta_api.Controllers
             return CreatedAtAction(nameof(SignUp), new { id = user.Id }, user);
         }
 
-            [HttpPost]
+        [HttpPost]
         [Route("Login/")]
         public IActionResult Login([FromServices] AppDbContext context, [FromServices] JwtService jwtService,[FromBody] LoginRequest request)
         {
