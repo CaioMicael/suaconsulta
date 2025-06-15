@@ -32,6 +32,11 @@
         "Name": "Pass",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "TypeUser",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

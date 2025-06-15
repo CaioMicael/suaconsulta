@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Data;
 using suaconsulta_api.Model;
 using suaconsulta_api.Services;
+using suaconsulta_api.Model.Enum;
 
 namespace suaconsulta_api.Controllers
 {
@@ -12,7 +13,7 @@ namespace suaconsulta_api.Controllers
     {
         [HttpPost]
         [Route("SignUp")]
-        public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, string Mail, string Pass)
+        public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, string Mail, string Pass, EnumTypeUsers TypeUser)
         {
             var hasher = new PasswordHasher<ModelUsers>();
             string hash = hasher.HashPassword(null, Pass);
@@ -24,6 +25,7 @@ namespace suaconsulta_api.Controllers
                 Password = hash
             };
             context.Users.Add(user);
+            context.SaveChanges();
             return CreatedAtAction(nameof(SignUp), new { id = user.Id }, user);
         }
 
