@@ -55,8 +55,7 @@
               "ViewState": "AgIAABgAAAAAAAAAAAAAAEQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T22:46:46.098Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -89,8 +88,7 @@
               "RelativeToolTip": "Controllers\\ControllerConsultation.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAcwIQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T13:59:04.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-15T13:59:04.812Z"
             },
             {
               "$type": "Document",
@@ -126,8 +124,7 @@
               "RelativeToolTip": "Services\\JwtService.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwCoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T00:10:53.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-13T00:10:53.803Z"
             },
             {
               "$type": "Document",
@@ -139,8 +136,7 @@
               "RelativeToolTip": "Controllers\\ControllerAuth.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:50:45.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-12T23:50:45.466Z"
             },
             {
               "$type": "Document",

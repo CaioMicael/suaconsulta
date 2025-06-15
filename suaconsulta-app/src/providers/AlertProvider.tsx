@@ -10,6 +10,11 @@ interface AlertContextType {
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
+/**
+ * Dispara um alerta com uma mensagem e tipo específicos.
+ * @returns AlertContextType
+ * @throws Error se o hook for usado fora do AlertProvider
+ */
 export const useAlert = () => {
   const context = useContext(AlertContext);
   if (!context) {
@@ -36,6 +41,13 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
   // Timer reference to clear timeout if needed
   const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
+  /**
+   * 
+   * @param message Mensagem que será exibida no alerta
+   * @param type Tipo da alerta (success, error, warning, info)
+   * @param duration Duração em milissegundos que o alerta ficará visível. Se 0, o alerta não desaparecerá automaticamente.
+   * @return void
+   */
   const showAlert = (message: string, type: AlertType = 'success', duration: number = 3000) => {
     // Clear any existing timer
     if (timerRef.current) {
