@@ -26,7 +26,7 @@ const ButtonLogin = ({Description, Name, disabled = false, className, email, pas
         }).then(response => {
             showAlert("Login feito com sucesso!", "success");
         }).catch(error => {
-            showAlert("Erro ao fazer login!", "error");
+            showAlert("Email ou Senha Inválidos!", "warning");
         });
     }
 

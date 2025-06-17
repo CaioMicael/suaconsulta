@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("suaconsulta-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29f6e7675b95029112f9974e007b72edd07be2dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5420000c769eb440bcdfd66de9d05e17a9648196")]
 [assembly: System.Reflection.AssemblyProductAttribute("suaconsulta-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("suaconsulta-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
