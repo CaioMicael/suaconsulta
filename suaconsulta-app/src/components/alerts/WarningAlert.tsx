@@ -11,7 +11,7 @@ interface WarningAlertProps {
  */
 const WarningAlert = ({ message = "Atenção!", onClose }: WarningAlertProps) => {
     return (
-        <div className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+        <div className="fixed bottom-0 w-full p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
             <span className="font-medium">Atenção! </span> {message}
         </div>
     )
