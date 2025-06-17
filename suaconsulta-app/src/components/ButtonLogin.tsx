@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAlert } from "../providers/AlertProvider";
 import api from "../services/api";
 
@@ -17,6 +18,7 @@ interface ButtonLoginProps {
  */
 const ButtonLogin = ({Description, Name, disabled = false, className, email, password}: ButtonLoginProps) => {
     const { showAlert } = useAlert();
+    const navigate = useNavigate();
 
     const handleSubmitLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -25,6 +27,7 @@ const ButtonLogin = ({Description, Name, disabled = false, className, email, pas
             password
         }).then(response => {
             showAlert("Login feito com sucesso!", "success");
+            navigate('/');
         }).catch(error => {
             showAlert("Email ou Senha Inválidos!", "warning");
         });
