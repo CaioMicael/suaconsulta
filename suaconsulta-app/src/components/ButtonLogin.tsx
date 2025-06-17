@@ -6,6 +6,8 @@ interface ButtonLoginProps {
     Name: string;
     disabled?: boolean;
     className?: string;
+    email: string;
+    password: string;
 }
 
 /**
@@ -13,22 +15,19 @@ interface ButtonLoginProps {
  * @param {ButtonLoginProps} props - ButtonLoginProps.
  * @returns 
  */
-const ButtonLogin = ({Description, Name, disabled = false, className}: ButtonLoginProps) => {
+const ButtonLogin = ({Description, Name, disabled = false, className, email, password}: ButtonLoginProps) => {
     const { showAlert } = useAlert();
 
     const handleSubmitLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        const form = event.currentTarget.closest('form');
-        if (form) {
-            api.post('Auth/Login', {
-                email: form.email.value,
-                password: form.password.value
-            }).then(response => {
-                showAlert("Login feito com sucesso!", "success");
-            }).catch(error => {
-
-            })
-        }
+        api.post('Auth/Login', {
+            email,
+            password
+        }).then(response => {
+            showAlert("Login feito com sucesso!", "success");
+        }).catch(error => {
+            showAlert("Erro ao fazer login!", "error");
+        });
     }
 
     return (

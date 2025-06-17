@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Input from "./Input";
 
-const PasswordInput = () => {
+interface PasswordInputProps {
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PasswordInput = ({ onChange }: PasswordInputProps) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div>
@@ -9,6 +13,7 @@ const PasswordInput = () => {
                 labelDescription="Senha"
                 type={showPassword ? "text" : "password"}
                 name="password"
+                onChange={onChange}
                 required
             />
             <button type="button" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "Ocultar" : "Mostrar"}</button>
