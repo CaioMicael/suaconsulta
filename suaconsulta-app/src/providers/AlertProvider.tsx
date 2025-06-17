@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import SucessAlert from '../components/alerts/SucessAlert';
+import ErrorAlert from '../components/alerts/ErrorAlert';
+import WarningAlert from '../components/alerts/WarningAlert';
 
-type AlertType = 'success' | 'error' | 'warning' | 'info';
+type AlertType = 'success' | 'error' | 'warning';
 
 interface AlertContextType {
   showAlert: (message: string, type: AlertType, duration?: number) => void;
@@ -12,7 +14,7 @@ const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
 /**
  * Dispara um alerta com uma mensagem e tipo específicos.
- * @returns AlertContextType
+ * @returns {AlertContextType}
  * @throws Error se o hook for usado fora do AlertProvider
  */
 export const useAlert = () => {
@@ -77,6 +79,12 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
     <AlertContext.Provider value={{ showAlert, hideAlert }}>
       {alertConfig.visible && alertConfig.type === 'success' && (
         <SucessAlert message={alertConfig.message} />
+      )}
+      {alertConfig.visible && alertConfig.type === 'error' && (
+        <ErrorAlert message={alertConfig.message} />
+      )}
+      {alertConfig.visible && alertConfig.type === 'warning' && (
+        <WarningAlert message={alertConfig.message} />
       )}
       
       {children}
