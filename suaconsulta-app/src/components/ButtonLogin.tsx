@@ -27,6 +27,7 @@ const ButtonLogin = ({Description, Name, disabled = false, className, email, pas
             password
         }).then(response => {
             showAlert("Login feito com sucesso!", "success");
+            localStorage.setItem('token', response.data.token);
             navigate('/');
         }).catch(error => {
             showAlert("Email ou Senha Inválidos!", "warning");
