@@ -20,7 +20,7 @@ namespace suaconsulta_api.Controllers
             var user = new ModelUsers
             {
                 ExternalId = 0, // Defina o valor adequado para ExternalId
-                TypeUser = Model.Enum.EnumTypeUsers.Patient, // Defina o tipo de usuário conforme necessário
+                TypeUser = TypeUser,
                 Mail = Mail,
                 Password = hash
             };
@@ -48,7 +48,7 @@ namespace suaconsulta_api.Controllers
             // Gera o JWT
             var token = jwtService.GenerateToken(user);
 
-            return Ok(new { token });
+            return Ok(new { token = token, role = user.TypeUser });
         }
     }
 }
