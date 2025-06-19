@@ -1,33 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\",
+  "WorkspaceRootPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerconsultation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\migrations\\20250613002823_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\migrations\\20250613002823_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:migrations\\20250613002823_users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -44,9 +44,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -65,9 +65,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "ControllerConsultation.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
               "RelativeDocumentMoniker": "Controllers\\ControllerConsultation.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerConsultation.cs",
               "RelativeToolTip": "Controllers\\ControllerConsultation.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAcwIQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -77,9 +77,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "20250613002823_Users.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Migrations\\20250613002823_Users.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Migrations\\20250613002823_Users.cs",
               "RelativeDocumentMoniker": "Migrations\\20250613002823_Users.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Migrations\\20250613002823_Users.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Migrations\\20250613002823_Users.cs",
               "RelativeToolTip": "Migrations\\20250613002823_Users.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -89,9 +89,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Data\\AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Data\\AppDbContext.cs",
               "RelativeToolTip": "Data\\AppDbContext.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -101,9 +101,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "JwtService.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Services\\JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Services\\JwtService.cs",
               "RelativeDocumentMoniker": "Services\\JwtService.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Services\\JwtService.cs",
               "RelativeToolTip": "Services\\JwtService.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwCoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -113,9 +113,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ControllerAuth.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
               "RelativeDocumentMoniker": "Controllers\\ControllerAuth.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
               "RelativeToolTip": "Controllers\\ControllerAuth.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAgwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -126,9 +126,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "EnumTypeUsers.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
               "RelativeDocumentMoniker": "Model\\Enum\\EnumTypeUsers.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
               "RelativeToolTip": "Model\\Enum\\EnumTypeUsers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
