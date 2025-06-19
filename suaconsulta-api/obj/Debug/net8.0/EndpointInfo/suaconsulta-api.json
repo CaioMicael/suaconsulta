@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "suaconsulta-api",
-    "version": "1.0"
+    "title": "Minha API",
+    "version": "v1"
   },
   "paths": {
     "/api/Auth/SignUp": {
@@ -64,6 +64,18 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/tokenInformation": {
+      "post": {
+        "tags": [
+          "ControllerAuth"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -949,6 +961,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Insira o token JWT assim: Bearer {seu token}",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

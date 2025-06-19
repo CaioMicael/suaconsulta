@@ -42,6 +42,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "suaconsulta_api.Controllers.ControllerAuth",
+    "Method": "TokenInformation",
+    "RelativePath": "api/Auth/tokenInformation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "suaconsulta_api.Controllers.ControllerConsultation",
     "Method": "GetConsultationByDoctorPatient",
     "RelativePath": "api/Consultation/ConsultationByDoctorPatient",
