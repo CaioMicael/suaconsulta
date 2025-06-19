@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
@@ -14,6 +15,7 @@ namespace suaconsulta_api.Controllers
         private static List<ModelDoctor> ListDoctor = new List<ModelDoctor>();
 
         [HttpGet]
+        [Authorize]
         [Route("ListDoctor/")]
         public async Task<IActionResult> GetAsyncListDoctor([FromServices] AppDbContext context)
         {
@@ -22,6 +24,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("GetDoctor/")]
         public async Task<IActionResult> GetAsyncDoctorById(
             [FromServices] AppDbContext context,
@@ -32,6 +35,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("CreateDoctor/")]
         public async Task<IActionResult> PostAsyncDoctor(
             [FromServices] AppDbContext context,
@@ -67,6 +71,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("UpdateDoctor/")]
         public async Task<IActionResult> PutAsyncDoctor(
             [FromServices] AppDbContext context,
@@ -102,6 +107,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("DeleteDoctor/")]
         public async Task<IActionResult> DeleteAsyncDoctor(
             [FromServices] AppDbContext context,

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
@@ -13,6 +14,7 @@ namespace suaconsulta_api.Controllers
     public class ControllerDoctorSchedule : ControllerBase
     {
         [HttpGet]
+        [Authorize]
         [Route("ListDoctorSchedule/")]
         public async Task<IActionResult> GetListAsyncDoctorSchedule([FromServices] AppDbContext _context, int DoctorId)
         {
@@ -42,6 +44,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="month">Mês selecionado para verificar as datas disponíveis.</param>
         /// <returns>Lista de horários disponíveis para o médico na data especificada.</returns>
         [HttpGet]
+        [Authorize]
         [Route("ListAvailableTimes/")]
         public async Task<IActionResult> GetListAsyncAvailableTimes([FromServices] AppDbContext _context, int DoctorId, int year, int month)
         {
@@ -79,6 +82,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("CreateDoctorSchedule/")]
         public async Task<IActionResult> PostAsyncDoctorSchedule(
             [FromServices] AppDbContext _context, 
@@ -117,6 +121,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("UpdateDoctorSchedule/")]
         public async Task<IActionResult> PutAsyncDoctorSchedule(
             [FromServices] AppDbContext _context, 
@@ -149,6 +154,7 @@ namespace suaconsulta_api.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("DeleteDoctorSchedule/")]
         public async Task<IActionResult> DeleteAsyncDoctorSchedule([FromServices] AppDbContext _context, [FromQuery] int id)
         {

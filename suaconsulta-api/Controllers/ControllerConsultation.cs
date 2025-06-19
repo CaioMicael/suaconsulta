@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
@@ -18,6 +19,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="DoctorId">Id do médico</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
+        [Authorize]
         [Route("DoctorConsultations/")]
         public async Task<IActionResult> GetDoctorConsultation(
             [FromServices] AppDbContext context,
@@ -37,6 +39,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="PatientId">Id do paciente</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
+        [Authorize]
         [Route("PatientConsultations/")]
         public async Task<IActionResult> GetPatientConsultation(
             [FromServices] AppDbContext context,
@@ -57,6 +60,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="PatientId">Id do paciente</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
+        [Authorize]
         [Route("ConsultationByDoctorPatient/")]
         public async Task<IActionResult> GetConsultationByDoctorPatient(
             [FromServices] AppDbContext context,
@@ -77,6 +81,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="id">ID da consulta</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
+        [Authorize]
         [Route("ConsultationStatus/")]
         public async Task<IActionResult> GetConsultationStatusById(
             [FromServices] AppDbContext context,
@@ -101,6 +106,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="dto">DTO do create consultation</param>
         /// <returns>IActionResult</returns>
         [HttpPost]
+        [Authorize]
         [Route("CreateConsultation")]
         public async Task<IActionResult> PostAsyncConsultation(
             [FromServices] AppDbContext context,
@@ -147,6 +153,7 @@ namespace suaconsulta_api.Controllers
         /// <param name="dto">DTO do update consultation</param>
         /// <returns>IActionResult</returns>
         [HttpPatch]
+        [Authorize]
         [Route("UpdateConsultation")]
         public async Task<IActionResult> UpdateConsultation(
             [FromServices] AppDbContext context,
