@@ -29,7 +29,9 @@ namespace suaconsulta_api.Controllers
             };
             context.Users.Add(user);
             context.SaveChanges();
-            return CreatedAtAction(nameof(SignUp), new { id = user.Id }, user);
+            // Gera o JWT
+            var token = jwtService.GenerateToken(user);
+            return Ok(new { token = token, role = user.TypeUser });
         }
 
         [HttpPost]
