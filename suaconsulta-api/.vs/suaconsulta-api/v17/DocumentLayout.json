@@ -43,8 +43,7 @@
               "ViewState": "AgIAAD8AAAAAAAAAAAAgwFEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T22:46:46.098Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "Controllers\\ControllerDoctor.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAgwD4AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:19:25.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T19:19:25.916Z"
             },
             {
               "$type": "Document",
@@ -90,8 +88,7 @@
               "RelativeToolTip": "Controllers\\ControllerPatient.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAAAEIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:20:23.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T19:20:23.985Z"
             },
             {
               "$type": "Document",
