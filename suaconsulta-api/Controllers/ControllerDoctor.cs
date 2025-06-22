@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
+using suaconsulta_api.Migrations;
 using suaconsulta_api.Model;
+using suaconsulta_api.Services;
+using System.Security.Claims;
 
 namespace suaconsulta_api.Controllers
 {
@@ -38,6 +41,7 @@ namespace suaconsulta_api.Controllers
         [Authorize]
         [Route("CreateDoctor/")]
         public async Task<IActionResult> PostAsyncDoctor(
+            [FromServices] JwtService jwtService,
             [FromServices] AppDbContext context,
             [FromBody] CreateDoctorDto dto)
         {
@@ -60,8 +64,11 @@ namespace suaconsulta_api.Controllers
 
             try
             {
-                context.Doctor.Add(doctor);
+                await context.Doctor.AddAsync(doctor);
                 await context.SaveChangesAsync();
+
+                ControllerAuth.RelateExternalId(context, User.FindFirstValue(ClaimTypes.NameIdentifier), doctor.Id);
+
                 return Ok("Inserido com sucesso!");
             }
             catch (Exception e)

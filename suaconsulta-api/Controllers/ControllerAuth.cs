@@ -57,7 +57,7 @@ namespace suaconsulta_api.Controllers
         [HttpPost]
         [Authorize]
         [Route("tokenInformation/")]
-        public IActionResult TokenInformation([FromServices] JwtService jwtService, [FromServices] AppDbContext context)
+        public IActionResult TokenInformation([FromServices] JwtService jwtService, [FromServices] AppDbContext context, Boolean justUser)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = context.Users.FirstOrDefault(u => u.Id.ToString() == userId);
@@ -65,30 +65,61 @@ namespace suaconsulta_api.Controllers
             {
                 return Unauthorized("Usuário não encontrado");
             }
+
+            if (justUser)
+                return Ok(user);
             
             if (user.TypeUser == EnumTypeUsers.Patient)
             {
-                return Ok(context.Users.
+                var response = context.Users.
                     Join(context.Patient, U => U.ExternalId, P => P.Id, (U, P) => new
                     {
                         U,
                         P
                     } ).
-                    FirstOrDefault(U => U.U.Id == user.Id));
+                    FirstOrDefault(U => U.U.Id == user.Id);
+                if (response != null)
+                    return Ok(response);
             }
-
-            if (user.TypeUser == EnumTypeUsers.Doctor)
+            else if (user.TypeUser == EnumTypeUsers.Doctor)
             {
-                return Ok(context.Users.
+                var  response = context.Users.
                     Join(context.Doctor, U => U.ExternalId, D => D.Id, (U, D) => new
                     {
                         U,
                         D
                     }).
-                    FirstOrDefault(U => U.U.Id == user.Id));
+                    FirstOrDefault(U => U.U.Id == user.Id);
+                if (response != null)
+                    return Ok(response);
             }
 
             return NotFound("Usuário não encontrado");
+        }
+
+        /// <summary>
+        /// Método estático serve para relacionar um external Id ao usuário logado.
+        /// Por exemplo na criação de um usuário paciente, este método relaciona o Id do paciente com o usuário.
+        /// </summary>
+        /// <param name="externalId"></param>
+        public static void RelateExternalId([FromServices] AppDbContext context, string userId, int externalId)
+        {
+            var user = context.Users.FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (user != null)
+            {
+                if (user.ExternalId == null || user.ExternalId == 0)
+                {
+                    user.ExternalId = externalId;
+                    context.SaveChanges();
+                }
+                else
+                    throw new Exception("Usuário já possui um cadastro vinculado");
+            }
+            else
+            {
+                throw new Exception("Usuário não encontrado");
+            }
         }
     }
 }

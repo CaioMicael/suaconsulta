@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
+using suaconsulta_api.Services;
+using System.Security.Claims;
 
 namespace suaconsulta_api.Controllers
 {
@@ -38,6 +40,7 @@ namespace suaconsulta_api.Controllers
         [Authorize]
         [Route("CreatePatient/")]
         public async Task<IActionResult> PostAsyncPatient(
+            [FromServices] JwtService jwtService,
             [FromServices] AppDbContext context,
             [FromBody] CreatePatientDto dto)
         {
@@ -60,6 +63,9 @@ namespace suaconsulta_api.Controllers
             {
                 await context.Patient.AddAsync(patient);
                 await context.SaveChangesAsync();
+
+                ControllerAuth.RelateExternalId(context, User.FindFirstValue(ClaimTypes.NameIdentifier), patient.Id);
+
                 return Ok("Inserido com sucesso!");
             }
             catch (Exception e)
