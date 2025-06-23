@@ -29,8 +29,9 @@ const ButtonSignUpPaciente = ({Description, Name, password, className, disabled 
         .then(response => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.role);
+            const {id, ...patientWithOutId} = patient;
             api.post('Patient/CreatePatient', {
-                ...patient
+                ...patientWithOutId
             })
             .then(response => {
                 showAlert("Cadastrado com sucesso, estamos logando no sistema para você", "success");
