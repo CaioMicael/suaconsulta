@@ -2,6 +2,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAlert } from "../providers/AlertProvider";
 import api from "../services/api";
 import { Patient } from '../interfaces';
+import { UserType } from '../enum/EnumTypeUser';
 
 interface ButtonSignUpPacienteProps {
     Description: string;
@@ -24,7 +25,8 @@ const ButtonSignUpPaciente = ({Description, Name, password, className, disabled 
         event.preventDefault();
         await api.post('Auth/SignUp', {
             mail: patient.email,
-            password
+            pass: password,
+            typeUser: UserType.PATIENT,
         })
         .then(response => {
             localStorage.setItem('token', response.data.token);
