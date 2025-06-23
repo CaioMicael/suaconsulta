@@ -7,8 +7,6 @@ export interface Patient {
     city: string;
     state: string;
     country: string;
-    createdAt?: Date;
-    updatedAt?: Date;
 }
 
 export interface Doctor {
