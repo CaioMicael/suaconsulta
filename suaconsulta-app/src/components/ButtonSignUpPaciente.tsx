@@ -23,7 +23,7 @@ const ButtonSignUpPaciente = ({Description, Name, password, className, disabled 
     const handleSubmitSignUpPaciente = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         await api.post('Auth/SignUp', {
-            email: patient.email,
+            mail: patient.email,
             password
         })
         .then(response => {

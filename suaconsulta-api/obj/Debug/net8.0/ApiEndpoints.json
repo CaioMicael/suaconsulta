@@ -24,19 +24,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Mail",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Pass",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "TypeUser",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "dto",
+        "Type": "suaconsulta_api.DTO.SignUpDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

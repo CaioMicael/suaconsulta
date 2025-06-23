@@ -8,6 +8,7 @@ using suaconsulta_api.Model.Enum;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using suaconsulta_api.DTO;
 
 namespace suaconsulta_api.Controllers
 {
@@ -16,15 +17,15 @@ namespace suaconsulta_api.Controllers
     {
         [HttpPost]
         [Route("SignUp")]
-        public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, string Mail, string Pass, EnumTypeUsers TypeUser)
+        public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, [FromBody] SignUpDto dto)
         {
             var hasher = new PasswordHasher<ModelUsers>();
-            string hash = hasher.HashPassword(null, Pass);
+            string hash = hasher.HashPassword(null, dto.pass);
             var user = new ModelUsers
             {
                 ExternalId = 0, // Defina o valor adequado para ExternalId
-                TypeUser = TypeUser,
-                Mail = Mail,
+                TypeUser = dto.TypeUser,
+                Mail = dto.mail,
                 Password = hash
             };
             context.Users.Add(user);
