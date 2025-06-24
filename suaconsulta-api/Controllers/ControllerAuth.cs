@@ -19,6 +19,13 @@ namespace suaconsulta_api.Controllers
         [Route("SignUp")]
         public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, [FromBody] SignUpDto dto)
         {
+            // Verifica se o email já está cadastrado
+            var existingUser = context.Users.FirstOrDefault(u => u.Mail == dto.mail);
+            if (existingUser != null)
+            {
+                return Conflict("Email já cadastrado");
+            }
+
             var hasher = new PasswordHasher<ModelUsers>();
             string hash = hasher.HashPassword(null, dto.pass);
             var user = new ModelUsers

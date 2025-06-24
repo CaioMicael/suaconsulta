@@ -44,6 +44,10 @@ const ButtonSignUpPaciente = ({Description, Name, password, className, disabled 
             });
         })
         .catch(error => {
+            if (error.status == 409) {
+                showAlert("Já existe um usuário cadastrado com este e-mail", "warning");
+                return;
+            }
             showAlert("Ocorreu um erro: "+ error, "error");
         });
     }
