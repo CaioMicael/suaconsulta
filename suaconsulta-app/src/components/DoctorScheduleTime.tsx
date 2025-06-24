@@ -11,6 +11,11 @@ interface TimeOption {
     minute: string;
 }
 
+/**
+ * Componente que contém os horários disponíveis na agenda do médico
+ * @param {DoctorScheduleTimeProps} DoctorScheduleTimeProps
+ * @returns JSX.Element
+ */
 const DoctorScheduleTime = ({ DoctorId, date }: DoctorScheduleTimeProps) => {
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [availableTimes, setAvailableTimes] = useState<TimeOption[]>([]);
