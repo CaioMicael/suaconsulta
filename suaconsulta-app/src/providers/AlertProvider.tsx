@@ -40,7 +40,6 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
     type: 'success',
   });
 
-  // Timer reference to clear timeout if needed
   const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   /**
@@ -51,19 +50,16 @@ export const AlertProvider: React.FC<AlertProviderProps> = ({ children }) => {
    * @return void
    */
   const showAlert = (message: string, type: AlertType = 'success', duration: number = 3000) => {
-    // Clear any existing timer
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
     
-    // Show the alert
     setAlertConfig({
       visible: true,
       message,
       type,
     });
     
-    // Set timer to hide it
     if (duration > 0) {
       timerRef.current = setTimeout(() => {
         hideAlert();
