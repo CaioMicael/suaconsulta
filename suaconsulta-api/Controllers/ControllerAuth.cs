@@ -82,10 +82,10 @@ namespace suaconsulta_api.Controllers
             if (user.TypeUser == EnumTypeUsers.Patient)
             {
                 var response = context.Users.
-                    Join(context.Patient, U => U.ExternalId, P => P.Id, (U, P) => new
+                    Join(context.Patient, user => user.ExternalId, patient => patient.Id, (user, patient) => new
                     {
-                        U,
-                        P
+                        user,
+                        patient
                     } ).
                     FirstOrDefault(U => U.U.Id == user.Id);
                 if (response != null)
@@ -94,10 +94,10 @@ namespace suaconsulta_api.Controllers
             else if (user.TypeUser == EnumTypeUsers.Doctor)
             {
                 var  response = context.Users.
-                    Join(context.Doctor, U => U.ExternalId, D => D.Id, (U, D) => new
+                    Join(context.Doctor, user => user.ExternalId, doctor => doctor.Id, (user, doctor) => new
                     {
-                        U,
-                        D
+                        user,
+                        doctor
                     }).
                     FirstOrDefault(U => U.U.Id == user.Id);
                 if (response != null)

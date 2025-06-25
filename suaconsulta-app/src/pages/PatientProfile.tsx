@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../components/Input";
 import ButtonDefault from "../components/ButtonDefault";
+import { ApiResponse, Patient } from "../interfaces";
+import api from "../services/api";
 
 const PatientProfile = () => {
-    const [patient, setPatient] = useState({
+    const [patient, setPatient] = useState<Patient>({
         name: "",
         email: "",
         birthday: "",
@@ -12,6 +14,29 @@ const PatientProfile = () => {
         state: "",
         country: ""
     });
+
+    // Função para atualizar campos específicos
+    const handleInputChange = (field: keyof Patient, value: string) => {
+        setPatient(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
+
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+
+    }
+
+    const loadPatientData = async () => {
+        await api.get<ApiResponse<any>>('/tokenInformation');
+    }
+
+    useEffect(() => {
+        if (patient.name === "") {
+            loadPatientData();
+        }
+    }, [patient.name]);
 
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -32,6 +57,7 @@ const PatientProfile = () => {
                             value={patient.name}
                             required={true}
                             size={100}
+                            onChange={() => handleInputChange}
                         />
                     </div>
 
@@ -43,6 +69,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.email}
                             required={true}
+                            onChange={() => handleInputChange}
                         />                        
                     </div>
 
@@ -54,6 +81,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.birthday}
                             required={true}
+                            onChange={() => handleInputChange}
                         />                           
                     </div>
                     
@@ -65,6 +93,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.phone}
                             required={true}
+                            onChange={() => handleInputChange}
                         />                          
                     </div>
                     
@@ -76,6 +105,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.city}
                             required={true}
+                            onChange={() => handleInputChange}
                         />                            
                     </div>
                     
@@ -87,6 +117,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.state}
                             required={true}
+                            onChange={() => handleInputChange}
                         />                          
                     </div>
                     
@@ -98,6 +129,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.country}
                             required={true}
+                            onChange={() => handleInputChange}
                         />                         
                     </div>
                 </div>
