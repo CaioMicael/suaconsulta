@@ -4,6 +4,10 @@ import ButtonDefault from "../components/ButtonDefault";
 import { ApiResponse, Patient } from "../interfaces";
 import api from "../services/api";
 
+/**
+ * PatientProfile component that allows users to view and edit their profile information.
+ * @returns JSX.Element
+ */
 const PatientProfile = () => {
     const [patient, setPatient] = useState<Patient>({
         name: "",
@@ -15,7 +19,6 @@ const PatientProfile = () => {
         country: ""
     });
 
-    // Função para atualizar campos específicos
     const handleInputChange = (field: keyof Patient, value: string) => {
         setPatient(prev => ({
             ...prev,
