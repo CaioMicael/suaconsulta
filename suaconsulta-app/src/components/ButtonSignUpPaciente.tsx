@@ -16,6 +16,7 @@ interface ButtonSignUpPacienteProps {
 /**
  * Componente de botão de cadastrar paciente.
  * @param {ButtonSignUpPacienteProps} ButtonSignUpPacienteProps
+ * @returns JSX.Element
  */
 const ButtonSignUpPaciente = ({Description, Name, password, className, disabled = false, patient}: ButtonSignUpPacienteProps) => {
     const { showAlert } = useAlert();
