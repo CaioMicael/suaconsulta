@@ -10,29 +10,25 @@
         "tags": [
           "ControllerAuth"
         ],
-        "parameters": [
-          {
-            "name": "Mail",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Pass",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TypeUser",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/EnumTypeUsers"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpDto"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -75,6 +71,15 @@
       "post": {
         "tags": [
           "ControllerAuth"
+        ],
+        "parameters": [
+          {
+            "name": "justUser",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -830,6 +835,28 @@
           "twoFactorRecoveryCode": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SignUpDto": {
+        "required": [
+          "mail",
+          "pass",
+          "typeUser"
+        ],
+        "type": "object",
+        "properties": {
+          "mail": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "pass": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "typeUser": {
+            "$ref": "#/components/schemas/EnumTypeUsers"
           }
         },
         "additionalProperties": false

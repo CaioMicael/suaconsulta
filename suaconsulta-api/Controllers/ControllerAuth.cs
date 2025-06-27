@@ -87,7 +87,7 @@ namespace suaconsulta_api.Controllers
                         user,
                         patient
                     } ).
-                    FirstOrDefault(U => U.U.Id == user.Id);
+                    FirstOrDefault(U => U.patient.Id == user.Id);
                 if (response != null)
                     return Ok(response);
             }
@@ -99,7 +99,7 @@ namespace suaconsulta_api.Controllers
                         user,
                         doctor
                     }).
-                    FirstOrDefault(U => U.U.Id == user.Id);
+                    FirstOrDefault(U => U.doctor.Id == user.Id);
                 if (response != null)
                     return Ok(response);
             }
