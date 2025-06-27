@@ -3,6 +3,7 @@ import { useAlert } from "../providers/AlertProvider";
 import api from "../services/api";
 import { Patient } from '../interfaces';
 import { UserType } from '../enum/EnumTypeUser';
+import apiAuth from '../services/apiAuth';
 
 interface ButtonSignUpPacienteProps {
     Description: string;
@@ -29,7 +30,7 @@ const ButtonSignUpPaciente = ({Description, Name, password, className, disabled 
             return;
         }
 
-        await api.post('Auth/SignUp', {
+        await apiAuth.post('/SignUp', {
             mail: patient.email,
             pass: password,
             typeUser: UserType.PATIENT,
