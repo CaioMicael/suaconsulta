@@ -1,7 +1,7 @@
 import PasswordInput from './PasswordInput';
 import Input from './Input';
 import ButtonSignUpPaciente from './ButtonSignUpPaciente';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Patient } from '../interfaces';
 
 /**
@@ -38,7 +38,7 @@ const SignUpPaciente: React.FC = () => {
                 <Input type='text' labelDescription='País' name='country' onChange={(e) => handleInputChange('country', e.target.value)} />
                 <Input type='text' labelDescription='Estado' name='state' onChange={(e) => handleInputChange('state', e.target.value)} />
                 <Input type='text' labelDescription='Cidade' name='city' onChange={(e) => handleInputChange('city', e.target.value)} />
-                <PasswordInput onChange={() => setPassword} />
+                <PasswordInput onChange={(e) => setPassword(e.target.value)} />
             </div>
             <ButtonSignUpPaciente
                 Description='Cadastrar'

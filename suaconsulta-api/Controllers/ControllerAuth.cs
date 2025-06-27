@@ -26,6 +26,11 @@ namespace suaconsulta_api.Controllers
                 return Conflict("Email já cadastrado");
             }
 
+            if (dto.pass == null || dto.pass.Length < 6)
+            {
+                return BadRequest("Senha deve ter pelo menos 6 caracteres");
+            }
+
             var hasher = new PasswordHasher<ModelUsers>();
             string hash = hasher.HashPassword(null, dto.pass);
             var user = new ModelUsers

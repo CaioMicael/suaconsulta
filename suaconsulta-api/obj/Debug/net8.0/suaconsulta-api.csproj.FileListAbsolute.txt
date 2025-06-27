@@ -273,7 +273,6 @@ C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\System.Net
 C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\System.Web.Http.dll
 C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
-C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\caiom\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -290,3 +289,4 @@ C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsof
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

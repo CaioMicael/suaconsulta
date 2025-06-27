@@ -23,6 +23,11 @@ const ButtonSignUpPaciente = ({Description, Name, password, className, disabled 
 
     const handleSubmitSignUpPaciente = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        if (password.length < 6) {
+            showAlert("A senha deve ter pelo menos 6 caracteres", "warning");
+            return;
+        }
+
         await api.post('Auth/SignUp', {
             mail: patient.email,
             pass: password,
