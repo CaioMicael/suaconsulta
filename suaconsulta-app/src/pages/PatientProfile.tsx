@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Input from "../components/Input";
 import ButtonDefault from "../components/ButtonDefault";
-import { ApiResponse, Patient } from "../interfaces";
+import { ApiResponse, Patient, UserInformationResponse } from "../interfaces";
 import api from "../services/api";
+import { useAlert } from "../providers/AlertProvider";
+import { useNavigate } from "react-router-dom";
 
 /**
  * PatientProfile component that allows users to view and edit their profile information.
  * @returns JSX.Element
  */
 const PatientProfile = () => {
+    const { showAlert } = useAlert();
+    const navigate = useNavigate();
+
     const [patient, setPatient] = useState<Patient>({
         name: "",
         email: "",
@@ -28,11 +33,33 @@ const PatientProfile = () => {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-
+        console.log(event);
+        showAlert("Funcionalidade de edição de perfil ainda não implementada.", "warning");
     }
 
     const loadPatientData = async () => {
-        await api.get<ApiResponse<any>>('/tokenInformation');
+        await api.get<UserInformationResponse>('Auth/tokenInformation?justUser=false')
+        .then(response => {
+            if (response.status === 200) {
+                if (response.data.patient) {
+                    const patientData:Patient = response.data.patient;
+                    setPatient({
+                        name: patientData.name,
+                        email: patientData.email,
+                        birthday: patientData.birthday,
+                        phone: patientData.phone,
+                        city: patientData.city,
+                        state: patientData.state,
+                        country: patientData.country
+                    });
+                } else if (response.data.doctor) {
+                    showAlert("Você está logado como médico, não é possível acessar o perfil de paciente.", "warning");
+                    navigate("/doctor/profile");
+                }
+            } else {
+                showAlert("Erro ao carregar os dados do paciente: " + response.status, "error");
+            }
+        });
     }
 
     useEffect(() => {
@@ -49,7 +76,7 @@ const PatientProfile = () => {
                 <img className="w-32 h-32 rounded-full" src="/download.jpg" alt="Foto do paciente" />
             </div>
             
-            <form >
+            <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="mb-4">
                         <Input
@@ -141,7 +168,7 @@ const PatientProfile = () => {
                     <ButtonDefault
                         Description="Salvar Alterações"
                         Name="button-salvar"
-                        Type="button"
+                        Type="submit"
                         disabled={false}
                     />
                 </div>

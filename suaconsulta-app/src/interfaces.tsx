@@ -1,3 +1,5 @@
+import { UserType } from "./enum/EnumTypeUser";
+
 export interface Patient {
     id?: number;
     name: string;
@@ -34,7 +36,7 @@ export interface Consultation {
 export interface ApiResponse<T> {
     data: T;
     message: string;
-    success: boolean;
+    status: number;
 }
 
 export interface LoginCredentials {
@@ -48,4 +50,19 @@ export interface User {
     name: string;
     role: 'patient' | 'doctor' | 'admin';
     token?: string;
+}
+
+/**
+ * Interface específica para a resposta da API que retorna informações do usuário
+ * @returns {Interface}
+ */
+export interface UserInformationResponse {
+    user: {
+        id: number;
+        externalId: number;
+        typeUser: UserType;
+        mail: string;
+    };
+    patient?: Patient;
+    doctor?: Doctor;
 }

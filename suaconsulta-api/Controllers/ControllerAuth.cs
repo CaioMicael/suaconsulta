@@ -69,7 +69,7 @@ namespace suaconsulta_api.Controllers
             return Ok(new { token = token, role = user.TypeUser });
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
         [Route("tokenInformation/")]
         public IActionResult TokenInformation([FromServices] JwtService jwtService, [FromServices] AppDbContext context, Boolean justUser)
@@ -87,24 +87,24 @@ namespace suaconsulta_api.Controllers
             if (user.TypeUser == EnumTypeUsers.Patient)
             {
                 var response = context.Users.
-                    Join(context.Patient, user => user.ExternalId, patient => patient.Id, (user, patient) => new
+                    Join(context.Patient, u => u.ExternalId, patient => patient.Id, (u, patient) => new
                     {
-                        user,
+                        user = u,
                         patient
-                    } ).
-                    FirstOrDefault(U => U.patient.Id == user.Id);
+                    }).
+                    FirstOrDefault(result => result.user.Id == user.Id);
                 if (response != null)
                     return Ok(response);
             }
             else if (user.TypeUser == EnumTypeUsers.Doctor)
             {
                 var  response = context.Users.
-                    Join(context.Doctor, user => user.ExternalId, doctor => doctor.Id, (user, doctor) => new
+                    Join(context.Doctor, u => u.ExternalId, doctor => doctor.Id, (u, doctor) => new
                     {
-                        user,
+                        user = u,
                         doctor
                     }).
-                    FirstOrDefault(U => U.doctor.Id == user.Id);
+                    FirstOrDefault(result => result.user.Id == user.Id);
                 if (response != null)
                     return Ok(response);
             }
