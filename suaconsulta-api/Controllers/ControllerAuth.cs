@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Data;
 using suaconsulta_api.Model;
 using suaconsulta_api.Services;
 using suaconsulta_api.Model.Enum;
 using System.Security.Claims;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using suaconsulta_api.DTO;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace suaconsulta_api.Controllers
 {
@@ -35,7 +34,7 @@ namespace suaconsulta_api.Controllers
             string hash = hasher.HashPassword(null, dto.pass);
             var user = new ModelUsers
             {
-                ExternalId = 0, // Defina o valor adequado para ExternalId
+                ExternalId = 0,
                 TypeUser = dto.TypeUser,
                 Mail = dto.mail,
                 Password = hash
