@@ -5,9 +5,12 @@ import SignUpMedico from '../components/SignUpMedico';
 import SignUpPaciente from '../components/SignUpPaciente';
 import { motion, AnimatePresence } from 'framer-motion';
 import ButtonDefault from '../components/ButtonDefault';
-import SignInPaciente from '../components/SignInPaciente';
-import SignInMedico from '../components/SignInMedico';
+import SignIn from '../components/SignIn';
 
+/**
+ * Tela de Login/Cadastro
+ * @returns JSX.Element
+ */
 const LoginForm = () => {
   const [showSignMedico, setShowSignMedico] = useState(false);
   const [showSignPaciente, setShowSignPaciente] = useState(true);
@@ -35,7 +38,7 @@ const LoginForm = () => {
             disabled={false}
             className="pl-5 text-3xl font-bold text-gray-800 mb-6"
           />
-
+          { showSignUp && !showSignIn && (
           <div className="flex gap-4 mb-6">
             <ButtonDefault
                 onClick={() => (
@@ -58,6 +61,7 @@ const LoginForm = () => {
                 disabled={false}
             />
           </div>
+          )}
 
           <div className="mt-4">
             <AnimatePresence mode="wait">
@@ -83,18 +87,7 @@ const LoginForm = () => {
                   <SignUpPaciente />
                 </motion.div>
               )}
-              {showSignIn && showSignMedico && !showSignPaciente && (
-                <motion.div
-                  key="signInMedico"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <SignInMedico />
-                </motion.div>
-              )}
-              {showSignIn && showSignPaciente && !showSignMedico && (
+              {showSignIn && (
                 <motion.div
                   key="signInPaciente"
                   initial={{ opacity: 0, y: 10 }}
@@ -102,7 +95,7 @@ const LoginForm = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <SignInPaciente />
+                  <SignIn />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -118,7 +111,6 @@ const LoginForm = () => {
             Uma plataforma moderna para médicos e pacientes. Gerencie agendamentos, cadastros e muito mais de forma rápida e segura.
           </p>
           <div className="mt-6 flex items-center space-x-2">
-            {/* Imagens ou avatares fictícios */}
             <div className="flex -space-x-2 overflow-hidden">
               <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://i.pravatar.cc/40?img=1" alt="" />
               <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://i.pravatar.cc/40?img=2" alt="" />
