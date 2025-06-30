@@ -1,11 +1,13 @@
 import { useState } from "react";
 import ButtonDefault from "./ButtonDefault";
+import { Doctor } from "@/interfaces";
 
-interface ButtonAgendarProps {
-    DoctorId: number;
-}
-
-const ButtonAgendar = ({ DoctorId }: ButtonAgendarProps) => {
+/**
+ * Componente para agendar uma consulta com o médico.
+ * @property {Doctor} doctor - Informações do médico.
+ * @returns JSX.Element
+ */
+const ButtonAgendar = ({ doctor }: { doctor: Doctor }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = () => {

@@ -32,8 +32,8 @@ const SelectMonth = ({
             labelDescription="Mês"
             name="mes"
             id="mes"
-            onChange={onChange}
-            onSelect={onSelect}
+            {...(onChange ? { onChange } : {})}
+            {...(onSelect ? { onSelect } : {})}
             options={[months.filter((month) => !excludeMonths.includes(month.value))].flat()}
         />
     )

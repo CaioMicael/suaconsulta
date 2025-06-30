@@ -1,0 +1,109 @@
+{
+  // TypeScript/JavaScript configurações
+  "typescript.preferences.useAliasesForRenames": false,
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "typescript.suggest.includeCompletionsForImportStatements": true,
+  "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+  
+  // Habilitar inlay hints para melhor experiência
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  
+  // Referências e navegação
+  "editor.gotoLocation.multipleReferences": "peek",
+  "editor.gotoLocation.multipleDefinitions": "peek",
+  "editor.gotoLocation.multipleDeclarations": "peek",
+  "editor.gotoLocation.multipleImplementations": "peek",
+  "editor.gotoLocation.multipleTypeDefinitions": "peek",
+  
+  // Breadcrumbs para navegação
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.showArrays": true,
+  "breadcrumbs.showBooleans": true,
+  "breadcrumbs.showClasses": true,
+  "breadcrumbs.showConstants": true,
+  "breadcrumbs.showConstructors": true,
+  "breadcrumbs.showEnumMembers": true,
+  "breadcrumbs.showEnums": true,
+  "breadcrumbs.showEvents": true,
+  "breadcrumbs.showFields": true,
+  "breadcrumbs.showFiles": true,
+  "breadcrumbs.showFunctions": true,
+  "breadcrumbs.showInterfaces": true,
+  "breadcrumbs.showKeys": true,
+  "breadcrumbs.showMethods": true,
+  "breadcrumbs.showModules": true,
+  "breadcrumbs.showNamespaces": true,
+  "breadcrumbs.showNull": true,
+  "breadcrumbs.showNumbers": true,
+  "breadcrumbs.showObjects": true,
+  "breadcrumbs.showOperators": true,
+  "breadcrumbs.showPackages": true,
+  "breadcrumbs.showProperties": true,
+  "breadcrumbs.showStrings": true,
+  "breadcrumbs.showStructs": true,
+  "breadcrumbs.showTypeParameters": true,
+  "breadcrumbs.showVariables": true,
+  
+  // Editor configurações para melhor experiência
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
+  },
+  "editor.semanticHighlighting.enabled": true,
+  "editor.occurrencesHighlight": "singleFile",
+  "editor.selectionHighlight": true,
+  "editor.wordHighlightBackground": "#ff000020",
+  "editor.wordHighlightStrongBackground": "#00ff0020",
+  
+  // React/JSX específicas
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "typescript": "tsx"
+  },
+  
+  // Auto save para manter TypeScript Server atualizado
+  "files.autoSave": "onFocusChange",
+  
+  // Formatar ao salvar
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  
+  // Configurações específicas para TypeScript
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  
+  // Outline e simbolos
+  "outline.problems.enabled": true,
+  "outline.problems.badges": true,
+  "outline.problems.colors": true,
+  
+  // Problems panel
+  "problems.decorations.enabled": true,
+  "problems.showCurrentInStatus": true,
+  
+  // Terminal integrado
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
+}

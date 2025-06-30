@@ -12,24 +12,24 @@ export interface Patient {
 }
 
 export interface Doctor {
-    id?: string;
-    name: string;
+    id?: number;
+    nome: string;
     email: string;
-    specialty: string;
+    especialidade: string;
     crm: string;
-    phone: string;
-    city: string;
-    state: string;
-    country: string;
+    telefone: string;
+    cidade: string;
+    estado: string;
+    pais: string;
 }
 
 export interface Consultation {
-    id?: string;
-    patientId: string;
-    doctorId: string;
+    id?: number;  
+    patientId: number;  
+    doctorId: number;   
     date: string;
     time: string;
-    status: 'scheduled' | 'completed' | 'cancelled';
+    status: number;
     notes?: string;
 }
 
@@ -37,6 +37,7 @@ export interface ApiResponse<T> {
     data: T;
     message: string;
     status: number;
+    success?: boolean;
 }
 
 export interface LoginCredentials {
@@ -45,16 +46,15 @@ export interface LoginCredentials {
 }
 
 export interface User {
-    id: string;
+    id: number;  
     email: string;
     name: string;
-    role: 'patient' | 'doctor' | 'admin';
+    role: UserType;
     token?: string;
 }
 
 /**
  * Interface específica para a resposta da API que retorna informações do usuário
- * @returns {Interface}
  */
 export interface UserInformationResponse {
     user: {
@@ -65,4 +65,20 @@ export interface UserInformationResponse {
     };
     patient?: Patient;
     doctor?: Doctor;
+}
+
+export interface ApiError {
+    message: string;
+    code?: string;
+    details?: string;
+}
+
+/**
+ * Interface para utilização de datas em componentes.
+ */
+export interface DateOption {
+    startTime: string;
+    shortDate: string;
+    hour: string;
+    minute: string;
 }

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import ButtonDefault from "./ButtonDefault";
+import { Doctor } from "@/interfaces";
 
 interface ButtonSeeDoctorProfileProps {
-    doctorId: number;
+    doctor: Doctor;
     description?: string;
     name?: string;
     onClick?: () => void;
 }
 
-const ButtonSeeDoctorProfile = ({ doctorId, description = 'Ver Perfil', name = 'button-see-doctor-profile', onClick }: ButtonSeeDoctorProfileProps) => {
+const ButtonSeeDoctorProfile = ({ doctor, description = 'Ver Perfil', name = 'button-see-doctor-profile', onClick }: ButtonSeeDoctorProfileProps) => {
     const [isLoading, setIsLoading] = useState(false);
 
     return (
