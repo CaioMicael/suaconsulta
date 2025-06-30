@@ -1,6 +1,7 @@
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAlert } from "../providers/AlertProvider";
 import api from "../services/api";
+import { UserType } from '../enum/EnumTypeUser';
 
 interface ButtonLoginProps {
     Description: string;
@@ -29,7 +30,7 @@ const ButtonLogin = ({Description, Name, disabled = false, className, email, pas
             showAlert("Login feito com sucesso!", "success");
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.role);
-            navigate('/');
+            response.data.role == UserType.PATIENT ? navigate('/') : navigate('/doctorProfile');
         }).catch(error => {
             showAlert("Email ou Senha Inválidos!", "warning");
         });
