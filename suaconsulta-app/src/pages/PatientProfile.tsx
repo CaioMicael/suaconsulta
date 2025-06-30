@@ -39,10 +39,10 @@ const PatientProfile = () => {
 
     const loadPatientData = async () => {
         await api.get<UserInformationResponse>('Auth/tokenInformation?justUser=false')
-        .then(response => {
+        .then((response) => {
             if (response.status === 200) {
                 if (response.data.patient) {
-                    const patientData:Patient = response.data.patient;
+                    const patientData: Patient = response.data.patient;
                     setPatient({
                         name: patientData.name,
                         email: patientData.email,
