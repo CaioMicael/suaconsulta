@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PasswordInput from '../components/PasswordInput';
 import Input from '../components/Input';
-import SignUpMedico from '../components/SignUpMedico';
-import SignUpPaciente from '../components/SignUpPaciente';
+import SignUpMedico from './SignUpMedico';
+import SignUpPaciente from './SignUpPaciente';
 import { motion, AnimatePresence } from 'framer-motion';
 import ButtonDefault from '../components/ButtonDefault';
 import SignIn from '../components/SignIn';

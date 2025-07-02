@@ -1,6 +1,6 @@
 import { useState } from "react";
-import PasswordInput from './PasswordInput';
-import Input from './Input';
+import PasswordInput from '../components/PasswordInput';
+import Input from '../components/Input';
 
 const SignUpMedico = () => {
     //const [showSignUp, setShowSignUp] = useState(false);

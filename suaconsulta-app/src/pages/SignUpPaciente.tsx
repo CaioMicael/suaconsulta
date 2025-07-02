@@ -1,6 +1,6 @@
-import PasswordInput from './PasswordInput';
-import Input from './Input';
-import ButtonSignUpPaciente from './ButtonSignUpPaciente';
+import PasswordInput from '../components/PasswordInput';
+import Input from '../components/Input';
+import ButtonSignUpPaciente from '../components/ButtonSignUpPaciente';
 import { useEffect, useState } from 'react';
 import { Patient } from '../interfaces';
 
