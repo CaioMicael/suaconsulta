@@ -31,7 +31,7 @@ namespace suaconsulta_api.Controllers
                 return Conflict("Email já cadastrado");
             }
 
-            if (dto.pass == null || dto.pass.Length < 6)
+            if (!authService.isPasswordValid(dto.pass).Result)
             {
                 return BadRequest("Senha deve ter pelo menos 6 caracteres");
             }

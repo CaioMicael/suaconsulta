@@ -22,5 +22,14 @@ namespace suaconsulta_api.Services
 
             return false;
         }
+
+        public Task<bool> isPasswordValid(string password)
+        {
+            if (password == null || password.Length < 6)
+            {
+                return Task.FromResult(false);
+            }
+            return Task.FromResult(true);
+        }
     }
 }

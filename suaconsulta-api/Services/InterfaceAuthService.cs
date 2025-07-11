@@ -10,5 +10,12 @@ namespace suaconsulta_api.Services
         /// <param name="dto"></param>
         /// <returns></returns>
         Task<bool> isEmailAlreadyRegister(SignUpDto dto);
+
+        /// <summary>
+        /// Verifica se a senha é válida (ou seja, se atende aos critérios de segurança definidos).
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        Task<bool> isPasswordValid(string password);
     }
 }
