@@ -64,7 +64,8 @@ namespace suaconsulta_api.Controllers
                 await context.Patient.AddAsync(patient);
                 await context.SaveChangesAsync();
 
-                ControllerAuth.RelateExternalId(context, User.FindFirstValue(ClaimTypes.NameIdentifier), patient.Id);
+                var userService = new UserService(context);
+                userService.RelateExternalId(User.FindFirstValue(ClaimTypes.NameIdentifier), patient.Id);
 
                 return Ok("Inserido com sucesso!");
             }
