@@ -1,0 +1,14 @@
+namespace suaconsulta_api.Repositories
+{
+    using suaconsulta_api.Model;
+
+    public interface InterfaceAuthRepository
+    {
+        /// <summary>
+        /// Método para buscar um usuário pelo email.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        Task<ModelUsers?> getUserByEmail(string email);
+    }
+}

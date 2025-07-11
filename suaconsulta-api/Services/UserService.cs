@@ -13,7 +13,7 @@ namespace suaconsulta_api.Services
         }
 
         /// <summary>
-        /// Método estático serve para relacionar um external Id ao usuário logado.
+        /// Método serve para relacionar um external Id ao usuário logado.
         /// Por exemplo na criação de um usuário paciente, este método relaciona o Id do paciente com o usuário.
         /// </summary>
         /// <param name="userId"></param>

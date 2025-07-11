@@ -1,0 +1,14 @@
+using suaconsulta_api.DTO;
+
+namespace suaconsulta_api.Services
+{
+    public interface InterfaceAuthService
+    {
+        /// <summary>
+        /// Verifica se o email já está cadastrado no sistema.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<bool> isEmailAlreadyRegister(SignUpDto dto);
+    }
+}

@@ -14,13 +14,19 @@ namespace suaconsulta_api.Controllers
     [Route("api/Auth/")]
     public class ControllerAuth : ControllerBase
     {
+
+        private readonly AuthService authService;
+
+        public ControllerAuth(AuthService authService)
+        {
+            this.authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
         [HttpPost]
         [Route("SignUp")]
         public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, [FromBody] SignUpDto dto)
         {
-            // Verifica se o email já está cadastrado
-            var existingUser = context.Users.FirstOrDefault(u => u.Mail == dto.mail);
-            if (existingUser != null)
+            if (authService.isEmailAlreadyRegister(dto).Result)
             {
                 return Conflict("Email já cadastrado");
             }
