@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using suaconsulta_api.DTO;
 using Microsoft.AspNetCore.Identity.Data;
+using suaconsulta_api.Repositories;
 
 namespace suaconsulta_api.Controllers
 {
@@ -17,9 +18,12 @@ namespace suaconsulta_api.Controllers
 
         private readonly AuthService authService;
 
+        private readonly AuthRepository authRepository;
+
         public ControllerAuth(AuthService authService)
         {
             this.authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            this.authRepository = authRepository ?? throw new ArgumentNullException(nameof(authRepository));
         }
 
         [HttpPost]
@@ -56,7 +60,8 @@ namespace suaconsulta_api.Controllers
         [Route("Login/")]
         public IActionResult Login([FromServices] AppDbContext context, [FromServices] JwtService jwtService,[FromBody] LoginRequest request)
         {
-            var user = context.Users.FirstOrDefault(u => u.Mail == request.Email);
+            
+            var user = authRepository.getUserByEmail(request.Email).Result;
             if (user == null)
             {
                 return Unauthorized("Usuário não encontrado");
