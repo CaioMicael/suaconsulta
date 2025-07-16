@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using suaconsulta_api.Services;
+using suaconsulta_api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,9 @@ builder.Services.AddCors(options =>
 
 var conexao = builder.Configuration.GetConnectionString("Postgres");
 builder.Services.AddDbContext<AppDbContext>(b => b.UseNpgsql(conexao));
+
+builder.Services.AddScoped<InterfaceAuthService, AuthService>();
+builder.Services.AddScoped<InterfaceAuthRepository, AuthRepository>();
 
 builder.Services.AddScoped<IValidator<CreateConsultation>, CreateConsultationValidator>();
 builder.Services.AddScoped<IValidator<CreateDoctorScheduleDto>, CreateDoctorScheduleValidator>();
@@ -66,7 +70,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Minha API", Version = "v1" });
 
-    // Configuração para autenticação via JWT no Swagger
+    // Configuraï¿½ï¿½o para autenticaï¿½ï¿½o via JWT no Swagger
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Name = "Authorization",

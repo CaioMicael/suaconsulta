@@ -13,29 +13,21 @@ using suaconsulta_api.Repositories;
 namespace suaconsulta_api.Controllers
 {
     [Route("api/Auth/")]
-    public class ControllerAuth : ControllerBase
+    public class ControllerAuth : ControllerApiBase
     {
 
-        private readonly AuthService authService;
-
-        private readonly AuthRepository authRepository;
-
-        public ControllerAuth(AuthService authService)
-        {
-            this.authService = authService ?? throw new ArgumentNullException(nameof(authService));
-            this.authRepository = authRepository ?? throw new ArgumentNullException(nameof(authRepository));
-        }
+        public ControllerAuth(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [HttpPost]
         [Route("SignUp")]
         public IActionResult SignUp([FromServices] AppDbContext context, [FromServices] JwtService jwtService, [FromBody] SignUpDto dto)
         {
-            if (authService.isEmailAlreadyRegister(dto).Result)
+            if (getServiceController<InterfaceAuthService>().isEmailAlreadyRegister(dto).Result)
             {
                 return Conflict("Email já cadastrado");
             }
 
-            if (!authService.isPasswordValid(dto.pass).Result)
+            if (!getServiceController<InterfaceAuthService>().isPasswordValid(dto.pass).Result)
             {
                 return BadRequest("Senha deve ter pelo menos 6 caracteres");
             }
@@ -60,8 +52,8 @@ namespace suaconsulta_api.Controllers
         [Route("Login/")]
         public IActionResult Login([FromServices] AppDbContext context, [FromServices] JwtService jwtService,[FromBody] LoginRequest request)
         {
-            
-            var user = authRepository.getUserByEmail(request.Email).Result;
+
+            var user = getRepositoryController<InterfaceAuthRepository>().getUserByEmail(request.Email).Result;
             if (user == null)
             {
                 return Unauthorized("Usuário não encontrado");
