@@ -4,6 +4,9 @@ using suaconsulta_api.Model;
 
 namespace suaconsulta_api.Repositories
 {
+    /// <summary>
+    /// Contém métodos para interagir com o repositório de autenticação.
+    /// </summary>
     public class AuthRepository : InterfaceAuthRepository
     {
         private readonly AppDbContext _context;

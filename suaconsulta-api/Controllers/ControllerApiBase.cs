@@ -4,7 +4,7 @@ namespace suaconsulta_api.Controllers
 {
     /// <summary>
     /// Base controller class for API controllers.
-    /// Provê injeções de dependência para serviços e repositórios.
+    /// Preve injeções de dependência para serviços e repositórios.
     /// </summary>
     public class ControllerApiBase : ControllerBase
     {
