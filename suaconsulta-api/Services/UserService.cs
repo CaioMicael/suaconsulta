@@ -1,15 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Data;
+using suaconsulta_api.Repositories;
 
 namespace suaconsulta_api.Services
 {
     public class UserService
     {
-        private readonly AppDbContext _context;
+        private readonly InterfaceUserRepository _userRepository;
 
-        public UserService(AppDbContext context)
+        public UserService(InterfaceUserRepository userRepository)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
         /// <summary>
@@ -20,23 +21,7 @@ namespace suaconsulta_api.Services
         /// <param name="externalId"></param>
         public void RelateExternalId(string userId, int externalId)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id.ToString() == userId);
-            if (user != null)
-            {
-                if (user.ExternalId == null || user.ExternalId == 0)
-                {
-                    user.ExternalId = externalId;
-                    _context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Usuário já possui um cadastro vinculado");
-                }
-            }
-            else
-            {
-                throw new Exception("Usuário não encontrado");
-            }
+            _userRepository.setExternalId(int.Parse(userId), externalId);
         }
     }
 }
