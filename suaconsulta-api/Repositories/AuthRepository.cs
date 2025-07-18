@@ -26,5 +26,21 @@ namespace suaconsulta_api.Repositories
 
             return null;
         }
+
+        /// <summary>
+        /// Método para buscar um usuário pelo ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ModelUsers?> getUserById(int id)
+        {
+            var existingUser = await _context.Users.FindAsync(id);
+            if (existingUser != null)
+            {
+                return existingUser;
+            }
+
+            return null;
+        }
     }
 }

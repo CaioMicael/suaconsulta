@@ -52,7 +52,6 @@ namespace suaconsulta_api.Controllers
         [Route("Login/")]
         public IActionResult Login([FromServices] AppDbContext context, [FromServices] JwtService jwtService,[FromBody] LoginRequest request)
         {
-
             var user = getRepositoryController<InterfaceAuthRepository>().getUserByEmail(request.Email).Result;
             if (user == null)
             {
@@ -77,7 +76,12 @@ namespace suaconsulta_api.Controllers
         public IActionResult TokenInformation([FromServices] JwtService jwtService, [FromServices] AppDbContext context, Boolean justUser)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = context.Users.FirstOrDefault(u => u.Id.ToString() == userId);
+            if (userId == null)
+            {
+                return Unauthorized("Usuário não autenticado");
+            }
+
+            var user = getRepositoryController<userRepository>().getUserById(int.Parse(userId)).Result;
             if (user == null)
             {
                 return Unauthorized("Usuário não encontrado");
@@ -86,32 +90,11 @@ namespace suaconsulta_api.Controllers
             if (justUser)
                 return Ok(user);
             
-            if (user.TypeUser == EnumTypeUsers.Patient)
-            {
-                var response = context.Users.
-                    Join(context.Patient, u => u.ExternalId, patient => patient.Id, (u, patient) => new
-                    {
-                        user = u,
-                        patient
-                    }).
-                    FirstOrDefault(result => result.user.Id == user.Id);
-                if (response != null)
-                    return Ok(response);
-            }
-            else if (user.TypeUser == EnumTypeUsers.Doctor)
-            {
-                var  response = context.Users.
-                    Join(context.Doctor, u => u.ExternalId, doctor => doctor.Id, (u, doctor) => new
-                    {
-                        user = u,
-                        doctor
-                    }).
-                    FirstOrDefault(result => result.user.Id == user.Id);
-                if (response != null)
-                    return Ok(response);
-            }
-
-            return NotFound("Usuário não encontrado");
+            var userExternalInfo = getRepositoryController<userRepository>().getExternalUserInfo(user.Id).Result;
+            if (userExternalInfo == null)
+                return NotFound("Informações externas do usuário não encontradas");
+                
+            return Ok(userExternalInfo);
         }
     }
 }

@@ -2,7 +2,9 @@ namespace suaconsulta_api.Repositories
 {
     using Microsoft.EntityFrameworkCore;
     using suaconsulta_api.Data;
+    using suaconsulta_api.DTO;
     using suaconsulta_api.Model;
+    using suaconsulta_api.Model.Enum;
 
     public class userRepository : InterfaceUserRepository
     {
@@ -34,8 +36,9 @@ namespace suaconsulta_api.Repositories
                     user.ExternalId = externalId;
                     try
                     {
-                      await _context.SaveChangesAsync();                    
-                    } catch (Exception ex)
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (Exception ex)
                     {
                         throw new Exception("Erro ao salvar o usuário: " + ex.Message);
                     }
@@ -49,6 +52,49 @@ namespace suaconsulta_api.Repositories
             {
                 throw new Exception("Usuário não encontrado");
             }
+        }
+
+        /// <summary>
+        /// Retorna informações externas do usuário, como paciente ou médico, dependendo do tipo de usuário.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<UserExternalInfoDto?> getExternalUserInfo(int userId)
+        {
+            var user = await getUserById(userId);
+            if (user == null)
+                return null;
+
+            if (user.TypeUser == EnumTypeUsers.Patient)
+            {
+                var response = _context.Users.
+                    Join(_context.Patient, u => u.ExternalId, patient => patient.Id, (u, patient) => new
+                    {
+                        user = u,
+                        patient
+                    }).Select(result => new UserExternalInfoDto
+                    {
+                        User = result.user,
+                        Patient = result.patient
+                    }).FirstOrDefault(result => result.User.Id == user.Id);
+                return response;
+            }
+            else if (user.TypeUser == EnumTypeUsers.Doctor)
+            {
+                var response = _context.Users.
+                    Join(_context.Doctor, u => u.ExternalId, doctor => doctor.Id, (u, doctor) => new
+                    {
+                        user = u,
+                        doctor
+                    }).Select(result => new UserExternalInfoDto
+                    {
+                        User = result.user,
+                        Doctor = result.doctor
+                    }).FirstOrDefault(result => result.User.Id == user.Id);
+                return response;
+            }
+
+            return null;
         }
     }
 }
