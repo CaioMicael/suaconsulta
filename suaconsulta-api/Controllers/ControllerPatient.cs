@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
+using suaconsulta_api.Repositories;
 using suaconsulta_api.Services;
 using System.Security.Claims;
 
@@ -11,8 +12,9 @@ namespace suaconsulta_api.Controllers
 {
     [Route("api/Patient")]
     [ApiController]
-    public class ControllerPatient : ControllerBase
+    public class ControllerPatient : ControllerApiBase
     {
+        public ControllerPatient(IServiceProvider serviceProvider) : base(serviceProvider) { }
         private static ModelPatient ModelPatient = new ModelPatient();
         private static List<ModelPatient> ListPatient = new List<ModelPatient>();
 
@@ -64,8 +66,11 @@ namespace suaconsulta_api.Controllers
                 await context.Patient.AddAsync(patient);
                 await context.SaveChangesAsync();
 
-                var userService = new UserService(context);
-                userService.RelateExternalId(User.FindFirstValue(ClaimTypes.NameIdentifier), patient.Id);
+                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (userId == null)
+                    return Unauthorized("Usuário não autenticado");
+
+                getServiceController<InterfaceUserRepository>().setExternalId(int.Parse(userId), patient.Id);
 
                 return Ok("Inserido com sucesso!");
             }
