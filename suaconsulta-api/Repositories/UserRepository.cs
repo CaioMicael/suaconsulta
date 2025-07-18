@@ -96,5 +96,19 @@ namespace suaconsulta_api.Repositories
 
             return null;
         }
+
+        public void InsertUser(ModelUsers user)
+        {
+            ArgumentNullException.ThrowIfNull(nameof(user));
+
+            try
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            } catch (Exception ex)
+            {
+                throw new Exception("Erro ao inserir usuário: " + ex.Message);
+            }
+        }
     }
 }

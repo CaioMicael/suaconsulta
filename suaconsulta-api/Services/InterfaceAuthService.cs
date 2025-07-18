@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 
@@ -18,5 +19,12 @@ namespace suaconsulta_api.Services
         /// <param name="password"></param>
         /// <returns></returns>
         Task<bool> isPasswordValid(string password);
+
+        /// <summary>
+        /// Realiza o cadastro de um novo usuário.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        IActionResult DoSignUp(SignUpDto dto);
     }
 }

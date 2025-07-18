@@ -23,5 +23,11 @@ namespace suaconsulta_api.Repositories
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
         void setExternalId(int userId, int externalId);
+
+        /// <summary>
+        /// Insere um novo usuário no repositório.
+        /// </summary>
+        /// <param name="user"></param>
+        void InsertUser(ModelUsers user);
     }
 }
