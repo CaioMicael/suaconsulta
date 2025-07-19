@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
@@ -26,5 +27,12 @@ namespace suaconsulta_api.Services
         /// <param name="dto"></param>
         /// <returns></returns>
         IActionResult DoSignUp(SignUpDto dto);
+
+        /// <summary>
+        /// Realiza o login do usuário.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        IActionResult DoLogin([FromServices] JwtService jwtService, [FromBody] LoginRequest request);
     }
 }

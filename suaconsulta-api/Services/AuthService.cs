@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
@@ -64,6 +65,26 @@ namespace suaconsulta_api.Services
             userRepository.InsertUser(user);
 
             // Gera o JWT
+            var token = jwtService.GenerateToken(user);
+            return new OkObjectResult(new { token = token, role = user.TypeUser });
+        }
+
+        public IActionResult DoLogin([FromServices] JwtService jwtService, [FromBody] LoginRequest request)
+        {
+            ModelUsers? user = userRepository.GetUserByEmail(request.Email).Result;
+            if (user == null)
+            {
+                return new NotFoundObjectResult("Usuário não encontrado");
+            }
+
+            var hasher = new PasswordHasher<ModelUsers>();
+            var result = hasher.VerifyHashedPassword(user, user.Password, request.Password);
+
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return new BadRequestObjectResult("Senha incorreta");
+            }
+
             var token = jwtService.GenerateToken(user);
             return new OkObjectResult(new { token = token, role = user.TypeUser });
         }

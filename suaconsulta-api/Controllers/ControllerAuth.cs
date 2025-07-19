@@ -27,22 +27,7 @@ namespace suaconsulta_api.Controllers
         [Route("Login/")]
         public IActionResult Login([FromServices] JwtService jwtService,[FromBody] LoginRequest request)
         {
-            var user = getRepositoryController<InterfaceAuthRepository>().getUserByEmail(request.Email).Result;
-            if (user == null)
-            {
-                return Unauthorized("Usuário não encontrado");
-            }
-
-            var hasher = new PasswordHasher<ModelUsers>();
-            var result = hasher.VerifyHashedPassword(user, user.Password, request.Password);
-
-            if (result != PasswordVerificationResult.Success)
-                return Unauthorized("Senha incorreta");
-
-            // Gera o JWT
-            var token = jwtService.GenerateToken(user);
-
-            return Ok(new { token = token, role = user.TypeUser });
+            return getServiceController<InterfaceAuthService>().DoLogin(jwtService, request);
         }
 
         [HttpGet]

@@ -26,6 +26,17 @@ namespace suaconsulta_api.Repositories
             return null;
         }
 
+        public async Task<ModelUsers?> GetUserByEmail(string email)
+        {
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Mail == email);
+            if (existingUser != null)
+            {
+                return existingUser;
+            }
+
+            return null;
+        }
+
         public async void setExternalId(int userId, int externalId)
         {
             var user = await getUserById(userId);

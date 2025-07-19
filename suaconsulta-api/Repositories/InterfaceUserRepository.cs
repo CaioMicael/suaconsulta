@@ -15,6 +15,13 @@ namespace suaconsulta_api.Repositories
         Task<ModelUsers?> getUserById(int id);
 
         /// <summary>
+        /// Retorna o usuário com o email fornecido
+        /// </summary>
+        /// <param name="email">string</param>
+        /// <returns></returns>
+        Task<ModelUsers?> GetUserByEmail(string email);
+
+        /// <summary>
         /// Método para relacionar um external Id ao usuário.
         /// Por exemplo, na criação de um usuário paciente, este método relaciona o Id do paciente com o usuário.
         /// </summary>
