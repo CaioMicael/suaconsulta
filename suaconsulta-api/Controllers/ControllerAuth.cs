@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using suaconsulta_api.Model;
+﻿using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
@@ -18,16 +16,16 @@ namespace suaconsulta_api.Controllers
 
         [HttpPost]
         [Route("SignUp")]
-        public IActionResult SignUp([FromServices] JwtService jwtService, [FromBody] SignUpDto dto)
+        public IActionResult SignUp([FromBody] SignUpDto dto)
         {
             return getServiceController<InterfaceAuthService>().DoSignUp(dto);
         }
 
         [HttpPost]
         [Route("Login/")]
-        public IActionResult Login([FromServices] JwtService jwtService,[FromBody] LoginRequest request)
+        public IActionResult Login([FromBody] LoginRequest request)
         {
-            return getServiceController<InterfaceAuthService>().DoLogin(jwtService, request);
+            return getServiceController<InterfaceAuthService>().DoLogin(request);
         }
 
         [HttpGet]
@@ -41,16 +39,18 @@ namespace suaconsulta_api.Controllers
                 return Unauthorized("Usuário não autenticado");
             }
 
-            var user = getRepositoryController<userRepository>().getUserById(int.Parse(userId)).Result;
-            if (user == null)
-            {
-                return Unauthorized("Usuário não encontrado");
-            }
-
             if (justUser)
+            {
+                var user = getRepositoryController<userRepository>().getUserById(int.Parse(userId)).Result;
+                if (user == null)
+                {
+                    return Unauthorized("Usuário não encontrado");
+                }
+                
                 return Ok(user);
+            }
             
-            var userExternalInfo = getRepositoryController<userRepository>().getExternalUserInfo(user.Id).Result;
+            var userExternalInfo = getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId)).Result;
             if (userExternalInfo == null)
                 return NotFound("Informações externas do usuário não encontradas");
 

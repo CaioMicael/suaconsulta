@@ -69,7 +69,7 @@ namespace suaconsulta_api.Services
             return new OkObjectResult(new { token = token, role = user.TypeUser });
         }
 
-        public IActionResult DoLogin([FromServices] JwtService jwtService, [FromBody] LoginRequest request)
+        public IActionResult DoLogin([FromBody] LoginRequest request)
         {
             ModelUsers? user = userRepository.GetUserByEmail(request.Email).Result;
             if (user == null)

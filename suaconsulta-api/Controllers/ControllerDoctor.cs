@@ -12,10 +12,9 @@ namespace suaconsulta_api.Controllers
 {
     [Route("api/Doctor")]
     [ApiController]
-    public class ControllerDoctor : ControllerBase
+    public class ControllerDoctor : ControllerApiBase
     {
-        private static ModelDoctor ModelDoctor = new ModelDoctor();
-        private static List<ModelDoctor> ListDoctor = new List<ModelDoctor>();
+        public ControllerDoctor(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         [HttpGet]
         [Authorize]
@@ -67,8 +66,7 @@ namespace suaconsulta_api.Controllers
                 await context.Doctor.AddAsync(doctor);
                 await context.SaveChangesAsync();
 
-                var userService = new UserService(context);
-                userService.RelateExternalId(User.FindFirstValue(ClaimTypes.NameIdentifier), doctor.Id);
+                getServiceController<UserService>().RelateExternalId(User.FindFirstValue(ClaimTypes.NameIdentifier), doctor.Id);
 
                 return Ok("Inserido com sucesso!");
             }

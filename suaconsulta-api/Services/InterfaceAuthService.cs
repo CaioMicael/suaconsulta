@@ -33,6 +33,6 @@ namespace suaconsulta_api.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        IActionResult DoLogin([FromServices] JwtService jwtService, [FromBody] LoginRequest request);
+        IActionResult DoLogin([FromBody] LoginRequest request);
     }
 }
