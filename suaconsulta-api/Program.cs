@@ -33,6 +33,7 @@ builder.Services.AddScoped<AuthRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<InterfaceUserRepository, userRepository>();
 builder.Services.AddScoped<userRepository>();
+builder.Services.AddScoped<PatientRepository>();
 
 builder.Services.AddScoped<IValidator<CreateConsultation>, CreateConsultationValidator>();
 builder.Services.AddScoped<IValidator<CreateDoctorScheduleDto>, CreateDoctorScheduleValidator>();

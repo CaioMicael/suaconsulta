@@ -14,9 +14,7 @@ namespace suaconsulta_api.Controllers
     [ApiController]
     public class ControllerPatient : ControllerApiBase
     {
-        public ControllerPatient(IServiceProvider serviceProvider) : base(serviceProvider) { }
-        private static ModelPatient ModelPatient = new ModelPatient();
-        private static List<ModelPatient> ListPatient = new List<ModelPatient>();
+        public ControllerPatient(IServiceProvider serviceProvider) : base(serviceProvider) {}
 
         [HttpGet]
         [Authorize]
@@ -83,57 +81,46 @@ namespace suaconsulta_api.Controllers
         [HttpPatch]
         [Authorize]
         [Route("PatchPatient/")]
-        public async Task<IActionResult> PatchPatient(
-            [FromServices] AppDbContext context,
-            [FromQuery] int id, 
-            [FromBody] UpdatePatientDto dto)
+        public async Task<IActionResult> PatchPatient([FromBody] UpdatePatientDto dto)
         {
             if (dto == null)
             {
                 return BadRequest("Dados do paciente são nulos.");
             }
 
-            var patient = await context.Patient.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (patient == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound("Registro não encontrado.");
+                return BadRequest(ModelState);
             }
 
-            if (!string.IsNullOrEmpty(dto.Name))
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
             {
-                patient.Name = dto.Name;
+                return NotFound("Usuário não encontrado!");
             }
-            if (!string.IsNullOrEmpty(dto.Email))
+
+            UserExternalInfoDto? user = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+
+            if (user == null || user.Patient == null)
             {
-                patient.Email = dto.Email;
+                return NotFound("Paciente não encontrado para este usuário.");
             }
-            if (!string.IsNullOrEmpty(dto.Birthday))
-            {
-                patient.Birthday = dto.Birthday;
-            }
-            if (!string.IsNullOrEmpty(dto.Phone))
-            {
-                patient.Phone = dto.Phone;
-            }
-            if (!string.IsNullOrEmpty(dto.City))
-            {
-                patient.City = dto.City;
-            }
-            if (!string.IsNullOrEmpty(dto.State))
-            {
-                patient.State = dto.State;
-            }
-            if (!string.IsNullOrEmpty(dto.Country))
-            {
-                patient.Country = dto.Country;
-            }
+
+            user.Patient.Name = dto.Name;
+            user.Patient.Email = dto.Email;
+            user.Patient.Birthday = dto.Birthday;
+            user.Patient.Phone = dto.Phone;
+            user.Patient.City = dto.City;
+            user.Patient.State = dto.State;
+            user.Patient.Country = dto.Country;
 
             try
             {
-                context.Patient.Update(patient);
-                await context.SaveChangesAsync();
-                return Ok("Atualizado com sucesso!");
+                if (await getRepositoryController<PatientRepository>().UpdatePatient(user.Patient))
+                {
+                    return Ok("Dados de paciente alterado com sucesso!");
+                }
+                return BadRequest("Erro ao atualizar Paciente ");
             }
             catch (Exception e)
             {

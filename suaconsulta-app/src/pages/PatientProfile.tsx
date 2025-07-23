@@ -31,12 +31,32 @@ const PatientProfile = () => {
         }));
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    /**
+     * Realiza o submit da tela de alteração de dados do paciente
+     * @param event React.FormEven
+     * @async
+     */
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(event);
-        showAlert("Funcionalidade de edição de perfil ainda não implementada.", "warning");
+        try {
+            await api.patch("Patient/PatchPatient", {
+                ...patient
+            })
+            .then(response => {
+                showAlert("Perfil alterado com sucesso!", "success");
+            })
+            .catch(error => {
+                showAlert("Ocorreu um erro na alteração do perfil: "+ error.response.data, "error");    
+            });
+        } catch (error) {
+            showAlert("Ocorreu um erro na alteração do perfil: "+ error, "error");
+        }
     }
 
+    /**
+     * Carrega os dados do paciente em tela.
+     * @async
+     */
     const loadPatientData = async () => {
         await api.get<UserInformationResponse>('Auth/tokenInformation?justUser=false')
         .then((response) => {
@@ -169,6 +189,7 @@ const PatientProfile = () => {
                         Description="Salvar Alterações"
                         Name="button-salvar"
                         Type="submit"
+                        onClick={() => handleSubmit}
                         disabled={false}
                     />
                 </div>
