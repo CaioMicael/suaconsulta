@@ -5,6 +5,7 @@ import ButtonDefault from "./ButtonDefault";
 import api from "../services/api";
 import SucessAlert from "./alerts/SucessAlert";
 import { Doctor } from "../interfaces";
+import LoadingSpin from "./LoadingSpin";
 
 const DoctorsList = () => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -56,10 +57,7 @@ const DoctorsList = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {doctors.length === 0 ? (
-                        <div className="col-span-full flex flex-col items-center justify-center py-16">
-                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mb-4"></div>
-                            <p className="text-gray-500 text-lg">Carregando médicos...</p>
-                        </div>
+                        <LoadingSpin textSpinner="Carregando médicos..." />
                     ) : (
                         doctors.map((doctor) => (
                             <div 
