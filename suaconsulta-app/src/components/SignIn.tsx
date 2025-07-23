@@ -1,6 +1,5 @@
 import PasswordInput from './PasswordInput';
 import Input from './Input';
-import api from '../services/api';
 import { useAlert } from '../providers/AlertProvider';
 import ButtonLogin from './ButtonLogin';
 import { useState } from 'react';

@@ -13,7 +13,7 @@ const PasswordInput = ({ onChange }: PasswordInputProps) => {
                 labelDescription="Senha"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                onChange={() => onChange}
+                onChange={onChange ? onChange : () => {}}
                 required
             />
             <button type="button" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "Ocultar" : "Mostrar"}</button>

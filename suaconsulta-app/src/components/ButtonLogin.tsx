@@ -22,7 +22,6 @@ const ButtonLogin = ({Description, Name, disabled = false, className, email, pas
     const navigate = useNavigate();
 
     const handleSubmitLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
         api.post('Auth/Login', {
             email,
             password
@@ -38,7 +37,7 @@ const ButtonLogin = ({Description, Name, disabled = false, className, email, pas
 
     return (
         <button
-            type="submit"
+            type="button"
             name={Name}
             onClick={handleSubmitLogin}
             disabled={disabled}
