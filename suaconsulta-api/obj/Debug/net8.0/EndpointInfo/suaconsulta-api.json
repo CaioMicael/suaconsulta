@@ -68,7 +68,7 @@
       }
     },
     "/api/Auth/tokenInformation": {
-      "post": {
+      "get": {
         "tags": [
           "ControllerAuth"
         ],

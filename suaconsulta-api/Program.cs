@@ -29,6 +29,10 @@ builder.Services.AddDbContext<AppDbContext>(b => b.UseNpgsql(conexao));
 
 builder.Services.AddScoped<InterfaceAuthService, AuthService>();
 builder.Services.AddScoped<InterfaceAuthRepository, AuthRepository>();
+builder.Services.AddScoped<AuthRepository>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<InterfaceUserRepository, userRepository>();
+builder.Services.AddScoped<userRepository>();
 
 builder.Services.AddScoped<IValidator<CreateConsultation>, CreateConsultationValidator>();
 builder.Services.AddScoped<IValidator<CreateDoctorScheduleDto>, CreateDoctorScheduleValidator>();

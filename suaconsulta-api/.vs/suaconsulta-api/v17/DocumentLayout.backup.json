@@ -1,29 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\",
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\dto\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:dto\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\dto\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:dto\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\controllers\\controllerpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\usuario\\documents\\suaconsulta\\suaconsulta-api\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,8 +34,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAB4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T22:46:46.098Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -46,25 +60,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAArwGoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:46:46.098Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "SignUpDto.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\DTO\\SignUpDto.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\DTO\\SignUpDto.cs",
               "RelativeDocumentMoniker": "DTO\\SignUpDto.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\DTO\\SignUpDto.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\DTO\\SignUpDto.cs",
               "RelativeToolTip": "DTO\\SignUpDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -72,36 +72,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ControllerDoctor.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctor.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctor.cs",
               "RelativeDocumentMoniker": "Controllers\\ControllerDoctor.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctor.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctor.cs",
               "RelativeToolTip": "Controllers\\ControllerDoctor.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAgwD4AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAgwD4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:19:25.916Z"
+              "WhenOpened": "2025-06-19T19:19:25.916Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ControllerAuth.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
               "RelativeDocumentMoniker": "Controllers\\ControllerAuth.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerAuth.cs",
               "RelativeToolTip": "Controllers\\ControllerAuth.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAAwDwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:50:45.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-12T23:50:45.466Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "ControllerPatient.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerPatient.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerPatient.cs",
               "RelativeDocumentMoniker": "Controllers\\ControllerPatient.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerPatient.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerPatient.cs",
               "RelativeToolTip": "Controllers\\ControllerPatient.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAAAEIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -111,9 +111,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "EnumTypeUsers.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
               "RelativeDocumentMoniker": "Model\\Enum\\EnumTypeUsers.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
               "RelativeToolTip": "Model\\Enum\\EnumTypeUsers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

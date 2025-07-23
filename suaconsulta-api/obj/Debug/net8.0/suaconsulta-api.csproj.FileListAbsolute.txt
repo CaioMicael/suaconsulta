@@ -289,3 +289,4 @@ C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsof
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Usuario\Documents\suaconsulta\suaconsulta-api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
