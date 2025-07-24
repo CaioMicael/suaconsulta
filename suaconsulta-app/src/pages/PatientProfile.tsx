@@ -24,6 +24,12 @@ const PatientProfile = () => {
         country: ""
     });
 
+    useEffect(() => {
+        if (patient.name === "") {
+            loadPatientData();
+        }
+    }, [patient.name]);
+
     const handleInputChange = (field: keyof Patient, value: string) => {
         setPatient(prev => ({
             ...prev,
@@ -82,12 +88,6 @@ const PatientProfile = () => {
         });
     }
 
-    useEffect(() => {
-        if (patient.name === "") {
-            loadPatientData();
-        }
-    }, [patient.name]);
-
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
             <h1 className="text-2xl font-bold mb-6 text-center">Seu Perfil</h1>
@@ -143,6 +143,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.phone}
                             required={true}
+                            mask="(99)99999-9999"
                             onChange={(e) => handleInputChange("phone", e.target.value)}
                         />                          
                     </div>
