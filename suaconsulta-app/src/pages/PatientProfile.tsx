@@ -107,7 +107,7 @@ const PatientProfile = () => {
                             value={patient.name}
                             required={true}
                             size={100}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("name", e.target.value)}
                         />
                     </div>
 
@@ -119,7 +119,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.email}
                             required={true}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("email", e.target.value)}
                         />                        
                     </div>
 
@@ -131,7 +131,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.birthday}
                             required={true}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("birthday", e.target.value)}
                         />                           
                     </div>
                     
@@ -143,7 +143,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.phone}
                             required={true}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("phone", e.target.value)}
                         />                          
                     </div>
                     
@@ -155,7 +155,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.city}
                             required={true}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("city", e.target.value)}
                         />                            
                     </div>
                     
@@ -167,7 +167,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.state}
                             required={true}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("state", e.target.value)}
                         />                          
                     </div>
                     
@@ -179,7 +179,7 @@ const PatientProfile = () => {
                             disabled={false}
                             value={patient.country}
                             required={true}
-                            onChange={() => handleInputChange}
+                            onChange={(e) => handleInputChange("country", e.target.value)}
                         />                         
                     </div>
                 </div>
@@ -189,8 +189,8 @@ const PatientProfile = () => {
                         Description="Salvar Alterações"
                         Name="button-salvar"
                         Type="submit"
-                        onClick={() => handleSubmit}
                         disabled={false}
+                        onClick={() => handleSubmit}
                     />
                 </div>
             </form>
