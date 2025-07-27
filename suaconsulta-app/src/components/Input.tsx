@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { IndexInfo } from "typescript";
 
 interface InputProps {
     labelDescription: string;
@@ -14,7 +13,7 @@ interface InputProps {
     onSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
     size?: number;
-    mask?: string;
+    mask?: string|boolean;
 }
 
 /**
@@ -34,7 +33,7 @@ const Input = ({
                     onSelect,
                     required = false, 
                     size = 69,
-                    mask,
+                    mask = false,
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                 }: InputProps) => {
     
@@ -50,7 +49,7 @@ const Input = ({
          * Atualiza a máscara do input se informado
          */            
         const HandleInputMask = () => {
-            if (mask) {
+            if (mask && typeof mask == "string") {
                 var CaracterEspecial:Array<string> = mask.replaceAll('9', '').split('');
                 CaracterEspecial.map((caracter:string, idx:number) => {
                     var reg:string = "["+caracter+"]";
@@ -72,7 +71,7 @@ const Input = ({
                     id={name} 
                     name={name} 
                     placeholder={placeholder}
-                    value={maskedValue}
+                    value={maskedValue ? maskedValue : value}
                     defaultValue={defaultValue}
                     onChange={onChange}
                     onSelect={onSelect}
