@@ -82,3 +82,24 @@ export interface DateOption {
     hour: string;
     minute: string;
 }
+
+export interface ConsultationData {
+    id: number;
+    date: string;
+    status: number;
+    patientId: number;
+    doctorId: number;
+    description: string;
+    patient: {
+        id: number;
+        name: string;
+        email: string;
+    };
+    doctor: {
+        id: number;
+        name: string;
+        specialty: string;
+        crm: string;
+        email: string;
+    };
+}
