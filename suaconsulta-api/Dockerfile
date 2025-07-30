@@ -1,28 +1,20 @@
-# Imagem base para construção
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copiar arquivos de projeto e restaurar dependências
-COPY *.csproj ./
-RUN dotnet restore
+# Copy everything and restore
+COPY . .
+RUN dotnet restore suaconsulta-api.csproj
 
-# Copiar todo o código fonte
-COPY . ./
+# Build and publish
+RUN dotnet publish suaconsulta-api.csproj -c Release -o /app
 
-# Publicar a aplicação
-RUN dotnet publish -c Release -o out
-
-# Imagem de runtime
+# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=build /app/out ./
+COPY --from=build /app .
 
-# Definir variáveis de ambiente
-ENV ASPNETCORE_URLS=http://+:80
-ENV ASPNETCORE_ENVIRONMENT=Production
-
-# Expor porta
+ENV ASPNETCORE_URLS=http://+:7156
 EXPOSE 7156
 
-# Comando de inicialização
 ENTRYPOINT ["dotnet", "suaconsulta-api.dll"]
