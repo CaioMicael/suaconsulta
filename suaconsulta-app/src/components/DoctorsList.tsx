@@ -6,27 +6,37 @@ import api from "../services/api";
 import SucessAlert from "./alerts/SucessAlert";
 import { Doctor } from "../interfaces";
 import LoadingSpin from "./LoadingSpin";
+import NotFoundDoctors from "./NotFoundDoctors";
 
 const DoctorsList = () => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const loadDoctors = async () => {
         try {
-            api.get('Doctor/ListDoctor')
-                .then(response => {
-                    const formattedDoctors = response.data.map((doctorData: any) => ({
-                        id: doctorData.id,
-                        nome: doctorData.name,
-                        especialidade: doctorData.specialty,
-                        crm: doctorData.crm,
-                        telefone: doctorData.phone,
-                        email: doctorData.email
-                    }));
-                    setDoctors(formattedDoctors);
-                    <SucessAlert message="Dados carregados com sucesso!" />
-                })
+            setLoading(true);
+            const response = await api.get('Doctor/ListDoctor');
+            if (response.status === 204 || !response.data || response.data.length === 0) {
+                console.log('Nenhum médico encontrado - definindo array vazio');
+                setDoctors([]);
+                setLoading(false);
+                return;
+            }
+            const formattedDoctors = response.data.map((doctorData: any) => ({
+                id: doctorData.id,
+                nome: doctorData.name,
+                especialidade: doctorData.specialty,
+                crm: doctorData.crm,
+                telefone: doctorData.phone,
+                email: doctorData.email
+            }));
+            
+            setDoctors(formattedDoctors);
+            setLoading(false);
         } catch (error) {
             console.error("Erro ao buscar médicos:", error);
+            setDoctors([]);
+            setLoading(false);
         }
     }
     
@@ -56,8 +66,12 @@ const DoctorsList = () => {
 
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {doctors.length === 0 ? (
-                        <LoadingSpin textSpinner="Carregando médicos..." />
+                    {loading ? (
+                        <div className="col-span-full flex justify-center">
+                            <LoadingSpin textSpinner="Carregando médicos..." />
+                        </div>
+                    ) : doctors.length === 0 ? (
+                        <NotFoundDoctors />
                     ) : (
                         doctors.map((doctor) => (
                             <div 
@@ -127,7 +141,7 @@ const DoctorsList = () => {
                 </div>
 
                 {/* Footer Section */}
-                {doctors.length > 0 && (
+                {!loading && doctors.length > 0 && (
                     <div className="text-center mt-12 pt-8 border-t border-gray-200">
                         <p className="text-gray-500">
                             Mostrando {doctors.length} médico{doctors.length !== 1 ? 's' : ''} disponív{doctors.length !== 1 ? 'eis' : 'el'}
