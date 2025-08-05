@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Security.Claims;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,12 +7,16 @@ using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Model.Enum;
+using suaconsulta_api.Repositories;
 
 namespace suaconsulta_api.Controllers
 {
     [Route("api/Consultation/")]
-    public class ControllerConsultation : ControllerBase
+    public class ControllerConsultation : ControllerApiBase
     {
+
+        public ControllerConsultation(IServiceProvider serviceProvider) : base(serviceProvider) {}
+
         /// <summary>
         /// Endpoint GET assíncrono para busca de todas as consultas.
         /// </summary>
@@ -35,20 +40,24 @@ namespace suaconsulta_api.Controllers
         /// <summary>
         /// Endpoint GET assíncrono para busca de consulta por paciente.
         /// </summary>
-        /// <param name="context">contexto do banco de dados</param>
-        /// <param name="PatientId">Id do paciente</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
         [Authorize]
         [Route("PatientConsultations/")]
-        public async Task<IActionResult> GetPatientConsultation(
-            [FromServices] AppDbContext context,
-            [FromRoute] int PatientId)
+        public async Task<IActionResult> GetPatientConsultation()
         {
-            var PatientConsultations = await context.Consultation
-                .Include(C => C.Patient)
-                .OrderBy(C => C.PatientId)
-                .ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized("Usuário não autenticado");
+            }
+
+            UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            if (UserInfo == null || UserInfo.Patient == null) {
+                return Unauthorized("Paciente não cadastrado");
+            }
+
+            var PatientConsultations = await getRepositoryController<ConsultationRepository>().GetPatientConsultations(UserInfo.Patient.Id);
             return Ok(PatientConsultations);
         }
 
