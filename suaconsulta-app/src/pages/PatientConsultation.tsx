@@ -65,37 +65,19 @@ const PatientConsultation = () => {
 
     /**
      * Este método realiza o carregamento das consultas do paciente
-     * // TODO alterar endpoint pra não passar id via query string
      */
     const loadConsultations = async () => {
         try {
             setLoading(true);
-            const userResponse = await api.get('Auth/tokenInformation?justUser=false');
+            const response = await api.get('Consultation/PatientConsultations');
             
-            if (userResponse.data.patient) {
-                const patientId = userResponse.data.patient.id;
-                
-                // Buscar todas as consultas (o endpoint atual retorna todas, então vamos filtrar)
-                const response = await api.get(`Consultation/PatientConsultations/${patientId}`);
-                
-                if (response.status === 200 && response.data) {
-                    // Filtrar apenas as consultas do paciente atual
-                    const patientConsultations = response.data.filter((consultation: ConsultationData) => 
-                        consultation.patientId === patientId
-                    );
-                    
-                    setConsultations(patientConsultations);
-                    setFilteredConsultations(patientConsultations);
-                } else {
-                    setConsultations([]);
-                    setFilteredConsultations([]);
-                }
+            if (response.status === 200 && response.data) {
+                setConsultations(response.data.consultations);
+                setFilteredConsultations(response.data.consultations);
             } else {
-                showAlert("Erro: Você não está logado como paciente.", "error");
                 setConsultations([]);
                 setFilteredConsultations([]);
             }
-            
             setLoading(false);
         } catch (error: any) {
             console.error("Erro ao carregar consultas:", error);
