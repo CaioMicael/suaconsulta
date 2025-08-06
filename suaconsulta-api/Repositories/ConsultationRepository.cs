@@ -18,7 +18,7 @@ namespace suaconsulta_api.Repositories
         /// Retorna as consultas do paciente
         /// </summary>
         /// <param name="patientId">Id do paciente</param>
-        /// <returns>PatientConsultations</returns>
+        /// <returns>PatientConsultationsDto</returns>
         public async Task<PatientConsultationsDto?> GetPatientConsultations(int patientId)
         {
             var patient = await _context.Patient.FirstOrDefaultAsync(p => p.Id == patientId);
