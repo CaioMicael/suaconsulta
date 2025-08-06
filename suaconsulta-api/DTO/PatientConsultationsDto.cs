@@ -2,7 +2,7 @@ using suaconsulta_api.Model;
 
 namespace suaconsulta_api.DTO
 {
-    public class PatientConsultations
+    public class PatientConsultationsDto
     {
         public ModelPatient Patient { get; set; }
 

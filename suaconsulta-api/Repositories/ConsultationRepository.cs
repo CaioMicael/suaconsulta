@@ -19,7 +19,7 @@ namespace suaconsulta_api.Repositories
         /// </summary>
         /// <param name="patientId">Id do paciente</param>
         /// <returns>PatientConsultations</returns>
-        public async Task<PatientConsultations?> GetPatientConsultations(int patientId)
+        public async Task<PatientConsultationsDto?> GetPatientConsultations(int patientId)
         {
             var patient = await _context.Patient.FirstOrDefaultAsync(p => p.Id == patientId);
             if (patient == null)
@@ -29,7 +29,7 @@ namespace suaconsulta_api.Repositories
                 .Where(c => c.Patient.Id == patientId)
                 .ToListAsync();
                 
-            return new PatientConsultations
+            return new PatientConsultationsDto
             {
                 Consultations = consultations,
                 Patient = patient
