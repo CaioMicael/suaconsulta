@@ -19,9 +19,9 @@ namespace suaconsulta_api.Services
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="externalId"></param>
-        public void RelateExternalId(string userId, int externalId)
+        public void RelateExternalId(int userId, int externalId)
         {
-            _userRepository.setExternalId(int.Parse(userId), externalId);
+            _userRepository.setExternalId(userId, externalId);
         }
     }
 }

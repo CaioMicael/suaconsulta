@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
-using suaconsulta_api.Migrations;
 using suaconsulta_api.Model;
 using suaconsulta_api.Services;
 using System.Security.Claims;
@@ -66,13 +65,14 @@ namespace suaconsulta_api.Controllers
                 await context.Doctor.AddAsync(doctor);
                 await context.SaveChangesAsync();
 
-                getServiceController<UserService>().RelateExternalId(User.FindFirstValue(ClaimTypes.NameIdentifier), doctor.Id);
-
+                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                ArgumentException.ThrowIfNullOrEmpty(userId);
+                getServiceController<UserService>().RelateExternalId(int.Parse(userId), doctor.Id);
                 return Ok("Inserido com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao incluir Médico " + e.Message);
+                throw new Exception("Erro ao incluir Médico " + e.Message);
             }
         }
 
@@ -108,7 +108,7 @@ namespace suaconsulta_api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao atualizar Médico " + e.Message);
+                throw new Exception("Erro ao atualizar Médico " + e.Message);
             }
         }
 
@@ -139,7 +139,7 @@ namespace suaconsulta_api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao excluir Médico " + e.Message);
+                throw new Exception("Erro ao excluir Médico " + e.Message);
             }
         }
     }
