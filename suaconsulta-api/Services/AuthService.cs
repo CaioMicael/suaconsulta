@@ -40,16 +40,16 @@ namespace suaconsulta_api.Services
             return Task.FromResult(true);
         }
 
-        public IActionResult DoSignUp(SignUpDto dto)
+        public Task<IActionResult> DoSignUp(SignUpDto dto)
         {
             if (isEmailAlreadyRegister(dto).Result)
             {
-                return new ConflictObjectResult("Email já cadastrado");
+                return Task.FromResult<IActionResult>(new ConflictObjectResult("Email já cadastrado"));
             }
 
             if (!isPasswordValid(dto.pass).Result)
             {
-                return new BadRequestObjectResult("Senha deve ter pelo menos 6 caracteres");
+                return Task.FromResult<IActionResult>(new BadRequestObjectResult("Senha deve ter pelo menos 6 caracteres"));
             }
 
             var hasher = new PasswordHasher<ModelUsers>();
@@ -66,15 +66,16 @@ namespace suaconsulta_api.Services
 
             // Gera o JWT
             var token = jwtService.GenerateToken(user);
-            return new OkObjectResult(new { token = token, role = user.TypeUser });
+            object resultObject = new { token = token, role = user.TypeUser };
+            return Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
         }
 
-        public IActionResult DoLogin([FromBody] LoginRequest request)
+        public Task<IActionResult> DoLogin([FromBody] LoginRequest request)
         {
             ModelUsers? user = userRepository.GetUserByEmail(request.Email).Result;
             if (user == null)
             {
-                return new NotFoundObjectResult("Usuário não encontrado");
+                return Task.FromResult<IActionResult>(new NotFoundObjectResult("Usuário não encontrado"));
             }
 
             var hasher = new PasswordHasher<ModelUsers>();
@@ -82,11 +83,12 @@ namespace suaconsulta_api.Services
 
             if (result == PasswordVerificationResult.Failed)
             {
-                return new BadRequestObjectResult("Senha incorreta");
+                return Task.FromResult<IActionResult>(new BadRequestObjectResult("Senha incorreta"));
             }
 
             var token = jwtService.GenerateToken(user);
-            return new OkObjectResult(new { token = token, role = user.TypeUser });
+            object resultObject = new { token = token, role = user.TypeUser };
+            return Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
         }
     }
 }

@@ -16,22 +16,22 @@ namespace suaconsulta_api.Controllers
 
         [HttpPost]
         [Route("SignUp")]
-        public IActionResult SignUp([FromBody] SignUpDto dto)
+        public async Task<IActionResult> SignUp([FromBody] SignUpDto dto)
         {
-            return getServiceController<InterfaceAuthService>().DoSignUp(dto);
+            return await getServiceController<InterfaceAuthService>().DoSignUp(dto);
         }
 
         [HttpPost]
         [Route("Login/")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            return getServiceController<InterfaceAuthService>().DoLogin(request);
+            return await getServiceController<InterfaceAuthService>().DoLogin(request);
         }
 
         [HttpGet]
         [Authorize]
         [Route("tokenInformation/")]
-        public IActionResult TokenInformation(Boolean justUser)
+        public async Task<IActionResult> TokenInformation(Boolean justUser)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
@@ -41,18 +41,18 @@ namespace suaconsulta_api.Controllers
 
             if (justUser)
             {
-                var user = getRepositoryController<userRepository>().getUserById(int.Parse(userId)).Result;
+                var user = await getRepositoryController<userRepository>().getUserById(int.Parse(userId));
                 if (user == null)
                 {
-                    return Unauthorized("Usuário não encontrado");
+                    return NotFound("Usuário não encontrado");
                 }
                 return Ok(user);
             }
 
-            var userExternalInfo = getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId)).Result;
+            var userExternalInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
             if (userExternalInfo == null)
                 return NotFound("Informações externas do usuário não encontradas");
-                
+
             return Ok(userExternalInfo);
         }
     }

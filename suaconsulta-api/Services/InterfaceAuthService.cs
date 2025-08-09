@@ -26,13 +26,13 @@ namespace suaconsulta_api.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        IActionResult DoSignUp(SignUpDto dto);
+        Task<IActionResult> DoSignUp(SignUpDto dto);
 
         /// <summary>
         /// Realiza o login do usuário.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        IActionResult DoLogin([FromBody] LoginRequest request);
+        Task<IActionResult> DoLogin([FromBody] LoginRequest request);
     }
 }
