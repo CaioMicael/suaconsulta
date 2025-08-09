@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using suaconsulta_api.DTO;
 using Microsoft.AspNetCore.Identity.Data;
 using suaconsulta_api.Repositories;
+using FluentValidation.Validators;
 
 namespace suaconsulta_api.Controllers
 {
@@ -18,14 +19,28 @@ namespace suaconsulta_api.Controllers
         [Route("SignUp")]
         public IActionResult SignUp([FromBody] SignUpDto dto)
         {
-            return getServiceController<InterfaceAuthService>().DoSignUp(dto);
+            try
+            {
+                return getServiceController<InterfaceAuthService>().DoSignUp(dto);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Falha ao tentar realizar o cadastro. " + e);
+            }
         }
 
         [HttpPost]
         [Route("Login/")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            return getServiceController<InterfaceAuthService>().DoLogin(request);
+            try
+            {
+                return getServiceController<InterfaceAuthService>().DoLogin(request);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Falha ao tentar realizar login. " + e);
+            }
         }
 
         [HttpGet]
@@ -41,20 +56,35 @@ namespace suaconsulta_api.Controllers
 
             if (justUser)
             {
-                var user = getRepositoryController<userRepository>().getUserById(int.Parse(userId)).Result;
-                if (user == null)
+                try
                 {
-                    return Unauthorized("Usuário não encontrado");
-                }
-                
-                return Ok(user);
-            }
-            
-            var userExternalInfo = getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId)).Result;
-            if (userExternalInfo == null)
-                return NotFound("Informações externas do usuário não encontradas");
+                    var user = getRepositoryController<userRepository>().getUserById(int.Parse(userId)).Result;
+                    if (user == null)
+                    {
+                        return Unauthorized("Usuário não encontrado");
+                    }
 
-            return Ok(userExternalInfo);
+                    return Ok(user);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Falha ao buscar usuário. " + e);
+                }
+
+            }
+
+            try
+            {
+                var userExternalInfo = getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId)).Result;
+                if (userExternalInfo == null)
+                    return NotFound("Informações externas do usuário não encontradas");
+
+                return Ok(userExternalInfo);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Falha ao buscar informações externas. " + e);
+            }
         }
     }
 }
