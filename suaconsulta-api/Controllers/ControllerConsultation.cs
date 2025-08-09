@@ -150,7 +150,7 @@ namespace suaconsulta_api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                throw new Exception(e.Message);
             }
         }
 
@@ -197,7 +197,7 @@ namespace suaconsulta_api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                throw new Exception(e.Message);
             }
         }
     }
