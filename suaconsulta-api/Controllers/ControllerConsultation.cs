@@ -21,8 +21,6 @@ namespace suaconsulta_api.Controllers
         /// <summary>
         /// Endpoint GET assíncrono para busca de todas as consultas.
         /// </summary>
-        /// <param name="context">contexto do banco de dados</param>
-        /// <param name="DoctorId">Id do médico</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
         [Authorize]
