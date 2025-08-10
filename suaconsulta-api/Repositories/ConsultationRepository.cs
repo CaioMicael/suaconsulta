@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
+using suaconsulta_api.Model;
 
 namespace suaconsulta_api.Repositories
 {
@@ -24,15 +25,29 @@ namespace suaconsulta_api.Repositories
             var patient = await _context.Patient.FirstOrDefaultAsync(p => p.Id == patientId);
             if (patient == null)
                 return null;
-                
+
             var consultations = await _context.Consultation
                 .Where(c => c.Patient.Id == patientId)
                 .ToListAsync();
-                
+
             return new PatientConsultationsDto
             {
                 Consultations = consultations,
                 Patient = patient
+            };
+        }
+
+        public async Task<DoctorConsultationsDto> GetDoctorConsultations(ModelDoctor Doctor)
+        {
+            var DoctorConsultations = await _context.Consultation
+                .Where(c => c.Doctor.Id == Doctor.Id)
+                .OrderBy(C => C.Id)
+                .ToListAsync();
+
+            return new DoctorConsultationsDto
+            {
+                Doctor = Doctor,
+                Consultation = DoctorConsultations
             };
         }
     }

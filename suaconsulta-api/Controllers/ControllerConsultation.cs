@@ -8,6 +8,7 @@ using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Model.Enum;
 using suaconsulta_api.Repositories;
+using suaconsulta_api.Services;
 
 namespace suaconsulta_api.Controllers
 {
@@ -26,14 +27,21 @@ namespace suaconsulta_api.Controllers
         [HttpGet]
         [Authorize]
         [Route("DoctorConsultations/")]
-        public async Task<IActionResult> GetDoctorConsultation(
-            [FromServices] AppDbContext context,
-            [FromRoute] int DoctorId)
+        public async Task<IActionResult> GetDoctorConsultation()
         {
-            var DoctorConsultations = await context.Consultation
-                .Include(C => C.Doctor)
-                .OrderBy(C => C.DoctorId)
-                .ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized("Usuário não autenticado");
+            }
+
+            UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            if (UserInfo == null || UserInfo.Doctor == null)
+            {
+                return Unauthorized("Médico não cadastrado");
+            }
+
+            DoctorConsultationsDto DoctorConsultations = await getServiceController<ConsultationService>().GetDoctorConsultation(UserInfo.Doctor);
             return Ok(DoctorConsultations);
         }
 
