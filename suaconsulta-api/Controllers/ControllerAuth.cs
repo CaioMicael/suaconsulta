@@ -18,6 +18,10 @@ namespace suaconsulta_api.Controllers
         [Route("SignUp")]
         public async Task<IActionResult> SignUp([FromBody] SignUpDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Os campos enviados não estão corretos");
+            }
             return await getServiceController<InterfaceAuthService>().DoSignUp(dto);
         }
 
@@ -25,6 +29,10 @@ namespace suaconsulta_api.Controllers
         [Route("Login/")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Os campos enviados não estão corretos");
+            }
             return await getServiceController<InterfaceAuthService>().DoLogin(request);
         }
 
