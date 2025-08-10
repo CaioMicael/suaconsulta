@@ -40,16 +40,16 @@ namespace suaconsulta_api.Services
             return Task.FromResult(true);
         }
 
-        public Task<IActionResult> DoSignUp(SignUpDto dto)
+        public async Task<IActionResult> DoSignUp(SignUpDto dto)
         {
             if (isEmailAlreadyRegister(dto).Result)
             {
-                return Task.FromResult<IActionResult>(new ConflictObjectResult("Email já cadastrado"));
+                return await Task.FromResult<IActionResult>(new ConflictObjectResult("Email já cadastrado"));
             }
 
             if (!isPasswordValid(dto.pass).Result)
             {
-                return Task.FromResult<IActionResult>(new BadRequestObjectResult("Senha deve ter pelo menos 6 caracteres"));
+                return await Task.FromResult<IActionResult>(new BadRequestObjectResult("Senha deve ter pelo menos 6 caracteres"));
             }
 
             var hasher = new PasswordHasher<ModelUsers>();
@@ -62,12 +62,12 @@ namespace suaconsulta_api.Services
                 Password = hash
             };
 
-            userRepository.InsertUser(user);
+            await userRepository.InsertUser(user);
 
             // Gera o JWT
             var token = jwtService.GenerateToken(user);
             object resultObject = new { token = token, role = user.TypeUser };
-            return Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
+            return await Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
         }
 
         public Task<IActionResult> DoLogin([FromBody] LoginRequest request)

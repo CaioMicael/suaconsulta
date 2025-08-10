@@ -23,6 +23,18 @@ export interface Doctor {
     pais: string;
 }
 
+export interface DoctorApi {
+    id?: number;
+    Name: string;
+    Email: string;
+    Specialty: string;
+    CRM: string;
+    Phone: string;
+    City: string;
+    State: string;
+    Country: string;
+}
+
 export interface Consultation {
     id?: number;  
     patientId: number;  

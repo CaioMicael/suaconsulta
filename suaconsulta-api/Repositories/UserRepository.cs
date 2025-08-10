@@ -108,7 +108,7 @@ namespace suaconsulta_api.Repositories
             return null;
         }
 
-        public async void InsertUser(ModelUsers user)
+        public async Task InsertUser(ModelUsers user)
         {
             ArgumentNullException.ThrowIfNull(nameof(user));
 

@@ -35,6 +35,6 @@ namespace suaconsulta_api.Repositories
         /// Insere um novo usuário no repositório.
         /// </summary>
         /// <param name="user"></param>
-        void InsertUser(ModelUsers user);
+        Task InsertUser(ModelUsers user);
     }
 }
