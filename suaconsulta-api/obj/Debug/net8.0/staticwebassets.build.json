@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "KPfgAN2FPHDE5qHkrOmJ4Snh5CySAEARsZryYxIYEx0=",
+  "Hash": "F5XylrLfbZSsz3B3zPQbBQEbITDOz6UcXIE91+FQqik=",
   "Source": "suaconsulta-api",
   "BasePath": "_content/suaconsulta-api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

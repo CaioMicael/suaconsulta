@@ -205,7 +205,7 @@ const PatientConsultation = () => {
                     <>
                         {filteredConsultations.length === 0 ? (
                             <NotFoundConsultation
-                                statusConsulta = {statusFilter === "all" ? "agendadas" : "${getStatusText(parseInt(statusFilter))}"}
+                                statusConsulta = {statusFilter === "all" ? "agendadas" : getStatusText(parseInt(statusFilter))}
                             />
                         ) : (
                             <div className="space-y-8">
@@ -320,7 +320,7 @@ const PatientConsultation = () => {
                                     <div className="text-center mt-12 pt-8 border-t border-gray-200">
                                         <p className="text-gray-500">
                                             Mostrando {filteredConsultations.length} consulta{filteredConsultations.length !== 1 ? 's' : ''}
-                                            {statusFilter !== "all" && ` com status "${getStatusText(parseInt(statusFilter))}"`}
+                                            {statusFilter !== "all" && " com status " + getStatusText(parseInt(statusFilter))}
                                         </p>
                                     </div>
                                 )}
