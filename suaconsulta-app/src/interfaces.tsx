@@ -25,14 +25,14 @@ export interface Doctor {
 
 export interface DoctorApi {
     id?: number;
-    Name: string;
-    Email: string;
-    Specialty: string;
-    CRM: string;
-    Phone: string;
-    City: string;
-    State: string;
-    Country: string;
+    name: string;
+    email: string;
+    specialty: string;
+    crm: string;
+    phone: string;
+    city: string;
+    state: string;
+    country: string;
 }
 
 export interface Consultation {
@@ -76,7 +76,7 @@ export interface UserInformationResponse {
         mail: string;
     };
     patient?: Patient;
-    doctor?: Doctor;
+    doctor?: DoctorApi;
 }
 
 export interface ApiError {

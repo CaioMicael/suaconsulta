@@ -32,7 +32,7 @@ const ButtonSignUpDoctor = ({Description, Name, password, className, disabled = 
         }
 
         await apiAuth.post('/SignUp', {
-            mail: doctor.Email,
+            mail: doctor.email,
             pass: password,
             typeUser: UserType.DOCTOR,
         })
