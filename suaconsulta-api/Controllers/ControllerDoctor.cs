@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
+using suaconsulta_api.Repositories;
 using suaconsulta_api.Services;
 using System.Security.Claims;
 
@@ -79,32 +80,42 @@ namespace suaconsulta_api.Controllers
         [HttpPut]
         [Authorize]
         [Route("UpdateDoctor/")]
-        public async Task<IActionResult> PutAsyncDoctor(
-            [FromServices] AppDbContext context,
-            [FromBody] UpdateDoctorDto dto)
+        public async Task<IActionResult> PutAsyncDoctor([FromBody] UpdateDoctorDto dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var doctor = new ModelDoctor
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
             {
-                Name = dto.Name,
-                Specialty = dto.Specialty,
-                CRM = dto.CRM,
-                Phone = dto.Phone,
-                Email = dto.Email,
-                City = dto.City,
-                State = dto.State,
-                Country = dto.Country
-            };
+                return Unauthorized("Usuário não autenticado");
+            }
+
+            UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            if (UserInfo == null || UserInfo.Doctor == null)
+            {
+                return Unauthorized("Médico não cadastrado");
+            }
+
+            dto.Id = UserInfo.Doctor.Id;
 
             try
             {
-                context.Doctor.Update(doctor);
-                await context.SaveChangesAsync();
-                return Ok("Atualizado com sucesso!");
+                bool res = await getServiceController<DoctorService>().UpdateDoctorDto(dto);
+                if (res)
+                    return Ok("Atualizado com sucesso!");
+
+                return NotFound("Médico não encontrado");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict("Conflito de concorrência ao atualizar o médico.");
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest($"Erro de persistência: {ex.Message}");
             }
             catch (Exception e)
             {
