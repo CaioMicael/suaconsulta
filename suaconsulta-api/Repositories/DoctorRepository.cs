@@ -19,25 +19,17 @@ namespace suaconsulta_api.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        
+
         public async Task<bool> UpdateDoctor(ModelDoctor Doctor)
         {
             if (Doctor == null) throw new ArgumentNullException(nameof(Doctor));
             var existing = await _context.Doctor.FindAsync(Doctor.Id);
             if (existing == null) return false;
 
-            existing = Doctor;
-
-            try
-            {
-                _context.Doctor.Update(existing);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao atualizar Médico " + e.Message);
-            }
+            _context.Entry(existing).State = EntityState.Detached;
+            _context.Doctor.Update(Doctor);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

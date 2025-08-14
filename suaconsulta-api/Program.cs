@@ -35,6 +35,8 @@ builder.Services.AddScoped<InterfaceUserRepository, userRepository>();
 builder.Services.AddScoped<userRepository>();
 builder.Services.AddScoped<PatientRepository>();
 builder.Services.AddScoped<ConsultationRepository>();
+builder.Services.AddScoped<DoctorService>();
+builder.Services.AddScoped<DoctorRepository>();
 
 builder.Services.AddScoped<IValidator<CreateConsultation>, CreateConsultationValidator>();
 builder.Services.AddScoped<IValidator<CreateDoctorScheduleDto>, CreateDoctorScheduleValidator>();
@@ -76,7 +78,6 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Minha API", Version = "v1" });
 
-    // Configura��o para autentica��o via JWT no Swagger
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Name = "Authorization",

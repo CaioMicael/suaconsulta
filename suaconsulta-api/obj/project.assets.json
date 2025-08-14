@@ -8578,11 +8578,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj",
+      "projectUniqueName": "c:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj",
       "projectName": "suaconsulta-api",
-      "projectPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj",
+      "projectPath": "c:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\suaconsulta-api.csproj",
       "packagesPath": "C:\\Users\\caiom\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\obj\\",
+      "outputPath": "c:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\caiom\\AppData\\Roaming\\NuGet\\NuGet.Config",
