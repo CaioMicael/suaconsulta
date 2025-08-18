@@ -20,6 +20,12 @@ namespace suaconsulta_api.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+        /// <summary>
+        /// Realiza a atualização de um cadastro de médico no banco de dados
+        /// </summary>
+        /// <param name="Doctor">ModelDoctor</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public async Task<bool> UpdateDoctor(ModelDoctor Doctor)
         {
             if (Doctor == null) throw new ArgumentNullException(nameof(Doctor));
