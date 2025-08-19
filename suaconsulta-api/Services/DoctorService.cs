@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Repositories;
