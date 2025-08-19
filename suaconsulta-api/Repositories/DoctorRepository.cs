@@ -7,11 +7,11 @@ namespace suaconsulta_api.Repositories
     /// <summary>
     /// Repository para o modelo de Doctor
     /// </summary>
-    public class DoctorRepository
+    public class DoctorRepository : RepositoryBase
     {
         private readonly AppDbContext _context;
 
-        public DoctorRepository(AppDbContext context)
+        public DoctorRepository(AppDbContext context) : base(context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

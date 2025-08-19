@@ -27,6 +27,10 @@ builder.Services.AddCors(options =>
 var conexao = builder.Configuration.GetConnectionString("Postgres");
 builder.Services.AddDbContext<AppDbContext>(b => b.UseNpgsql(conexao));
 
+// Classes base
+builder.Services.AddScoped<RepositoryBase>();
+
+// Demais classes
 builder.Services.AddScoped<InterfaceAuthService, AuthService>();
 builder.Services.AddScoped<InterfaceAuthRepository, AuthRepository>();
 builder.Services.AddScoped<AuthRepository>();
