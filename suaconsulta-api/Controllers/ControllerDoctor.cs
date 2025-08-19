@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
-using suaconsulta_api.Model;
 using suaconsulta_api.Repositories;
 using suaconsulta_api.Services;
 using System.Security.Claims;
@@ -21,7 +20,7 @@ namespace suaconsulta_api.Controllers
         [Route("ListDoctor/")]
         public async Task<IActionResult> GetAsyncListDoctor([FromServices] AppDbContext context)
         {
-            var doctors = await context.Doctor.OrderBy(L => L.Id).ToListAsync();
+            var doctors = await context.Doctor.AsNoTracking().OrderBy(L => L.Id).ToListAsync();
             return Ok(doctors);
         }
 
@@ -32,48 +31,36 @@ namespace suaconsulta_api.Controllers
             [FromServices] AppDbContext context,
             [FromQuery] int id)
         {
-            var doctor = await context.Doctor.FirstOrDefaultAsync(i => i.Id == id);
+            var doctor = await context.Doctor.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
             return doctor == null ? NotFound() : Ok(doctor);
         }
 
         [HttpPost]
         [Authorize]
         [Route("CreateDoctor/")]
-        public async Task<IActionResult> PostAsyncDoctor(
-            [FromServices] JwtService jwtService,
-            [FromServices] AppDbContext context,
-            [FromBody] CreateDoctorDto dto)
+        public async Task<IActionResult> PostAsyncDoctor([FromBody] CreateDoctorDto dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var doctor = new ModelDoctor
-            {
-                Name = dto.Name,
-                Specialty = dto.Specialty,
-                CRM = dto.CRM,
-                Phone = dto.Phone,
-                Email = dto.Email,
-                City = dto.City,
-                State = dto.State,
-                Country = dto.Country
-            };
-
             try
             {
-                await context.Doctor.AddAsync(doctor);
-                await context.SaveChangesAsync();
-
-                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                ArgumentException.ThrowIfNullOrEmpty(userId);
-                getServiceController<UserService>().RelateExternalId(int.Parse(userId), doctor.Id);
+                await getServiceController<DoctorService>().CreateDoctorDto(dto);
                 return Ok("Inserido com sucesso!");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict("Conflito de concorrência ao criar o médico.");
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest($"Erro de persistência: {ex.Message}");
             }
             catch (Exception e)
             {
-                throw new Exception("Erro ao incluir Médico " + e.Message);
+                throw new Exception("Erro ao criar Médico " + e.Message);
             }
         }
 

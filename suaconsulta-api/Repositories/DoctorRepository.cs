@@ -24,7 +24,7 @@ namespace suaconsulta_api.Repositories
         /// Realiza a atualização de um cadastro de médico no banco de dados
         /// </summary>
         /// <param name="Doctor">ModelDoctor</param>
-        /// <returns></returns>
+        /// <returns>boolean</returns>
         /// <exception cref="ArgumentNullException"></exception>
         public async Task<bool> UpdateDoctor(ModelDoctor Doctor)
         {
@@ -35,6 +35,19 @@ namespace suaconsulta_api.Repositories
             _context.Entry(existing).State = EntityState.Detached;
             _context.Doctor.Update(Doctor);
             await _context.SaveChangesAsync();
+            return true;
+        }
+
+        /// <summary>
+        /// Realiza a inserção de um novo doctor no banco de dados
+        /// </summary>
+        /// <param name="Doctor">ModelDoctor</param>
+        /// <returns>boolean</returns>
+        public async Task<bool> CreateDoctor(ModelDoctor Doctor)
+        {
+            ArgumentNullException.ThrowIfNull(Doctor);
+
+            await _context.AddAsync(Doctor);
             return true;
         }
     }
