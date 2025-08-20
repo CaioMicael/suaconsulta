@@ -18,10 +18,21 @@ namespace suaconsulta_api.Controllers
         [HttpGet]
         [Authorize]
         [Route("ListDoctor/")]
-        public async Task<IActionResult> GetAsyncListDoctor([FromServices] AppDbContext context)
+        public async Task<IActionResult> GetAsyncListDoctor()
         {
-            var doctors = await context.Doctor.AsNoTracking().OrderBy(L => L.Id).ToListAsync();
-            return Ok(doctors);
+            try
+            {
+                var doctors = await getRepositoryController<DoctorRepository>().GetDoctorPage();
+                return Ok(doctors);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict("Conflito de concorrência ao criar página.");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao criar página " + e.Message);
+            }
         }
 
         [HttpGet]
