@@ -17,8 +17,8 @@ namespace suaconsulta_api.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("ListDoctor/")]
-        public async Task<IActionResult> GetAsyncListDoctor()
+        [Route("DoctorPage/")]
+        public async Task<IActionResult> GetAsyncDoctorPage()
         {
             try
             {
