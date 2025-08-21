@@ -11,6 +11,9 @@ export interface Patient {
     country: string;
 }
 
+/**
+ * @deprecated use DoctorApi
+ */
 export interface Doctor {
     id?: number;
     nome: string;

@@ -3,13 +3,13 @@ import DoctorSchedule from "../pages/DoctorSchedule";
 import ButtonDefault from "./ButtonDefault";
 import ButtonClose from "./ButtonClose";
 import ButtonAgendar from "./ButtonAgendar";
-import { Doctor } from "@/interfaces";
+import { DoctorApi } from "@/interfaces";
 
 interface ButtonSeeDoctorScheduleProps {
     labelDescription: string;
     name: string;
     type: "button" | "submit" | "reset";
-    doctor: Doctor;
+    doctor: DoctorApi;
 }
 
 const ButtonSeeDoctorSchedule = ({ labelDescription, name, type, doctor }: ButtonSeeDoctorScheduleProps) => {

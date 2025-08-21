@@ -1,5 +1,5 @@
 import { UserType } from "../enum/EnumTypeUser";
-import { Doctor, DoctorApi } from "../interfaces";
+import { DoctorApi } from "../interfaces";
 import { useAlert } from "../providers/AlertProvider";
 import api from "../services/api";
 import apiAuth from "../services/apiAuth";

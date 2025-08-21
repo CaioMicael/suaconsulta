@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ButtonDefault from "./ButtonDefault";
-import { Doctor } from "@/interfaces";
+import { DoctorApi } from "@/interfaces";
 
 interface ButtonSeeDoctorProfileProps {
-    doctor: Doctor;
+    doctor: DoctorApi;
     description?: string;
     name?: string;
     onClick?: () => void;

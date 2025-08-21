@@ -4,7 +4,7 @@ import ButtonSeeDoctorProfile from "./ButtonSeeDoctorProfile";
 import ButtonDefault from "./ButtonDefault";
 import api from "../services/api";
 import SucessAlert from "./alerts/SucessAlert";
-import { Doctor, DoctorApi, PagedConsult } from "../interfaces";
+import { DoctorApi, PagedConsult } from "../interfaces";
 import LoadingSpin from "./LoadingSpin";
 import NotFoundDoctors from "./NotFoundDoctors";
 
