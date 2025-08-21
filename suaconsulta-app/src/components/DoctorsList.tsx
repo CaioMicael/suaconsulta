@@ -4,34 +4,26 @@ import ButtonSeeDoctorProfile from "./ButtonSeeDoctorProfile";
 import ButtonDefault from "./ButtonDefault";
 import api from "../services/api";
 import SucessAlert from "./alerts/SucessAlert";
-import { Doctor } from "../interfaces";
+import { Doctor, DoctorApi, PagedConsult } from "../interfaces";
 import LoadingSpin from "./LoadingSpin";
 import NotFoundDoctors from "./NotFoundDoctors";
 
 const DoctorsList = () => {
-    const [doctors, setDoctors] = useState<Doctor[]>([]);
+    const [doctors, setDoctors] = useState<DoctorApi[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     const loadDoctors = async () => {
         try {
             setLoading(true);
-            const response = await api.get('Doctor/ListDoctor');
-            if (response.status === 204 || !response.data || response.data.length === 0) {
+            const response = await api.get<PagedConsult<DoctorApi>>('Doctor/DoctorPage');
+            if (response.status === 204 || !response.data || response.data.items.length === 0) {
                 console.log('Nenhum médico encontrado - definindo array vazio');
                 setDoctors([]);
                 setLoading(false);
                 return;
             }
-            const formattedDoctors = response.data.map((doctorData: any) => ({
-                id: doctorData.id,
-                nome: doctorData.name,
-                especialidade: doctorData.specialty,
-                crm: doctorData.crm,
-                telefone: doctorData.phone,
-                email: doctorData.email
-            }));
             
-            setDoctors(formattedDoctors);
+            setDoctors(response.data.items);
             setLoading(false);
         } catch (error) {
             console.error("Erro ao buscar médicos:", error);
@@ -84,13 +76,13 @@ const DoctorsList = () => {
                                         <img 
                                             className="w-20 h-20 rounded-full mx-auto border-4 border-white shadow-lg object-cover" 
                                             src="/download.jpg" 
-                                            alt={`Dr. ${doctor.nome}`}
+                                            alt={`Dr. ${doctor.name}`}
                                         />
                                         <h3 className="text-white font-bold text-xl mt-3">
-                                            Dr. {doctor.nome}
+                                            Dr. {doctor.name}
                                         </h3>
                                         <span className="inline-block bg-white bg-opacity-20 text-white text-sm px-3 py-1 rounded-full mt-2">
-                                            {doctor.especialidade}
+                                            {doctor.specialty}
                                         </span>
                                     </div>
                                 </div>
@@ -105,7 +97,7 @@ const DoctorsList = () => {
                                         <div className="flex items-center text-gray-600">
                                             <span className="text-green-500 mr-2">📞</span>
                                             <span className="text-sm font-medium">Telefone:</span>
-                                            <span className="ml-auto font-semibold text-sm">{doctor.telefone}</span>
+                                            <span className="ml-auto font-semibold text-sm">{doctor.phone}</span>
                                         </div>
                                         <div className="flex items-center text-gray-600">
                                             <span className="text-purple-500 mr-2">✉️</span>
