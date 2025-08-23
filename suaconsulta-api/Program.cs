@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using suaconsulta_api.Services;
 using suaconsulta_api.Repositories;
+using suaconsulta_api.middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,12 @@ builder.Services.AddCors(options =>
 
 var conexao = builder.Configuration.GetConnectionString("Postgres");
 builder.Services.AddDbContext<AppDbContext>(b => b.UseNpgsql(conexao));
+
+//Filters
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ResultFilter>();
+});
 
 // Classes base
 builder.Services.AddScoped<RepositoryBase>();
