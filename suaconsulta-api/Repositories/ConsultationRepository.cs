@@ -28,6 +28,7 @@ namespace suaconsulta_api.Repositories
 
             var consultations = await _context.Consultation
                 .Where(c => c.Patient.Id == patientId)
+                .AsNoTracking()
                 .ToListAsync();
 
             return new PatientConsultationsDto
