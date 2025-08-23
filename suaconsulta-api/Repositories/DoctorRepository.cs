@@ -57,5 +57,16 @@ namespace suaconsulta_api.Repositories
             IQueryable<ModelDoctor> queryDoctor = _context.Doctor.AsNoTracking();
             return await GetPagedAsync(queryDoctor, 1, 20);
         }
+
+        /// <summary>
+        /// Retorna o doctor pelo ID do mesmo
+        /// </summary>
+        /// <param name="idDoctor">int</param>
+        /// <returns>ModelDoctor|null</returns>
+        public async Task<ModelDoctor?> GetDoctorById(int idDoctor)
+        {
+            ModelDoctor? doctor = await _context.Doctor.AsNoTracking().FirstOrDefaultAsync(i => i.Id == idDoctor);
+            return doctor;
+        }
     }
 }
