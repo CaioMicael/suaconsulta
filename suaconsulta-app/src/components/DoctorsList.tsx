@@ -4,9 +4,10 @@ import ButtonSeeDoctorProfile from "./ButtonSeeDoctorProfile";
 import ButtonDefault from "./ButtonDefault";
 import api from "../services/api";
 import SucessAlert from "./alerts/SucessAlert";
-import { DoctorApi, PagedConsult } from "../interfaces";
+import { DoctorApi } from "../interfaces";
 import LoadingSpin from "./LoadingSpin";
 import NotFoundDoctors from "./NotFoundDoctors";
+import { PagedConsult } from "@/types/PagedConsult";
 
 const DoctorsList = () => {
     const [doctors, setDoctors] = useState<DoctorApi[]>([]);
