@@ -1,3 +1,5 @@
+using suaconsulta_api.Core.Common;
+using suaconsulta_api.Domain.Errors;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Repositories;
@@ -61,6 +63,23 @@ namespace suaconsulta_api.Services
 
             bool response = await _doctorRepository.CreateDoctor(doctor);
             return response;
+        }
+
+        /// <summary>
+        /// Retorna o médico pelo ID informado
+        /// </summary>
+        /// <param name="idDoctor">ModelDoctor|null</param>
+        /// <returns>result</returns>
+        public async Task<Result<ModelDoctor>> GetDoctorById(int idDoctor)
+        {
+            if (idDoctor == 0)
+                return Result<ModelDoctor>.Failure(DomainError.InvalidId);
+
+            ModelDoctor? Doctor = await _doctorRepository.GetDoctorById(idDoctor);
+            if (Doctor == null)
+                return Result<ModelDoctor>.Failure(DomainError.GenericNotFound);
+
+            return Result<ModelDoctor>.Success(Doctor);
         }
     }
 }

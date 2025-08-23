@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using suaconsulta_api.Core.Common;
 using suaconsulta_api.Data;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
@@ -39,16 +40,11 @@ namespace suaconsulta_api.Controllers
         [HttpGet]
         [Authorize]
         [Route("GetDoctor/")]
-        public async Task<IActionResult> GetAsyncDoctorById([FromQuery] int id)
+        public async Task<Result<ModelDoctor>> GetAsyncDoctorById([FromQuery] int id)
         {
             try
             {
-                ModelDoctor? doctor = await getRepositoryController<DoctorRepository>().GetDoctorById(id);
-                return doctor == null ? NotFound() : Ok(doctor);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Conflict("Conflito de concorrência ao buscar o médico.");
+                return await getServiceController<DoctorService>().GetDoctorById(id);
             }
             catch (Exception e)
             {

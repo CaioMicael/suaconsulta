@@ -21,5 +21,8 @@ namespace suaconsulta_api.Domain.Errors
         /// </summary>
         public static DomainError GenericNotFound =>
             new("NOT_FOUND", "Recurso não encontrado", StatusCodes.Status404NotFound);
+
+        public static DomainError InvalidId =>
+            new("BAD_REQUEST", "Id infomado inválido", StatusCodes.Status400BadRequest);
     }
 }
