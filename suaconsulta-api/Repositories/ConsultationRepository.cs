@@ -37,11 +37,17 @@ namespace suaconsulta_api.Repositories
             };
         }
 
+        /// <summary>
+        /// Retorna as consultas do médico repassado
+        /// </summary>
+        /// <param name="Doctor">ModelDoctor</param>
+        /// <returns>DoctorConsultationDto</returns>
         public async Task<DoctorConsultationsDto> GetDoctorConsultations(ModelDoctor Doctor)
         {
             var DoctorConsultations = await _context.Consultation
                 .Where(c => c.Doctor.Id == Doctor.Id)
                 .OrderBy(C => C.Id)
+                .AsNoTracking()
                 .ToListAsync();
 
             return new DoctorConsultationsDto
