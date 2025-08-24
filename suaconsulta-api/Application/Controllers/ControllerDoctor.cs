@@ -71,42 +71,30 @@ namespace suaconsulta_api.Application.Controllers
         [HttpPut]
         [Authorize]
         [Route("UpdateDoctor/")]
-        public async Task<IActionResult> PutAsyncDoctor([FromBody] UpdateDoctorDto dto)
+        public async Task<Result<bool>> PutAsyncDoctor([FromBody] UpdateDoctorDto dto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Result<bool>.Failure(DomainError.GenericBadRequest);
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
             {
-                return Unauthorized("Usuário não autenticado");
+                return Result<bool>.Failure(DomainError.Unauthorized);
             }
 
             UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
             if (UserInfo == null || UserInfo.Doctor == null)
             {
-                return Unauthorized("Médico não cadastrado");
+                return Result<bool>.Failure(DoctorDomainError.NotFoundDoctor);
             }
 
             dto.Id = UserInfo.Doctor.Id;
 
             try
             {
-                bool res = await getServiceController<DoctorService>().UpdateDoctorDto(dto);
-                if (res)
-                    return Ok("Atualizado com sucesso!");
-
-                return NotFound("Médico não encontrado");
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Conflict("Conflito de concorrência ao atualizar o médico.");
-            }
-            catch (DbUpdateException ex)
-            {
-                return BadRequest($"Erro de persistência: {ex.Message}");
+                return await getServiceController<DoctorService>().UpdateDoctorDto(dto);
             }
             catch (Exception e)
             {

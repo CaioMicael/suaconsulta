@@ -23,7 +23,7 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="DoctorDto">UpdateDoctorDto</param>
         /// <returns></returns>
-        public async Task<bool> UpdateDoctorDto(UpdateDoctorDto DoctorDto)
+        public async Task<Result<bool>> UpdateDoctorDto(UpdateDoctorDto DoctorDto)
         {
             var doctor = new ModelDoctor
             {
@@ -39,7 +39,10 @@ namespace suaconsulta_api.Domain.Services
             };
 
             bool response = await _doctorRepository.UpdateDoctor(doctor);
-            return response;
+            if (response)
+                return Result<bool>.Success(response);
+
+            return Result<bool>.Failure(DoctorDomainError.NotFoundDoctor);
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace suaconsulta_api.Domain.Errors
         public string Message { get; }
         public int StatusCode { get; }
 
-        private DomainError(string code, string message, int statusCode)
+        public DomainError(string code, string message, int statusCode)
         {
             Code = code;
             Message = message;
@@ -21,6 +21,15 @@ namespace suaconsulta_api.Domain.Errors
         /// </summary>
         public static DomainError GenericNotFound =>
             new("NOT_FOUND", "Recurso não encontrado", StatusCodes.Status404NotFound);
+
+        /// <summary>
+        /// Retorna bad request padrão
+        /// </summary>
+        public static DomainError GenericBadRequest =>
+            new("BAD_REQUEST", "Requisição está incorreta", StatusCodes.Status400BadRequest);
+
+        public static DomainError Unauthorized =>
+            new("UNAUTHORIZED", "Usuário não autenticado", StatusCodes.Status401Unauthorized);
 
         public static DomainError InvalidId =>
             new("BAD_REQUEST", "Id infomado inválido", StatusCodes.Status400BadRequest);
