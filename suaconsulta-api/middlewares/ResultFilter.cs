@@ -22,7 +22,14 @@ namespace suaconsulta_api.middlewares
         {
             if (context.Result is ObjectResult objectResult && objectResult.Value is IResultBase result)
             {
-                if (result.IsSuccess)
+                if (result.IsCreated)
+                {
+                    context.Result = new ObjectResult(result.GetValue())
+                    {
+                        StatusCode = StatusCodes.Status201Created
+                    };
+                }
+                else if (result.IsSuccess)
                 {
                     context.Result = new ObjectResult(result.GetValue())
                     {

@@ -11,12 +11,14 @@ namespace suaconsulta_api.Core.Common
     {
         public T? Value { get; }
         public bool IsSuccess { get; }
+        public bool IsCreated { get; }
         public DomainError? Error { get; }
 
-        private Result(T? value, bool issucess, DomainError? error)
+        private Result(T? value, bool issucess, DomainError? error, bool created = false)
         {
             Value = value;
             IsSuccess = issucess;
+            IsCreated = created;
             Error = error;
         }
 
@@ -27,6 +29,14 @@ namespace suaconsulta_api.Core.Common
         /// <returns>Result sucess</returns>
         public static Result<T> Success(T value) =>
             new(value, true, null);
+
+        /// <summary>
+        /// Retorna sucesso indicando que o registro foi criado
+        /// </summary>
+        /// <param name="value">Objeto de retorno de sucesso</param>
+        /// <returns>Result sucess</returns>
+        public static Result<T> Created(T value) =>
+            new(value, true, null, true);
 
         /// <summary>
         /// Retorna um erro ocorrido.

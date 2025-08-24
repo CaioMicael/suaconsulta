@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Data;
+using suaconsulta_api.Domain.Errors;
+using suaconsulta_api.Domain.Interfaces;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Model;
 using suaconsulta_api.Repositories;
@@ -55,25 +57,16 @@ namespace suaconsulta_api.Controllers
         [HttpPost]
         [Authorize]
         [Route("CreateDoctor/")]
-        public async Task<IActionResult> PostAsyncDoctor([FromBody] CreateDoctorDto dto)
+        public async Task<Result<bool>> PostAsyncDoctor([FromBody] CreateDoctorDto dto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Result<bool>.Failure(DomainError.GenericNotFound);
             }
 
             try
             {
-                await getServiceController<DoctorService>().CreateDoctorDto(dto);
-                return Ok("Inserido com sucesso!");
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Conflict("Conflito de concorrência ao criar o médico.");
-            }
-            catch (DbUpdateException ex)
-            {
-                return BadRequest($"Erro de persistência: {ex.Message}");
+                return await getServiceController<DoctorService>().CreateDoctorDto(dto);
             }
             catch (Exception e)
             {
