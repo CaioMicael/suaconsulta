@@ -1,4 +1,4 @@
-﻿using suaconsulta_api.Model.Enum;
+﻿using suaconsulta_api.Domain.Model.Enum;
 using System.ComponentModel.DataAnnotations;
 
 namespace suaconsulta_api.DTO

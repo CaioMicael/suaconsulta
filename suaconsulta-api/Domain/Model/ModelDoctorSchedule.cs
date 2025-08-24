@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace suaconsulta_api.Model
+namespace suaconsulta_api.Domain.Model
 {
     [Table("doctorschedule")]
     public class ModelDoctorSchedule
@@ -24,7 +24,7 @@ namespace suaconsulta_api.Model
         [Required]
         [Column("starttime")]
         public DateTime StartTime { get; set; }
-        
+
         [Required]
         [Column("endtime")]
         public DateTime EndTime { get; set; }

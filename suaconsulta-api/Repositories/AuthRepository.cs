@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
-using suaconsulta_api.Model;
+using suaconsulta_api.Domain.Model;
 
 namespace suaconsulta_api.Repositories
 {

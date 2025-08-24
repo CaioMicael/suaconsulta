@@ -1,6 +1,6 @@
 namespace suaconsulta_api.Repositories
 {
-    using suaconsulta_api.Model;
+    using suaconsulta_api.Domain.Model;
 
     /// <summary>
     /// Interface para o repositório de usuários.

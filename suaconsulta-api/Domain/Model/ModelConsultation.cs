@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using suaconsulta_api.Model.Enum;
+using suaconsulta_api.Domain.Model.Enum;
 
-namespace suaconsulta_api.Model
+namespace suaconsulta_api.Domain.Model
 {
     [Table("consultation")]
     public class ModelConsultation

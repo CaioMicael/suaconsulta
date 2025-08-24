@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
+using suaconsulta_api.Domain.Model;
+using suaconsulta_api.Domain.Model.Enum;
 using suaconsulta_api.DTO;
-using suaconsulta_api.Model;
-using suaconsulta_api.Model.Enum;
 
 namespace suaconsulta_api.Controllers
 {

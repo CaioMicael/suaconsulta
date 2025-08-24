@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace suaconsulta_api.Model
+namespace suaconsulta_api.Domain.Model
 {
     [Table("doctor")]
     public class ModelDoctor

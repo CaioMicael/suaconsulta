@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using suaconsulta_api.Model.Enum;
+using suaconsulta_api.Domain.Model.Enum;
 
 namespace suaconsulta_api.DTO
 {

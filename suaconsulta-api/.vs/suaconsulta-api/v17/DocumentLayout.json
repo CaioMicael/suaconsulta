@@ -23,8 +23,8 @@
       "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:controllers\\controllerpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|c:\\users\\caiom\\documents\\suaconsulta\\suaconsulta-api\\domain\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65DAC839-0746-40BC-A66A-7A1A4830A44C}|suaconsulta-api.csproj|solutionrelative:domain\\model\\enum\\enumtypeusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,8 +47,7 @@
               "ViewState": "AgIAABUAAAAAAAAAAAAAACAAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T22:46:46.098Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -68,7 +67,8 @@
               "RelativeToolTip": "DTO\\SignUpDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T01:04:20.668Z"
+              "WhenOpened": "2025-06-23T01:04:20.668Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -78,7 +78,7 @@
               "RelativeDocumentMoniker": "Controllers\\ControllerDoctor.cs",
               "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctor.cs",
               "RelativeToolTip": "Controllers\\ControllerDoctor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-19T19:19:25.916Z",
               "EditorCaption": ""
@@ -111,13 +111,14 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "EnumTypeUsers.cs",
-              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
-              "RelativeDocumentMoniker": "Model\\Enum\\EnumTypeUsers.cs",
-              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Model\\Enum\\EnumTypeUsers.cs",
-              "RelativeToolTip": "Model\\Enum\\EnumTypeUsers.cs",
+              "DocumentMoniker": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Domain\\Model\\Enum\\EnumTypeUsers.cs",
+              "RelativeDocumentMoniker": "Domain\\Model\\Enum\\EnumTypeUsers.cs",
+              "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Domain\\Model\\Enum\\EnumTypeUsers.cs",
+              "RelativeToolTip": "Domain\\Model\\Enum\\EnumTypeUsers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:39:06.815Z"
+              "WhenOpened": "2025-06-12T23:39:06.815Z",
+              "EditorCaption": ""
             }
           ]
         }

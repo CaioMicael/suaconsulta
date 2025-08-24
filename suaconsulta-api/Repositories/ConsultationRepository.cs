@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Data;
+using suaconsulta_api.Domain.Model;
 using suaconsulta_api.DTO;
-using suaconsulta_api.Model;
 
 namespace suaconsulta_api.Repositories
 {

@@ -1,4 +1,4 @@
-﻿namespace suaconsulta_api.Model.Enum
+﻿namespace suaconsulta_api.Domain.Model.Enum
 {
     public enum EnumStatusConsultation
     {
