@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Application.DTO;
+using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Infrastructure.Data;
 
@@ -52,10 +53,11 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// Retorna a página de doctors
         /// </summary>
         /// <returns>PagedResultDto com entidade Doctor</returns>
-        public async Task<PagedResultDto<ModelDoctor>> GetDoctorPage()
+        public async Task<Result<PagedResultDto<ModelDoctor>>> GetDoctorPage()
         {
             IQueryable<ModelDoctor> queryDoctor = _context.Doctor.AsNoTracking();
-            return await GetPagedAsync(queryDoctor, 1, 20);
+            PagedResultDto<ModelDoctor> Page = await GetPagedAsync(queryDoctor, 1, 20);
+            return Result<PagedResultDto<ModelDoctor>>.Success(Page);
         }
 
         /// <summary>

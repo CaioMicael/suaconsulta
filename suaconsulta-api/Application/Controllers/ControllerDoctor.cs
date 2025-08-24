@@ -21,16 +21,11 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("DoctorPage/")]
-        public async Task<IActionResult> GetAsyncDoctorPage()
+        public async Task<Result<PagedResultDto<ModelDoctor>>> GetAsyncDoctorPage()
         {
             try
             {
-                var doctors = await getRepositoryController<DoctorRepository>().GetDoctorPage();
-                return Ok(doctors);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Conflict("Conflito de concorrência ao criar página.");
+                return await getRepositoryController<DoctorRepository>().GetDoctorPage();
             }
             catch (Exception e)
             {
