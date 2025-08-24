@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using suaconsulta_api.Data;
-using suaconsulta_api.DTO;
+using suaconsulta_api.Application.DTO;
+using suaconsulta_api.Infrastructure.Data;
 
 namespace suaconsulta_api.Validator
 {

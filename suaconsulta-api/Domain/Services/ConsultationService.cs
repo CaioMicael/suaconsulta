@@ -1,6 +1,6 @@
+using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Domain.Model;
-using suaconsulta_api.DTO;
-using suaconsulta_api.Repositories;
+using suaconsulta_api.Infrastructure.Repositories;
 
 namespace suaconsulta_api.Domain.Services
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using suaconsulta_api.DTO;
+using suaconsulta_api.Application.DTO;
 
 namespace suaconsulta_api.Domain.Services
 {

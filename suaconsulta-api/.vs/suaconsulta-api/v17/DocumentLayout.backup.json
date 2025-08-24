@@ -47,7 +47,8 @@
               "ViewState": "AgIAABUAAAAAAAAAAAAAACAAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T22:46:46.098Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -67,8 +68,7 @@
               "RelativeToolTip": "DTO\\SignUpDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T01:04:20.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T01:04:20.668Z"
             },
             {
               "$type": "Document",
@@ -78,7 +78,7 @@
               "RelativeDocumentMoniker": "Controllers\\ControllerDoctor.cs",
               "ToolTip": "C:\\Users\\caiom\\Documents\\suaconsulta\\suaconsulta-api\\Controllers\\ControllerDoctor.cs",
               "RelativeToolTip": "Controllers\\ControllerDoctor.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-19T19:19:25.916Z",
               "EditorCaption": ""
@@ -93,7 +93,8 @@
               "RelativeToolTip": "Controllers\\ControllerAuth.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAAwDwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:50:45.466Z"
+              "WhenOpened": "2025-06-12T23:50:45.466Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -105,7 +106,8 @@
               "RelativeToolTip": "Controllers\\ControllerPatient.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAAAEIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:20:23.985Z"
+              "WhenOpened": "2025-06-19T19:20:23.985Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -117,8 +119,7 @@
               "RelativeToolTip": "Domain\\Model\\Enum\\EnumTypeUsers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T23:39:06.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-12T23:39:06.815Z"
             }
           ]
         }

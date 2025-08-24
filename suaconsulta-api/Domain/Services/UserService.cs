@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using suaconsulta_api.Data;
-using suaconsulta_api.Repositories;
+using suaconsulta_api.Infrastructure.Data;
+using suaconsulta_api.Infrastructure.Repositories;
 
 namespace suaconsulta_api.Domain.Services
 {

@@ -1,15 +1,15 @@
-using suaconsulta_api.Data;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using suaconsulta_api.Validator;
 using FluentValidation;
-using suaconsulta_api.DTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using suaconsulta_api.Repositories;
 using suaconsulta_api.middlewares;
 using suaconsulta_api.Domain.Services;
+using suaconsulta_api.Application.DTO;
+using suaconsulta_api.Infrastructure.Repositories;
+using suaconsulta_api.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
