@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using suaconsulta_api.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using suaconsulta_api.DTO;
 using Microsoft.AspNetCore.Identity.Data;
 using suaconsulta_api.Repositories;
+using suaconsulta_api.Domain.Services;
 
 namespace suaconsulta_api.Controllers
 {

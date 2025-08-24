@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.DTO;
 
-namespace suaconsulta_api.Services
+namespace suaconsulta_api.Domain.Services
 {
     public interface InterfaceAuthService
     {

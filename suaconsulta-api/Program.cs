@@ -7,9 +7,9 @@ using suaconsulta_api.DTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using suaconsulta_api.Services;
 using suaconsulta_api.Repositories;
 using suaconsulta_api.middlewares;
+using suaconsulta_api.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

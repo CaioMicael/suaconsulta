@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Data;
 using suaconsulta_api.Repositories;
 
-namespace suaconsulta_api.Services
+namespace suaconsulta_api.Domain.Services
 {
     public class UserService
     {

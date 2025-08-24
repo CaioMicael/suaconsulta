@@ -5,7 +5,7 @@ using suaconsulta_api.Domain.Model;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Repositories;
 
-namespace suaconsulta_api.Services
+namespace suaconsulta_api.Domain.Services
 {
     public class AuthService : InterfaceAuthService
     {
@@ -66,7 +66,7 @@ namespace suaconsulta_api.Services
 
             // Gera o JWT
             var token = jwtService.GenerateToken(user);
-            object resultObject = new { token = token, role = user.TypeUser };
+            object resultObject = new { token, role = user.TypeUser };
             return await Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
         }
 
@@ -87,7 +87,7 @@ namespace suaconsulta_api.Services
             }
 
             var token = jwtService.GenerateToken(user);
-            object resultObject = new { token = token, role = user.TypeUser };
+            object resultObject = new { token, role = user.TypeUser };
             return Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
         }
     }

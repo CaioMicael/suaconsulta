@@ -5,9 +5,9 @@ using suaconsulta_api.Core.Common;
 using suaconsulta_api.Data;
 using suaconsulta_api.Domain.Errors;
 using suaconsulta_api.Domain.Model;
+using suaconsulta_api.Domain.Services;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Repositories;
-using suaconsulta_api.Services;
 using System.Security.Claims;
 
 namespace suaconsulta_api.Controllers

@@ -2,7 +2,7 @@ using suaconsulta_api.Domain.Model;
 using suaconsulta_api.DTO;
 using suaconsulta_api.Repositories;
 
-namespace suaconsulta_api.Services
+namespace suaconsulta_api.Domain.Services
 {
     public class ConsultationService
     {
