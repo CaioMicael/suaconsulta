@@ -23,7 +23,7 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint GET assíncrono para busca de todas as consultas.
         /// </summary>
-        /// <returns>IActionResult</returns>
+        /// <returns>Result<DoctorConsultationsDto></returns>
         [HttpGet]
         [Authorize]
         [Route("DoctorConsultations/")]
@@ -47,7 +47,7 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint GET assíncrono para busca de consulta por paciente.
         /// </summary>
-        /// <returns>IActionResult</returns>
+        /// <returns>Result<PatientConsultationsDto></returns>
         [HttpGet]
         [Authorize]
         [Route("PatientConsultations/")]
@@ -71,10 +71,9 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint GET assíncrono para busca de consulta por médico e paciente.
         /// </summary>
-        /// <param name="context">contexto do banco de dados</param>
         /// <param name="DoctorId">Id do médico</param>
         /// <param name="PatientId">Id do paciente</param>
-        /// <returns>IActionResult</returns>
+        /// <returns>Result<DoctorPatientConsultations></returns>
         [HttpGet]
         [Authorize]
         [Route("ConsultationByDoctorPatient/")]
@@ -86,7 +85,6 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint GET assíncrono que retonra o status da consulta por id.
         /// </summary>
-        /// <param name="context">contexto do banco de dados</param>
         /// <param name="id">ID da consulta</param>
         /// <returns>IActionResult</returns>
         [HttpGet]
@@ -110,7 +108,6 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint POST assíncrono para criação de consultas.
         /// </summary>
-        /// <param name="context">contexto do banco de dados</param>
         /// <param name="validator">validações da criação de consulta</param>
         /// <param name="dto">DTO do create consultation</param>
         /// <returns>IActionResult</returns>
@@ -157,7 +154,6 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint PATCH assíncrono para alteração de consultas.
         /// </summary>
-        /// <param name="context">contexto do banco de dados</param>
         /// <param name="validator">validações da alteração de consulta</param>
         /// <param name="dto">DTO do update consultation</param>
         /// <returns>IActionResult</returns>
