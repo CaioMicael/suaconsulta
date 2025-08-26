@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Infrastructure.Data;
+using suaconsulta_api.Migrations;
 
 namespace suaconsulta_api.Infrastructure.Repositories
 {
@@ -20,21 +21,17 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// </summary>
         /// <param name="patientId">Id do paciente</param>
         /// <returns>PatientConsultationsDto</returns>
-        public async Task<PatientConsultationsDto?> GetPatientConsultations(int patientId)
+        public async Task<PatientConsultationsDto> GetPatientConsultations(ModelPatient Patient)
         {
-            var patient = await _context.Patient.FirstOrDefaultAsync(p => p.Id == patientId);
-            if (patient == null)
-                return null;
-
             var consultations = await _context.Consultation
-                .Where(c => c.Patient.Id == patientId)
+                .Where(c => c.Patient.Id == Patient.Id)
                 .AsNoTracking()
                 .ToListAsync();
 
             return new PatientConsultationsDto
             {
                 Consultations = consultations,
-                Patient = patient
+                Patient = Patient
             };
         }
 
@@ -51,11 +48,29 @@ namespace suaconsulta_api.Infrastructure.Repositories
                 .AsNoTracking()
                 .ToListAsync();
 
-            return new DoctorConsultationsDto
+            DoctorConsultationsDto response = new DoctorConsultationsDto
             {
                 Doctor = Doctor,
                 Consultation = DoctorConsultations
             };
+
+            return response;
+        }
+
+        /// <summary>
+        /// Retorna as consultas onde o médico e paciente passado estão relacionados
+        /// </summary>
+        /// <param name="DoctorId"></param>
+        /// <param name="PatientId"></param>
+        /// <returns></returns>
+        public async Task<ModelConsultation[]?> GetConsultationByDoctorPatient(int DoctorId, int PatientId)
+        {
+            ModelConsultation[]? consultation = await _context.Consultation
+                .Where(C => C.Doctor.Id == DoctorId && C.Patient.Id == PatientId)
+                .AsNoTracking()
+                .ToArrayAsync();
+
+            return consultation;
         }
     }
 }

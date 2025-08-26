@@ -9,6 +9,8 @@ using suaconsulta_api.Domain.Services;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Infrastructure.Repositories;
 using suaconsulta_api.Infrastructure.Data;
+using suaconsulta_api.Core.Common;
+using suaconsulta_api.Domain.Errors;
 
 namespace suaconsulta_api.Application.Controllers
 {
@@ -25,22 +27,21 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("DoctorConsultations/")]
-        public async Task<IActionResult> GetDoctorConsultation()
+        public async Task<Result<DoctorConsultationsDto>> GetDoctorConsultation()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
             {
-                return Unauthorized("Usuário não autenticado");
+                return Result<DoctorConsultationsDto>.Failure(DomainError.Unauthorized);
             }
 
             UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
             if (UserInfo == null || UserInfo.Doctor == null)
             {
-                return Unauthorized("Médico não cadastrado");
+                return Result<DoctorConsultationsDto>.Failure(DoctorDomainError.NotFoundDoctor);
             }
-
-            DoctorConsultationsDto DoctorConsultations = await getServiceController<ConsultationService>().GetDoctorConsultation(UserInfo.Doctor);
-            return Ok(DoctorConsultations);
+            
+            return await getServiceController<ConsultationService>().GetDoctorConsultation(UserInfo.Doctor);
         }
 
         /// <summary>
@@ -50,22 +51,21 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("PatientConsultations/")]
-        public async Task<IActionResult> GetPatientConsultation()
+        public async Task<Result<PatientConsultationsDto>> GetPatientConsultation()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
             {
-                return Unauthorized("Usuário não autenticado");
+                return Result<PatientConsultationsDto>.Failure(DomainError.Unauthorized);
             }
 
             UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
             if (UserInfo == null || UserInfo.Patient == null)
             {
-                return Unauthorized("Paciente não cadastrado");
+                return Result<PatientConsultationsDto>.Failure(PatientDomainError.NotFoundPatient);
             }
 
-            var PatientConsultations = await getRepositoryController<ConsultationRepository>().GetPatientConsultations(UserInfo.Patient.Id);
-            return Ok(PatientConsultations);
+            return await getServiceController<ConsultationService>().GetPatientConsultations(UserInfo.Patient.Id);
         }
 
         /// <summary>
@@ -78,16 +78,9 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("ConsultationByDoctorPatient/")]
-        public async Task<IActionResult> GetConsultationByDoctorPatient(
-            [FromServices] AppDbContext context,
-            int DoctorId,
-            int PatientId)
+        public async Task<Result<DoctorPatientConsultations>> GetConsultationByDoctorPatient(int DoctorId, int PatientId)
         {
-            var Consultation = await context.Consultation
-                .Include(C => C.Doctor)
-                .Include(C => C.Patient)
-                .FirstOrDefaultAsync(C => C.DoctorId == DoctorId && C.PatientId == PatientId);
-            return Consultation == null ? NotFound() : Ok(Consultation);
+            return await getServiceController<ConsultationService>().GetConsultationByDoctorPatient(DoctorId, PatientId);
         }
 
         /// <summary>

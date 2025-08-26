@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Infrastructure.Data;
 
@@ -26,6 +27,16 @@ namespace suaconsulta_api.Infrastructure.Repositories
             _context.Patient.Update(patient);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        /// <summary>
+        /// Retorna o patient pelo ID
+        /// </summary>
+        /// <param name="PatientId"></param>
+        /// <returns></returns>
+        public async Task<ModelPatient?> GetPatientById(int PatientId)
+        {
+            return await _context.Patient.Where(p => p.Id == PatientId).FirstOrDefaultAsync();
         }
     }
 }
