@@ -90,19 +90,9 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("ConsultationStatus/")]
-        public async Task<IActionResult> GetConsultationStatusById(
-            [FromServices] AppDbContext context,
-            int id)
+        public async Task<Result<string>> GetConsultationStatusById(int id)
         {
-            var Consultation = await context.Consultation.FirstOrDefaultAsync(C => C.Id == id);
-
-            if (Consultation == null)
-            {
-                return NotFound();
-            }
-
-            var Response = Enum.GetName(typeof(EnumStatusConsultation), Consultation.Status);
-            return Ok(Response);
+            return await getServiceController<ConsultationService>().GetConsultationStatusById(id);
         }
 
         /// <summary>

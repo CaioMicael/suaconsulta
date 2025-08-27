@@ -72,5 +72,15 @@ namespace suaconsulta_api.Infrastructure.Repositories
 
             return consultation;
         }
+
+        /// <summary>
+        /// Retorna a primeira consulta com o ID repassado
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>ModelConsultation|null</returns>
+        public async Task<ModelConsultation?> GetConsultationById(int id)
+        {
+            return await _context.Consultation.AsNoTracking().FirstOrDefaultAsync(C => C.Id == id);
+        }
     }
 }

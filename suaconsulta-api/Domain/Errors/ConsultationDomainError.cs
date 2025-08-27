@@ -12,5 +12,11 @@ namespace suaconsulta_api.Domain.Errors
         /// </summary>
         public static DomainError NotFoundConsultation =>
             new("NOT_FOUND", "Consulta não encontrada", StatusCodes.Status404NotFound);
+
+        /// <summary>
+        /// Lança um not found para status da consulta
+        /// </summary>
+        public static DomainError NotFoundStatusConsultation =>
+            new("NOT_FOUND", "Status da consulta não encontrado", StatusCodes.Status404NotFound);
     }
 }

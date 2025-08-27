@@ -2,6 +2,7 @@ using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Errors;
 using suaconsulta_api.Domain.Model;
+using suaconsulta_api.Domain.Model.Enum;
 using suaconsulta_api.Infrastructure.Repositories;
 
 namespace suaconsulta_api.Domain.Services
@@ -66,6 +67,24 @@ namespace suaconsulta_api.Domain.Services
             responseDto.Patient = Patient;
 
             return Result<DoctorPatientConsultations>.Success(responseDto);
+        }
+
+        /// <summary>
+        /// Retorna o status da consulta pelo ID
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Result<string></returns>
+        public async Task<Result<string>> GetConsultationStatusById(int id)
+        {
+            ModelConsultation? Consultation = await _consultationRepository.GetConsultationById(id);
+            if (Consultation == null)
+                return Result<string>.Failure(ConsultationDomainError.NotFoundConsultation);
+            
+            string? statusDescription = Enum.GetName(typeof(EnumStatusConsultation), Consultation.Status);
+            if (statusDescription == null)
+                return Result<string>.Failure(ConsultationDomainError.NotFoundStatusConsultation);
+
+            return Result<string>.Success(statusDescription);
         }
     }
 }
