@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Domain.Model;
+using suaconsulta_api.Domain.Model.Enum;
 using suaconsulta_api.Infrastructure.Data;
 using suaconsulta_api.Migrations;
 
@@ -81,6 +82,28 @@ namespace suaconsulta_api.Infrastructure.Repositories
         public async Task<ModelConsultation?> GetConsultationById(int id)
         {
             return await _context.Consultation.AsNoTracking().FirstOrDefaultAsync(C => C.Id == id);
+        }
+
+        public async Task<EnumStatusConsultation> GetConsultationStatusByDateDoctor(DateTime consultationDate, int doctorId)
+        {
+            return await _context.Consultation
+            .AsNoTracking()
+            .Where(
+                C => C.Doctor.Id == doctorId &&
+                C.Date.Year == consultationDate.Year &&
+                C.Date.Month == consultationDate.Month &&
+                C.Date.Day == consultationDate.Day &&
+                C.Date.Hour == consultationDate.Hour &&
+                C.Date.Minute == consultationDate.Minute
+            )
+            .Select(C => C.Status)
+            .FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> CreateConsultation(CreateConsultation consultation)
+        {
+            await _context.AddAsync(consultation);
+            return true;
         }
     }
 }

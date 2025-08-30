@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Errors;
@@ -12,16 +13,19 @@ namespace suaconsulta_api.Domain.Services
         private readonly ConsultationRepository _consultationRepository;
         private readonly PatientRepository _patientRepository;
         private readonly DoctorRepository _doctorRepository;
+        private readonly DoctorScheduleRepository _doctorScheduleRepository;
 
         public ConsultationService(
             ConsultationRepository consultationRepository,
             PatientRepository patientRepository,
-            DoctorRepository doctorRepository
+            DoctorRepository doctorRepository,
+            DoctorScheduleRepository doctorScheduleRepository
             )
         {
             _consultationRepository = consultationRepository ?? throw new ArgumentNullException(nameof(_consultationRepository));
             _patientRepository = patientRepository ?? throw new ArgumentNullException(nameof(_patientRepository));
             _doctorRepository = doctorRepository ?? throw new ArgumentNullException(nameof(_doctorRepository));
+            _doctorScheduleRepository = doctorScheduleRepository ?? throw new ArgumentNullException(nameof(_doctorScheduleRepository));
         }
 
         /// <summary>
@@ -79,12 +83,43 @@ namespace suaconsulta_api.Domain.Services
             ModelConsultation? Consultation = await _consultationRepository.GetConsultationById(id);
             if (Consultation == null)
                 return Result<string>.Failure(ConsultationDomainError.NotFoundConsultation);
-            
+
             string? statusDescription = Enum.GetName(typeof(EnumStatusConsultation), Consultation.Status);
             if (statusDescription == null)
                 return Result<string>.Failure(ConsultationDomainError.NotFoundStatusConsultation);
 
             return Result<string>.Success(statusDescription);
+        }
+
+        /// <summary>
+        /// Validações de regra de negócio antes de adicionar a consulta
+        /// </summary>
+        /// <param name="CreateDto"></param>
+        /// <returns></returns>
+        public async Task<Result<bool>> AddConsultation(CreateConsultation CreateDto)
+        {
+            if (CreateDto.Date < DateTime.Now)
+                return Result<bool>.Failure(ConsultationDomainError.BadRequestConsultationDateLessNow);
+
+            if (await IsConsultationDateAvailableInDoctorSchedule(CreateDto.Date, CreateDto.DoctorId))
+                return Result<bool>.Failure(ConsultationDomainError.BadRequestDateForConsultationNotAvailable);
+
+            if (await _consultationRepository.CreateConsultation(CreateDto))
+                return Result<bool>.Success(true);
+
+            return Result<bool>.Failure(DomainError.GenericBadRequest);
+        }
+
+        /// <summary>
+        /// Retorna se a data desejada para consulta está disponível na agenda do médico
+        /// </summary>
+        /// <param name="dateConsultation"></param>
+        /// <param name="doctorId"></param>
+        /// <param name="_doctorScheduleRepository"></param>
+        /// <returns>bool</returns>
+        protected async Task<bool> IsConsultationDateAvailableInDoctorSchedule(DateTime dateConsultation, int doctorId)
+        {
+            return await _doctorScheduleRepository.IsDateScheduleAvailable(dateConsultation, doctorId);
         }
     }
 }

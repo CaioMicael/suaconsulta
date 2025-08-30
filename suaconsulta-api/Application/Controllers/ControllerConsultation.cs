@@ -104,41 +104,14 @@ namespace suaconsulta_api.Application.Controllers
         [HttpPost]
         [Authorize]
         [Route("CreateConsultation")]
-        public async Task<IActionResult> PostAsyncConsultation(
-            [FromServices] AppDbContext context,
-            [FromServices] IValidator<CreateConsultation> validator,
-            [FromBody] CreateConsultation dto)
+        public async Task<Result<bool>> PostAsyncConsultation([FromBody] CreateConsultation dto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Result<bool>.Failure(DomainError.GenericBadRequest);
             }
 
-            var result = await validator.ValidateAsync(dto);
-            if (!result.IsValid)
-            {
-                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
-            }
-
-            var Consultation = new ModelConsultation
-            {
-                Date = dto.Date,
-                Status = EnumStatusConsultation.Agendada,
-                DoctorId = dto.DoctorId,
-                PatientId = dto.PatientId,
-                Description = dto.Description
-            };
-
-            try
-            {
-                await context.Consultation.AddAsync(Consultation);
-                await context.SaveChangesAsync();
-                return Ok("Inserido com sucesso!");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return await getServiceController<ConsultationService>().AddConsultation(dto);
         }
 
         /// <summary>
