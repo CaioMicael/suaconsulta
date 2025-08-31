@@ -101,10 +101,34 @@ namespace suaconsulta_api.Domain.Services
             if (CreateDto.Date < DateTime.Now)
                 return Result<bool>.Failure(ConsultationDomainError.BadRequestConsultationDateLessNow);
 
-            if (await IsConsultationDateAvailableInDoctorSchedule(CreateDto.Date, CreateDto.DoctorId))
+            if (! await IsConsultationDateAvailableInDoctorSchedule(CreateDto.Date, CreateDto.DoctorId))
                 return Result<bool>.Failure(ConsultationDomainError.BadRequestDateForConsultationNotAvailable);
 
             if (await _consultationRepository.CreateConsultation(CreateDto))
+                return Result<bool>.Success(true);
+
+            return Result<bool>.Failure(DomainError.GenericBadRequest);
+        }
+
+        /// <summary>
+        /// Atualiza a consulta conforme DTO repassado
+        /// </summary>
+        /// <param name="consultation">DTO de update consultation</param>
+        /// <returns>Result</returns>
+        public async Task<Result<bool>> UpdateConsultation(UpdateConsultation consultation)
+        {
+            ModelConsultation? consultationDb = await _consultationRepository.GetConsultationByIdWithTracking(consultation.Id);
+            if (consultationDb == null)
+                return Result<bool>.Failure(ConsultationDomainError.NotFoundConsultation);
+
+            if (consultation.Date != consultationDb.Date)
+                if (! await IsConsultationDateAvailableInDoctorSchedule(consultation.Date, consultationDb.DoctorId))
+                    return Result<bool>.Failure(ConsultationDomainError.BadRequestDateForConsultationNotAvailable);
+
+            consultationDb.Date = consultation.Date;
+            consultationDb.Status = consultation.Status;
+
+            if (await _consultationRepository.UpdateConsultation(consultationDb))
                 return Result<bool>.Success(true);
 
             return Result<bool>.Failure(DomainError.GenericBadRequest);

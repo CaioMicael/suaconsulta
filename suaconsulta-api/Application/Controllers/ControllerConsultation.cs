@@ -107,9 +107,7 @@ namespace suaconsulta_api.Application.Controllers
         public async Task<Result<bool>> PostAsyncConsultation([FromBody] CreateConsultation dto)
         {
             if (!ModelState.IsValid)
-            {
                 return Result<bool>.Failure(DomainError.GenericBadRequest);
-            }
 
             return await getServiceController<ConsultationService>().AddConsultation(dto);
         }
@@ -117,42 +115,19 @@ namespace suaconsulta_api.Application.Controllers
         /// <summary>
         /// Endpoint PATCH assíncrono para alteração de consultas.
         /// </summary>
-        /// <param name="validator">validações da alteração de consulta</param>
         /// <param name="dto">DTO do update consultation</param>
-        /// <returns>IActionResult</returns>
+        /// <returns>Result</returns>
         [HttpPatch]
         [Authorize]
         [Route("UpdateConsultation")]
-        public async Task<IActionResult> UpdateConsultation(
-            [FromServices] AppDbContext context,
-            [FromServices] IValidator<UpdateConsultation> validator,
-            [FromBody] UpdateConsultation dto)
+        public async Task<Result<bool>> UpdateConsultation([FromBody] UpdateConsultation dto)
         {
             if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var result = await validator.ValidateAsync(dto);
-            if (!result.IsValid)
-            {
-                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
-            }
-
-            var Consultation = await context.Consultation.FirstOrDefaultAsync(C => C.Id == dto.Id);
-
-            if (Consultation == null)
-            {
-                return NotFound();
-            }
+                return Result<bool>.Failure(DomainError.GenericBadRequest);
 
             try
             {
-                Consultation.Status = dto.Status;
-                Consultation.Date = dto.Date;
-                context.Consultation.Update(Consultation);
-                await context.SaveChangesAsync();
-                return Ok("Atualizado com sucesso!");
+                return await getServiceController<ConsultationService>().UpdateConsultation(dto);
             }
             catch (Exception e)
             {

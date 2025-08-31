@@ -84,6 +84,16 @@ namespace suaconsulta_api.Infrastructure.Repositories
             return await _context.Consultation.AsNoTracking().FirstOrDefaultAsync(C => C.Id == id);
         }
 
+        /// <summary>
+        /// Retorna a consulta pelo ID com trackeamento
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ModelConsultation?> GetConsultationByIdWithTracking(int id)
+        {
+            return await _context.Consultation.FirstOrDefaultAsync(C => C.Id == id);
+        }
+
         public async Task<EnumStatusConsultation> GetConsultationStatusByDateDoctor(DateTime consultationDate, int doctorId)
         {
             return await _context.Consultation
@@ -103,6 +113,18 @@ namespace suaconsulta_api.Infrastructure.Repositories
         public async Task<bool> CreateConsultation(CreateConsultation consultation)
         {
             await _context.AddAsync(consultation);
+            return true;
+        }
+
+        /// <summary>
+        /// Atualiza a consulta repassada no banco de dados
+        /// </summary>
+        /// <param name="consultation"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateConsultation(ModelConsultation consultation)
+        {
+            _context.Update(consultation);
+            await _context.SaveChangesAsync();
             return true;
         }
     }
