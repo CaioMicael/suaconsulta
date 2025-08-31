@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Errors;

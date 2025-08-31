@@ -5,6 +5,9 @@ using suaconsulta_api.Infrastructure.Data;
 
 namespace suaconsulta_api.Validator
 {
+    /// <summary>
+    /// DEPRECATED
+    /// </summary>
     public class UpdateConsultationValidator : AbstractValidator<UpdateConsultation>
     {
         private readonly AppDbContext context;
@@ -44,12 +47,12 @@ namespace suaconsulta_api.Validator
                 .FirstOrDefaultAsync(cancellationToken);
 
             bool result = await context.DoctorSchedule
-                .AnyAsync(x => x.StartTime.Date.Year == data.Year && 
-                          x.StartTime.Date.Month == data.Month && 
-                          x.StartTime.Date.Day == data.Day && 
+                .AnyAsync(x => x.StartTime.Date.Year == data.Year &&
+                          x.StartTime.Date.Month == data.Month &&
+                          x.StartTime.Date.Day == data.Day &&
                           x.StartTime.Hour == data.Hour &&
-                          x.StartTime.Date.Minute == data.Minute && 
-                          x.DoctorId == DoctorId, cancellationToken); 
+                          x.StartTime.Date.Minute == data.Minute &&
+                          x.DoctorId == DoctorId, cancellationToken);
 
             return result;
         }

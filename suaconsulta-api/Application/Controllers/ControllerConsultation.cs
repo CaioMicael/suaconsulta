@@ -1,14 +1,9 @@
 ﻿using System.Security.Claims;
-using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using suaconsulta_api.Domain.Model.Enum;
-using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Domain.Services;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Infrastructure.Repositories;
-using suaconsulta_api.Infrastructure.Data;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Errors;
 
@@ -17,7 +12,6 @@ namespace suaconsulta_api.Application.Controllers
     [Route("api/Consultation/")]
     public class ControllerConsultation : ControllerApiBase
     {
-
         public ControllerConsultation(IServiceProvider serviceProvider) : base(serviceProvider) { }
 
         /// <summary>
