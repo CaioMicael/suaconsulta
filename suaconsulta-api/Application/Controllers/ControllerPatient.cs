@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Application.DTO;
+using suaconsulta_api.Core.Common;
+using suaconsulta_api.Domain.Errors;
 using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Domain.Services;
 using suaconsulta_api.Infrastructure.Data;
@@ -12,9 +14,22 @@ namespace suaconsulta_api.Application.Controllers
 {
     [Route("api/Patient")]
     [ApiController]
-    public class ControllerPatient : ControllerApiBase
+    public class ControllerPatient : ControllerBase
     {
-        public ControllerPatient(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly PatientService _patientService;
+        private readonly PatientRepository _patientRepository;
+        private readonly InterfaceUserRepository _userRepository;
+
+        public ControllerPatient(
+            PatientService patientService, 
+            PatientRepository patientRepository,
+            InterfaceUserRepository userRepository
+            )
+        {
+            _patientService = patientService ?? throw new ArgumentNullException(nameof(patientService));
+            _patientRepository = patientRepository ?? throw new ArgumentNullException(nameof(patientRepository));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        }
 
         [HttpGet]
         [Authorize]
@@ -28,28 +43,26 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("GetPatientById/")]
-        public async Task<IActionResult> GetAsyncPatientById(
-            [FromServices] AppDbContext context,
-            [FromQuery] int id)
+        public async Task<Result<ModelPatient>> GetAsyncPatientById([FromQuery] int id)
         {
-            var patient = await context.Patient.FirstOrDefaultAsync(i => i.Id == id);
-            return patient == null ? NotFound() : Ok(patient);
+            ModelPatient? patient = await _patientRepository.GetPatientById(id);
+            if (patient == null)
+                return Result<ModelPatient>.Failure(PatientDomainError.NotFoundPatient);
+
+            return Result<ModelPatient>.Success(patient);
         }
 
         [HttpPost]
         [Authorize]
         [Route("CreatePatient/")]
-        public async Task<IActionResult> PostAsyncPatient(
-            [FromServices] JwtService jwtService,
-            [FromServices] AppDbContext context,
-            [FromBody] CreatePatientDto dto)
+        public async Task<Result<string>> PostAsyncPatient([FromBody] CreatePatientDto dto, [FromServices] AppDbContext context)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Result<string>.Failure(DomainError.GenericNotFound);
             }
 
-            var patient = new ModelPatient
+            ModelPatient patient = new ModelPatient
             {
                 Name = dto.Name,
                 Email = dto.Email,
@@ -61,20 +74,18 @@ namespace suaconsulta_api.Application.Controllers
             };
             try
             {
+                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (userId == null)
+                    return Result<string>.Failure(DomainError.Unauthorized);
+
                 await context.Patient.AddAsync(patient);
                 await context.SaveChangesAsync();
 
-                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (userId == null)
-                    return Unauthorized("Usuário não autenticado");
-
-                getServiceController<InterfaceUserRepository>().setExternalId(int.Parse(userId), patient.Id);
-
-                return Ok("Inserido com sucesso!");
+                return Result<string>.Success("Inserido com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao incluir Paciente " + e.Message);
+                throw new Exception(e.Message);
             }
         }
 
@@ -99,7 +110,7 @@ namespace suaconsulta_api.Application.Controllers
                 return NotFound("Usuário não encontrado!");
             }
 
-            UserExternalInfoDto? user = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            UserExternalInfoDto? user = await _userRepository.getExternalUserInfo(int.Parse(userId));
 
             if (user == null || user.Patient == null)
             {
@@ -116,7 +127,7 @@ namespace suaconsulta_api.Application.Controllers
 
             try
             {
-                if (await getRepositoryController<PatientRepository>().UpdatePatient(user.Patient))
+                if (await _patientRepository.UpdatePatient(user.Patient))
                 {
                     return Ok("Dados de paciente alterado com sucesso!");
                 }

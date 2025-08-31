@@ -1,5 +1,6 @@
 namespace suaconsulta_api.Infrastructure.Repositories
 {
+    using suaconsulta_api.Application.DTO;
     using suaconsulta_api.Domain.Model;
 
     /// <summary>
@@ -36,5 +37,12 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// </summary>
         /// <param name="user"></param>
         Task InsertUser(ModelUsers user);
+
+        /// <summary>
+        /// Retorna a informaçao externa do usuário
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<UserExternalInfoDto?> getExternalUserInfo(int userId);
     }
 }
