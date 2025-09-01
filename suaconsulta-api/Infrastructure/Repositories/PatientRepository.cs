@@ -18,6 +18,18 @@ namespace suaconsulta_api.Infrastructure.Repositories
         }
 
         /// <summary>
+        /// Insere um paciente no banco de dados
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <returns></returns>
+        public async Task<bool> InsertPatient(ModelPatient patient)
+        {
+            await _context.Patient.AddAsync(patient);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        /// <summary>
         /// Realiza um update no patient no banco de dados
         /// </summary>
         /// <param name="patient">ModelPatient</param>

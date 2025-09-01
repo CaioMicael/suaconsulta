@@ -55,88 +55,36 @@ namespace suaconsulta_api.Application.Controllers
         [HttpPost]
         [Authorize]
         [Route("CreatePatient/")]
-        public async Task<Result<string>> PostAsyncPatient([FromBody] CreatePatientDto dto, [FromServices] AppDbContext context)
+        public async Task<Result<string>> PostAsyncPatient([FromBody] CreatePatientDto dto)
         {
             if (!ModelState.IsValid)
             {
-                return Result<string>.Failure(DomainError.GenericNotFound);
+                return Result<string>.Failure(DomainError.GenericBadRequest);
             }
 
-            ModelPatient patient = new ModelPatient
-            {
-                Name = dto.Name,
-                Email = dto.Email,
-                Birthday = dto.Birthday,
-                Phone = dto.Phone,
-                City = dto.City,
-                State = dto.State,
-                Country = dto.Country
-            };
-            try
-            {
-                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (userId == null)
-                    return Result<string>.Failure(DomainError.Unauthorized);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+                return Result<string>.Failure(DomainError.Unauthorized);
 
-                await context.Patient.AddAsync(patient);
-                await context.SaveChangesAsync();
-
-                return Result<string>.Success("Inserido com sucesso!");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return await _patientService.CreatePatient(dto);
         }
 
         [HttpPatch]
         [Authorize]
         [Route("PatchPatient/")]
-        public async Task<IActionResult> PatchPatient([FromBody] UpdatePatientDto dto)
+        public async Task<Result<string>> PatchPatient([FromBody] UpdatePatientDto dto)
         {
             if (dto == null)
-            {
-                return BadRequest("Dados do paciente são nulos.");
-            }
+                return Result<string>.Failure(PatientDomainError.PatientNullBadRequest);
 
             if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+                return Result<string>.Failure(DomainError.GenericBadRequest);
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
-            {
-                return NotFound("Usuário não encontrado!");
-            }
+                return Result<string>.Failure(UserDomainError.NotFoundUser);
 
-            UserExternalInfoDto? user = await _userRepository.getExternalUserInfo(int.Parse(userId));
-
-            if (user == null || user.Patient == null)
-            {
-                return NotFound("Paciente não encontrado para este usuário.");
-            }
-
-            user.Patient.Name = dto.Name;
-            user.Patient.Email = dto.Email;
-            user.Patient.Birthday = dto.Birthday;
-            user.Patient.Phone = dto.Phone;
-            user.Patient.City = dto.City;
-            user.Patient.State = dto.State;
-            user.Patient.Country = dto.Country;
-
-            try
-            {
-                if (await _patientRepository.UpdatePatient(user.Patient))
-                {
-                    return Ok("Dados de paciente alterado com sucesso!");
-                }
-                return BadRequest("Erro ao atualizar Paciente ");
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Erro ao atualizar Paciente " + e.Message);
-            }
+            return await _patientService.AlterPatient(dto, int.Parse(userId));
         }
 
         [HttpDelete]
