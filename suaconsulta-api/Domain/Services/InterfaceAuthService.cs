@@ -18,7 +18,7 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        Task<bool> isPasswordValid(string password);
+        bool isPasswordValid(string password);
 
         /// <summary>
         /// Realiza o cadastro de um novo usuário.

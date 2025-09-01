@@ -23,33 +23,24 @@ namespace suaconsulta_api.Domain.Services
         public async Task<bool> isEmailAlreadyRegister(SignUpDto dto)
         {
             var user = await authRepository.getUserByEmail(dto.mail);
-            if (user != null)
-            {
-                return true;
-            }
-
-            return false;
+            return user != null;
         }
 
-        public Task<bool> isPasswordValid(string password)
+        public bool isPasswordValid(string password)
         {
-            if (password == null || password.Length < 6)
-            {
-                return Task.FromResult(false);
-            }
-            return Task.FromResult(true);
+            return password != null && password.Length >= 6;
         }
 
         public async Task<IActionResult> DoSignUp(SignUpDto dto)
         {
-            if (isEmailAlreadyRegister(dto).Result)
+            if (await isEmailAlreadyRegister(dto))
             {
-                return await Task.FromResult<IActionResult>(new ConflictObjectResult("Email já cadastrado"));
+                return new ConflictObjectResult("Email já cadastrado");
             }
 
-            if (!isPasswordValid(dto.pass).Result)
+            if (!isPasswordValid(dto.pass))
             {
-                return await Task.FromResult<IActionResult>(new BadRequestObjectResult("Senha deve ter pelo menos 6 caracteres"));
+                return new BadRequestObjectResult("Senha deve ter pelo menos 6 caracteres");
             }
 
             var hasher = new PasswordHasher<ModelUsers>();
@@ -67,15 +58,15 @@ namespace suaconsulta_api.Domain.Services
             // Gera o JWT
             var token = jwtService.GenerateToken(user);
             object resultObject = new { token, role = user.TypeUser };
-            return await Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
+            return new OkObjectResult(resultObject);
         }
 
-        public Task<IActionResult> DoLogin([FromBody] LoginRequest request)
+        public async Task<IActionResult> DoLogin([FromBody] LoginRequest request)
         {
-            ModelUsers? user = userRepository.GetUserByEmail(request.Email).Result;
+            ModelUsers? user = await userRepository.GetUserByEmail(request.Email);
             if (user == null)
             {
-                return Task.FromResult<IActionResult>(new NotFoundObjectResult("Usuário não encontrado"));
+                return new NotFoundObjectResult("Usuário não encontrado");
             }
 
             var hasher = new PasswordHasher<ModelUsers>();
@@ -83,12 +74,12 @@ namespace suaconsulta_api.Domain.Services
 
             if (result == PasswordVerificationResult.Failed)
             {
-                return Task.FromResult<IActionResult>(new BadRequestObjectResult("Senha incorreta"));
+                return new BadRequestObjectResult("Senha incorreta");
             }
 
             var token = jwtService.GenerateToken(user);
             object resultObject = new { token, role = user.TypeUser };
-            return Task.FromResult<IActionResult>(new OkObjectResult(resultObject));
+            return new OkObjectResult(resultObject);
         }
     }
 }
