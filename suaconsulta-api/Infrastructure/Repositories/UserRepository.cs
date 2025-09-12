@@ -1,6 +1,7 @@
 namespace suaconsulta_api.Infrastructure.Repositories
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Storage;
     using suaconsulta_api.Application.DTO;
     using suaconsulta_api.Domain.Model;
     using suaconsulta_api.Domain.Model.Enum;
@@ -13,6 +14,11 @@ namespace suaconsulta_api.Infrastructure.Repositories
         public userRepository(AppDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        public async Task<IDbContextTransaction> BeginTransaction()
+        {
+            return await _context.Database.BeginTransactionAsync();
         }
 
         public async Task<ModelUsers?> getUserById(int id)
@@ -37,7 +43,7 @@ namespace suaconsulta_api.Infrastructure.Repositories
             return null;
         }
 
-        public async void setExternalId(int userId, int externalId)
+        public async Task setExternalId(int userId, int externalId)
         {
             var user = await getUserById(userId);
             if (user != null)

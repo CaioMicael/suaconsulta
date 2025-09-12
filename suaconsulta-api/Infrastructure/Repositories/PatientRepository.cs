@@ -22,11 +22,11 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// </summary>
         /// <param name="patient"></param>
         /// <returns></returns>
-        public async Task<bool> InsertPatient(ModelPatient patient)
+        public async Task<ModelPatient> InsertPatient(ModelPatient patient)
         {
             await _context.Patient.AddAsync(patient);
             await _context.SaveChangesAsync();
-            return true;
+            return patient;
         }
 
         /// <summary>

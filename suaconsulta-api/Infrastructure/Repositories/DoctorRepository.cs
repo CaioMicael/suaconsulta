@@ -41,12 +41,13 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// </summary>
         /// <param name="Doctor">ModelDoctor</param>
         /// <returns>boolean</returns>
-        public async Task<bool> CreateDoctor(ModelDoctor Doctor)
+        public async Task<ModelDoctor> CreateDoctor(ModelDoctor Doctor)
         {
             ArgumentNullException.ThrowIfNull(Doctor);
 
             await _context.AddAsync(Doctor);
-            return true;
+            await _context.SaveChangesAsync();
+            return Doctor;
         }
 
         /// <summary>

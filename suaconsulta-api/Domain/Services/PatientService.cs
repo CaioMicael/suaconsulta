@@ -25,7 +25,7 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<Result<string>> CreatePatient(CreatePatientDto dto)
+        public async Task<ModelPatient> CreatePatient(CreatePatientDto dto)
         {
             ModelPatient patient = new ModelPatient
             {
@@ -38,8 +38,7 @@ namespace suaconsulta_api.Domain.Services
                 Country = dto.Country
             };
 
-            await _patientRepository.InsertPatient(patient);
-            return Result<string>.Success("Paciente criado com sucesso!");
+            return await _patientRepository.InsertPatient(patient);
         }
 
         /// <summary>
