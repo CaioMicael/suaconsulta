@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using suaconsulta_api.Application.DTO;
+using suaconsulta_api.Core.Common;
 
 namespace suaconsulta_api.Domain.Services
 {
@@ -25,7 +26,7 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<IActionResult> DoSignUp(SignUpDto dto);
+        Task<Result<object>> DoSignUp(SignUpDto dto);
 
         /// <summary>
         /// Realiza o login do usuário.

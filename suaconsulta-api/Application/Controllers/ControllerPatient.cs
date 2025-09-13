@@ -52,23 +52,6 @@ namespace suaconsulta_api.Application.Controllers
             return Result<ModelPatient>.Success(patient);
         }
 
-        [HttpPost]
-        [Authorize]
-        [Route("CreatePatient/")]
-        public async Task<Result<string>> PostAsyncPatient([FromBody] CreatePatientDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Result<string>.Failure(DomainError.GenericBadRequest);
-            }
-
-            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-                return Result<string>.Failure(DomainError.Unauthorized);
-
-            return await _patientService.CreatePatient(dto);
-        }
-
         [HttpPatch]
         [Authorize]
         [Route("PatchPatient/")]

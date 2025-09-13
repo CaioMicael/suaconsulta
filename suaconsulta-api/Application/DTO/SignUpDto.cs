@@ -13,5 +13,9 @@ namespace suaconsulta_api.Application.DTO
 
         [Required(ErrorMessage = "O tipo de usuário é obrigatório.")]
         public EnumTypeUsers TypeUser { get; set; }
+
+        public CreatePatientDto? PatientDto { get; set; }
+
+        public CreateDoctorDto? DoctorDto { get; set; }
     }
 }

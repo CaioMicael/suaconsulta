@@ -48,26 +48,6 @@ namespace suaconsulta_api.Application.Controllers
             }
         }
 
-        [HttpPost]
-        [Authorize]
-        [Route("CreateDoctor/")]
-        public async Task<Result<bool>> PostAsyncDoctor([FromBody] CreateDoctorDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Result<bool>.Failure(DomainError.GenericNotFound);
-            }
-
-            try
-            {
-                return await getServiceController<DoctorService>().CreateDoctorDto(dto);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao criar Médico " + e.Message);
-            }
-        }
-
         [HttpPut]
         [Authorize]
         [Route("UpdateDoctor/")]

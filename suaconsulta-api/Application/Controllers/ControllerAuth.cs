@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity.Data;
 using suaconsulta_api.Domain.Services;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Infrastructure.Repositories;
+using suaconsulta_api.Core.Common;
+using suaconsulta_api.Domain.Errors;
 
 namespace suaconsulta_api.Application.Controllers
 {
@@ -16,12 +18,8 @@ namespace suaconsulta_api.Application.Controllers
 
         [HttpPost]
         [Route("SignUp")]
-        public async Task<IActionResult> SignUp([FromBody] SignUpDto dto)
+        public async Task<Result<object>> SignUp([FromBody] SignUpDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Os campos enviados não estão corretos");
-            }
             return await getServiceController<InterfaceAuthService>().DoSignUp(dto);
         }
 
