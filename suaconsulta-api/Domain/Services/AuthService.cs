@@ -103,10 +103,10 @@ namespace suaconsulta_api.Domain.Services
                     await userRepository.setExternalId(user.Id, externalId);
                     await transaction.CommitAsync();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     await transaction.RollbackAsync();
-                    throw;
+                    throw new Exception("Erro ao criar usuário " + e.Message);
                 }
             }
 
