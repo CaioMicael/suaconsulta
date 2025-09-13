@@ -51,16 +51,16 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<Result<object>> DoSignUp(SignUpDto dto)
+        public async Task<Result<TokenInformationDto>> DoSignUp(SignUpDto dto)
         {
             if (await isEmailAlreadyRegister(dto))
             {
-                return Result<object>.Failure(AuthDomainError.EmailAlreadyRegister);
+                return Result<TokenInformationDto>.Failure(AuthDomainError.EmailAlreadyRegister);
             }
 
             if (!isPasswordValid(dto.pass))
             {
-                return Result<object>.Failure(AuthDomainError.InvalidPassword);
+                return Result<TokenInformationDto>.Failure(AuthDomainError.InvalidPassword);
             }
 
             var hasher = new PasswordHasher<ModelUsers>();
@@ -84,20 +84,20 @@ namespace suaconsulta_api.Domain.Services
                     {
                         case EnumTypeUsers.Doctor:
                             if (dto.DoctorDto == null)
-                                return Result<object>.Failure(DoctorDomainError.NotFoundDoctor);
+                                return Result<TokenInformationDto>.Failure(DoctorDomainError.NotFoundDoctor);
                             ModelDoctor doctor = await _doctorService.CreateDoctorDto(dto.DoctorDto);
                             externalId = doctor.Id;
                             break;
 
                         case EnumTypeUsers.Patient:
                             if (dto.PatientDto == null)
-                                return Result<object>.Failure(PatientDomainError.PatientNullBadRequest);
+                                return Result<TokenInformationDto>.Failure(PatientDomainError.PatientNullBadRequest);
                             ModelPatient patient = await _patientService.CreatePatient(dto.PatientDto);
                             externalId = patient.Id;
                             break;
 
                         default:
-                            return Result<object>.Failure(AuthDomainError.InvalidTypeUser);
+                            return Result<TokenInformationDto>.Failure(AuthDomainError.InvalidTypeUser);
                     }
 
                     await userRepository.setExternalId(user.Id, externalId);
@@ -112,8 +112,8 @@ namespace suaconsulta_api.Domain.Services
 
             // Gera o JWT
             var token = jwtService.GenerateToken(user);
-            object resultObject = new { token, role = user.TypeUser };
-            return Result<object>.Success(resultObject);
+            TokenInformationDto resultObject = new TokenInformationDto { token = token, role = user.TypeUser };
+            return Result<TokenInformationDto>.Success(resultObject);
         }
 
         public async Task<IActionResult> DoLogin([FromBody] LoginRequest request)
@@ -133,7 +133,7 @@ namespace suaconsulta_api.Domain.Services
             }
 
             var token = jwtService.GenerateToken(user);
-            object resultObject = new { token, role = user.TypeUser };
+            TokenInformationDto resultObject = new TokenInformationDto { token = token, role = user.TypeUser };
             return new OkObjectResult(resultObject);
         }
     }

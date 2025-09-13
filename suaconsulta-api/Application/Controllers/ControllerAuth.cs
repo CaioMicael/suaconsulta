@@ -18,7 +18,7 @@ namespace suaconsulta_api.Application.Controllers
 
         [HttpPost]
         [Route("SignUp")]
-        public async Task<Result<object>> SignUp([FromBody] SignUpDto dto)
+        public async Task<Result<TokenInformationDto>> SignUp([FromBody] SignUpDto dto)
         {
             return await getServiceController<InterfaceAuthService>().DoSignUp(dto);
         }

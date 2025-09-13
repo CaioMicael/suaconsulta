@@ -26,7 +26,7 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<Result<object>> DoSignUp(SignUpDto dto);
+        Task<Result<TokenInformationDto>> DoSignUp(SignUpDto dto);
 
         /// <summary>
         /// Realiza o login do usuário.
