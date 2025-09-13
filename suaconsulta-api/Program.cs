@@ -45,6 +45,7 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<InterfaceUserRepository, userRepository>();
 builder.Services.AddScoped<userRepository>();
 builder.Services.AddScoped<PatientRepository>();
+builder.Services.AddScoped<PatientService>();
 builder.Services.AddScoped<ConsultationRepository>();
 builder.Services.AddScoped<DoctorScheduleRepository>();
 builder.Services.AddScoped<DoctorService>();

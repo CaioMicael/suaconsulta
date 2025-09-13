@@ -50,7 +50,7 @@ namespace suaconsulta_api.Domain.Services
         /// </summary>
         /// <param name="DoctorDto">CreateDoctorDto</param>
         /// <returns></returns>
-        public async Task<Result<bool>> CreateDoctorDto(CreateDoctorDto DoctorDto)
+        public async Task<ModelDoctor> CreateDoctorDto(CreateDoctorDto DoctorDto)
         {
             var doctor = new ModelDoctor
             {
@@ -64,11 +64,7 @@ namespace suaconsulta_api.Domain.Services
                 Country = DoctorDto.Country
             };
 
-            bool response = await _doctorRepository.CreateDoctor(doctor);
-            if (response)
-                return Result<bool>.Created(true);
-
-            return Result<bool>.Failure(DomainError.GenericNotFound);
+            return await _doctorRepository.CreateDoctor(doctor);
         }
 
         /// <summary>

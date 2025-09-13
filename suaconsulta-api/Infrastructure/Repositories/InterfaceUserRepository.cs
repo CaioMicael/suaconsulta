@@ -1,5 +1,6 @@
 namespace suaconsulta_api.Infrastructure.Repositories
 {
+    using Microsoft.EntityFrameworkCore.Storage;
     using suaconsulta_api.Application.DTO;
     using suaconsulta_api.Domain.Model;
 
@@ -30,7 +31,7 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// <param name="externalId"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        void setExternalId(int userId, int externalId);
+        Task setExternalId(int userId, int externalId);
 
         /// <summary>
         /// Insere um novo usuário no repositório.
@@ -44,5 +45,11 @@ namespace suaconsulta_api.Infrastructure.Repositories
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<UserExternalInfoDto?> getExternalUserInfo(int userId);
+
+        /// <summary>
+        /// Inicia uma transação no banco de dados
+        /// </summary>
+        /// <returns></returns>
+        Task<IDbContextTransaction> BeginTransaction();
     }
 }
