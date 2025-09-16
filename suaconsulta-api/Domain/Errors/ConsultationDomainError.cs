@@ -19,9 +19,15 @@ namespace suaconsulta_api.Domain.Errors
         public static DomainError NotFoundStatusConsultation =>
             new("NOT_FOUND", "Status da consulta não encontrado", StatusCodes.Status404NotFound);
 
+        /// <summary>
+        /// Lança um bad request quando a data da consulta for menor que a data atual
+        /// </summary>
         public static DomainError BadRequestConsultationDateLessNow =>
             new("BAD_REQUEST", "A data da consulta é menor que a data atual", StatusCodes.Status404NotFound);
 
+        /// <summary>
+        /// Lança um bad request quando a data da consulta não estiver disponível na agenda do médico
+        /// </summary>
         public static DomainError BadRequestDateForConsultationNotAvailable =>
             new("BAD_REQUEST", "A data informada para consulta não está disponível na agenda do médico", StatusCodes.Status400BadRequest);
     }
