@@ -69,36 +69,5 @@ namespace suaconsulta_api.Application.Controllers
 
             return await _patientService.AlterPatient(dto, int.Parse(userId));
         }
-
-        [HttpDelete]
-        [Authorize]
-        [Route("DeletePatient/")]
-        public async Task<IActionResult> DeletePatient(
-            [FromServices] AppDbContext context,
-            [FromQuery] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var patient = await context.Patient.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (patient == null)
-            {
-                return NotFound("Registro não encontrado.");
-            }
-
-            try
-            {
-                context.Patient.Remove(patient);
-                await context.SaveChangesAsync();
-                return Ok("Excluído com sucesso!");
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Erro ao excluir Paciente " + e.Message);
-            }
-        }
     }
 }
