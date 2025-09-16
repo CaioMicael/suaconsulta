@@ -28,10 +28,16 @@ namespace suaconsulta_api.Domain.Errors
         public static DomainError GenericBadRequest =>
             new("BAD_REQUEST", "Requisição está incorreta", StatusCodes.Status400BadRequest);
 
+        /// <summary>
+        /// Dispara erro genérico de Unauthorized
+        /// </summary>
         public static DomainError Unauthorized =>
             new("UNAUTHORIZED", "Usuário não autenticado", StatusCodes.Status401Unauthorized);
 
+        /// <summary>
+        /// Dispara erro genérico de Forbidden
+        /// </summary>
         public static DomainError InvalidId =>
-            new("BAD_REQUEST", "Id infomado inválido", StatusCodes.Status400BadRequest);
+            new("FORBIDDEN", "Id infomado inválido", StatusCodes.Status403Forbidden);
     }
 }
