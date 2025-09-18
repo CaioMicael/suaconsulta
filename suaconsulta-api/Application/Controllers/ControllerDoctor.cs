@@ -81,36 +81,5 @@ namespace suaconsulta_api.Application.Controllers
                 throw new Exception("Erro ao atualizar Médico " + e.Message);
             }
         }
-
-        [HttpDelete]
-        [Authorize]
-        [Route("DeleteDoctor/")]
-        public async Task<IActionResult> DeleteAsyncDoctor(
-            [FromServices] AppDbContext context,
-            [FromQuery] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var doctor = await context.Doctor.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (doctor == null)
-            {
-                return NotFound("Registro não encontrado.");
-            }
-
-            try
-            {
-                context.Doctor.Remove(doctor);
-                await context.SaveChangesAsync();
-                return Ok("Excluído com sucesso!");
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao excluir Médico " + e.Message);
-            }
-        }
     }
 }
