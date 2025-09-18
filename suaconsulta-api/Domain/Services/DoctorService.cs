@@ -22,12 +22,13 @@ namespace suaconsulta_api.Domain.Services
         /// Atualiza o doctor conforme DTO repassado
         /// </summary>
         /// <param name="DoctorDto">UpdateDoctorDto</param>
+        /// <param name="doctorId">Id do doctor deve ser extráido do userInfo</param>
         /// <returns></returns>
-        public async Task<Result<bool>> UpdateDoctorDto(UpdateDoctorDto DoctorDto)
+        public async Task<Result<bool>> UpdateDoctorDto(UpdateDoctorDto DoctorDto, int doctorId)
         {
             var doctor = new ModelDoctor
             {
-                Id = DoctorDto.Id,
+                Id = doctorId,
                 Name = DoctorDto.Name,
                 Specialty = DoctorDto.Specialty,
                 CRM = DoctorDto.CRM,

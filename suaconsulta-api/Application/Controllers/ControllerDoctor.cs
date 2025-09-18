@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Errors;
 using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Domain.Services;
-using suaconsulta_api.Infrastructure.Data;
 using suaconsulta_api.Infrastructure.Repositories;
 using System.Security.Claims;
 
@@ -14,9 +12,18 @@ namespace suaconsulta_api.Application.Controllers
 {
     [Route("api/Doctor")]
     [ApiController]
-    public class ControllerDoctor : ControllerApiBase
+    public class ControllerDoctor : ControllerBase
     {
-        public ControllerDoctor(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly DoctorRepository _doctorRepository;
+        private readonly DoctorService _doctorService;
+        private readonly userRepository _userRepository;
+
+        public ControllerDoctor(DoctorService doctorService, DoctorRepository doctorRepository, userRepository userRepository)
+        {
+            _doctorService = doctorService ?? throw new ArgumentNullException(nameof(doctorService));
+            _doctorRepository = doctorRepository ?? throw new ArgumentNullException(nameof(doctorRepository));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        }
 
         [HttpGet]
         [Authorize]
@@ -25,7 +32,7 @@ namespace suaconsulta_api.Application.Controllers
         {
             try
             {
-                return await getRepositoryController<DoctorRepository>().GetDoctorPage();
+                return await _doctorRepository.GetDoctorPage();
             }
             catch (Exception e)
             {
@@ -38,14 +45,7 @@ namespace suaconsulta_api.Application.Controllers
         [Route("GetDoctor/")]
         public async Task<Result<ModelDoctor>> GetAsyncDoctorById([FromQuery] int id)
         {
-            try
-            {
-                return await getServiceController<DoctorService>().GetDoctorById(id);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao buscar Médico " + e.Message);
-            }
+            return await _doctorService.GetDoctorById(id);
         }
 
         [HttpPut]
@@ -53,33 +53,19 @@ namespace suaconsulta_api.Application.Controllers
         [Route("UpdateDoctor/")]
         public async Task<Result<bool>> PutAsyncDoctor([FromBody] UpdateDoctorDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return Result<bool>.Failure(DomainError.GenericBadRequest);
-            }
-
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
             {
-                return Result<bool>.Failure(DomainError.Unauthorized);
+                return Result<bool>.Failure(UserDomainError.NotFoundUser);
             }
 
-            UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            UserExternalInfoDto? UserInfo = await _userRepository.getExternalUserInfo(int.Parse(userId));
             if (UserInfo == null || UserInfo.Doctor == null)
             {
                 return Result<bool>.Failure(DoctorDomainError.NotFoundDoctor);
             }
 
-            dto.Id = UserInfo.Doctor.Id;
-
-            try
-            {
-                return await getServiceController<DoctorService>().UpdateDoctorDto(dto);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Erro ao atualizar Médico " + e.Message);
-            }
+            return await _doctorService.UpdateDoctorDto(dto, UserInfo.Doctor.Id);
         }
     }
 }
