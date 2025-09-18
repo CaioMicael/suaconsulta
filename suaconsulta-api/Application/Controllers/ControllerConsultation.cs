@@ -10,9 +10,16 @@ using suaconsulta_api.Domain.Errors;
 namespace suaconsulta_api.Application.Controllers
 {
     [Route("api/Consultation/")]
-    public class ControllerConsultation : ControllerApiBase
+    public class ControllerConsultation : ControllerBase
     {
-        public ControllerConsultation(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        private readonly ConsultationService _consultationService;
+        private readonly InterfaceUserRepository _userRepository;
+
+        public ControllerConsultation(ConsultationService consultationService,InterfaceUserRepository userRepository)
+        {
+            _consultationService = consultationService ?? throw new ArgumentNullException(nameof(consultationService));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        }
 
         /// <summary>
         /// Endpoint GET assíncrono para busca de todas as consultas.
@@ -29,13 +36,13 @@ namespace suaconsulta_api.Application.Controllers
                 return Result<DoctorConsultationsDto>.Failure(DomainError.Unauthorized);
             }
 
-            UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            UserExternalInfoDto? UserInfo = await _userRepository.getExternalUserInfo(int.Parse(userId));
             if (UserInfo == null || UserInfo.Doctor == null)
             {
                 return Result<DoctorConsultationsDto>.Failure(DoctorDomainError.NotFoundDoctor);
             }
             
-            return await getServiceController<ConsultationService>().GetDoctorConsultation(UserInfo.Doctor);
+            return await _consultationService.GetDoctorConsultation(UserInfo.Doctor);
         }
 
         /// <summary>
@@ -53,13 +60,13 @@ namespace suaconsulta_api.Application.Controllers
                 return Result<PatientConsultationsDto>.Failure(DomainError.Unauthorized);
             }
 
-            UserExternalInfoDto? UserInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            UserExternalInfoDto? UserInfo = await _userRepository.getExternalUserInfo(int.Parse(userId));
             if (UserInfo == null || UserInfo.Patient == null)
             {
                 return Result<PatientConsultationsDto>.Failure(PatientDomainError.NotFoundPatient);
             }
 
-            return await getServiceController<ConsultationService>().GetPatientConsultations(UserInfo.Patient.Id);
+            return await _consultationService.GetPatientConsultations(UserInfo.Patient.Id);
         }
 
         /// <summary>
@@ -73,7 +80,7 @@ namespace suaconsulta_api.Application.Controllers
         [Route("ConsultationByDoctorPatient/")]
         public async Task<Result<DoctorPatientConsultations>> GetConsultationByDoctorPatient(int DoctorId, int PatientId)
         {
-            return await getServiceController<ConsultationService>().GetConsultationByDoctorPatient(DoctorId, PatientId);
+            return await _consultationService.GetConsultationByDoctorPatient(DoctorId, PatientId);
         }
 
         /// <summary>
@@ -86,7 +93,7 @@ namespace suaconsulta_api.Application.Controllers
         [Route("ConsultationStatus/")]
         public async Task<Result<string>> GetConsultationStatusById(int id)
         {
-            return await getServiceController<ConsultationService>().GetConsultationStatusById(id);
+            return await _consultationService.GetConsultationStatusById(id);
         }
 
         /// <summary>
@@ -103,7 +110,7 @@ namespace suaconsulta_api.Application.Controllers
             if (!ModelState.IsValid)
                 return Result<bool>.Failure(DomainError.GenericBadRequest);
 
-            return await getServiceController<ConsultationService>().AddConsultation(dto);
+            return await _consultationService.AddConsultation(dto);
         }
 
         /// <summary>
@@ -119,14 +126,7 @@ namespace suaconsulta_api.Application.Controllers
             if (!ModelState.IsValid)
                 return Result<bool>.Failure(DomainError.GenericBadRequest);
 
-            try
-            {
-                return await getServiceController<ConsultationService>().UpdateConsultation(dto);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return await _consultationService.UpdateConsultation(dto);
         }
     }
 }
