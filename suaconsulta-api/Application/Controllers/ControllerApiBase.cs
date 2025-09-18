@@ -1,38 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using suaconsulta_api.Infrastructure.Repositories;
 
 namespace suaconsulta_api.Application.Controllers
 {
     /// <summary>
     /// Base controller class for API controllers.
-    /// Preve injeções de dependência para serviços e repositórios.
+    /// Preve injeções de dependência para serviços e repositórios comuns entre os controllers.
     /// </summary>
     public class ControllerApiBase : ControllerBase
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly userRepository _userRepository;
 
-        public ControllerApiBase(IServiceProvider serviceProvider)
+        public ControllerApiBase(userRepository userRepository)
         {
-            _serviceProvider = serviceProvider;
-        }
-
-        /// <summary>
-        /// Obtém uma instância do serviço especificado.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        protected T getServiceController<T>() where T : class
-        {
-            return _serviceProvider.GetRequiredService<T>();
-        }
-
-        /// <summary>
-        /// Obtém uma instância do repositório especificado.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        protected T getRepositoryController<T>() where T : class
-        {
-            return _serviceProvider.GetRequiredService<T>();
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
     }
 }
