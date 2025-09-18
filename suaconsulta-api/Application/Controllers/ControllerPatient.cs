@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Core.Common;
 using suaconsulta_api.Domain.Errors;
 using suaconsulta_api.Domain.Model;
 using suaconsulta_api.Domain.Services;
-using suaconsulta_api.Infrastructure.Data;
 using suaconsulta_api.Infrastructure.Repositories;
 using System.Security.Claims;
 
@@ -29,15 +27,6 @@ namespace suaconsulta_api.Application.Controllers
             _patientService = patientService ?? throw new ArgumentNullException(nameof(patientService));
             _patientRepository = patientRepository ?? throw new ArgumentNullException(nameof(patientRepository));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-        }
-
-        [HttpGet]
-        [Authorize]
-        [Route("ListPatient/")]
-        public async Task<IActionResult> GetAsyncListPatient([FromServices] AppDbContext context)
-        {
-            var patients = await context.Patient.OrderBy(L => L.Id).ToListAsync();
-            return Ok(patients);
         }
 
         [HttpGet]
