@@ -6,21 +6,26 @@ using suaconsulta_api.Domain.Services;
 using suaconsulta_api.Application.DTO;
 using suaconsulta_api.Infrastructure.Repositories;
 using suaconsulta_api.Core.Common;
-using suaconsulta_api.Domain.Errors;
 
 namespace suaconsulta_api.Application.Controllers
 {
     [Route("api/Auth/")]
-    public class ControllerAuth : ControllerApiBase
+    public class ControllerAuth : ControllerBase
     {
+        private readonly InterfaceAuthService _authService;
+        private readonly InterfaceUserRepository _userRepository;
 
-        public ControllerAuth(IServiceProvider serviceProvider) : base(serviceProvider) { }
+        public ControllerAuth(InterfaceAuthService authService, InterfaceUserRepository userRepository)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        }
 
         [HttpPost]
         [Route("SignUp")]
         public async Task<Result<TokenInformationDto>> SignUp([FromBody] SignUpDto dto)
         {
-            return await getServiceController<InterfaceAuthService>().DoSignUp(dto);
+            return await _authService.DoSignUp(dto);
         }
 
         [HttpPost]
@@ -31,7 +36,7 @@ namespace suaconsulta_api.Application.Controllers
             {
                 return BadRequest("Os campos enviados não estão corretos");
             }
-            return await getServiceController<InterfaceAuthService>().DoLogin(request);
+            return await _authService.DoLogin(request);
         }
 
         [HttpGet]
@@ -47,7 +52,7 @@ namespace suaconsulta_api.Application.Controllers
 
             if (justUser)
             {
-                var user = await getRepositoryController<userRepository>().getUserById(int.Parse(userId));
+                var user = await _userRepository.getUserById(int.Parse(userId));
                 if (user == null)
                 {
                     return NotFound("Usuário não encontrado");
@@ -55,7 +60,7 @@ namespace suaconsulta_api.Application.Controllers
                 return Ok(user);
             }
 
-            var userExternalInfo = await getRepositoryController<userRepository>().getExternalUserInfo(int.Parse(userId));
+            var userExternalInfo = await _userRepository.getExternalUserInfo(int.Parse(userId));
             if (userExternalInfo == null)
                 return NotFound("Informações externas do usuário não encontradas");
 
