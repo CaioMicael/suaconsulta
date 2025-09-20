@@ -28,11 +28,11 @@ namespace suaconsulta_api.Application.Controllers
         [HttpGet]
         [Authorize]
         [Route("DoctorPage/")]
-        public async Task<Result<PagedResultDto<ModelDoctor>>> GetAsyncDoctorPage()
+        public async Task<Result<PagedResultDto<ModelDoctor>>> GetAsyncDoctorPage([FromQuery] int Page, [FromQuery] int PageSize)
         {
             try
             {
-                return await _doctorRepository.GetDoctorPage();
+                return await _doctorRepository.GetDoctorPage(Page, PageSize);
             }
             catch (Exception e)
             {
